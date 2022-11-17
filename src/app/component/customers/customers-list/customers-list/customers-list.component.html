@@ -1,0 +1,107 @@
+ <app-customer-create></app-customer-create> 
+
+
+
+<div class="page-title">
+  <h2>Customers-list</h2>
+</div>
+
+ <h4 *ngIf = "!customers">  <em>Loading ...</em></h4> 
+
+<!-- <table mat-table [dataSource]="dataSource"
+class="mat-elevation-z8 table" >
+  <ng-container matColumnDef="name">
+<th mat-header-cell *matHeaderCellDef> Name</th>
+<th mat-cell *matCellDef="let element">{{element.name}}</th>
+  </ng-container>
+  <ng-container matColumnDef="code">
+    <th mat-header-cell *matHeaderCellDef> Code</th>
+    <th mat-cell *matCellDef="let element">{{element.code}}</th>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status</th>
+        <th mat-cell *matCellDef="let element">{{element.status}}</th>
+          </ng-container>
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> type</th>
+            <th mat-cell *matCellDef="let element">{{element.type}}</th>
+              </ng-container>
+              <ng-container matColumnDef="createdDate">
+                <th mat-header-cell *matHeaderCellDef> Date</th>
+                <th mat-cell *matCellDef="let element">{{element.createdDate |date }}</th>
+                  </ng-container>
+                  <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action</th>
+                    <th mat-cell *matCellDef="let element">    <button (click)="editCustomer(element.name)"
+                      class="btn btn-primary " >
+                           <i class="mdi mdi-account-plus "></i></button> 
+                         <button (click)="deleteCustomer(element.name) "
+                         class="btn btn-danger text-white " >
+                           <i class="mdi mdi-delete me-2 "></i></button></th>
+                      </ng-container>
+<tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+<tr mat-row *matRowDef="let row; columns:displayColumns;"></tr>
+</table> -->
+
+<div  class="table-responsive">
+    <table 
+    
+    class="table table-striped mat-table">
+      <thead >
+        <tr class="text-primary" >
+          
+          <th style="width: 20%;">
+            Customer Name
+          </th>
+          <th style="width: 20%;">
+            Code
+          </th>
+          <th>
+            Type
+           </th>
+          <th>
+            Status
+          </th>
+          <th>
+           Create Date
+          </th>
+          
+          <th >
+          Action
+           </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cust of customers" >
+          
+          <td>
+            {{cust.name}}
+          </td>
+           <td>
+            {{cust.code}}            
+          </td> 
+          <td>
+            {{cust.type}}
+            </td>
+          <td >
+          {{cust.status}}
+          </td>
+          <td>
+          {{cust.createdDate | date}}
+          </td>
+        
+          <td>             
+        <button (click)="editCustomer(cust)"
+         class="btn btn-primary " >
+              <i class="mdi mdi-account-plus "></i></button> 
+            <button (click)="deleteCustomer(cust) "
+            class="btn btn-danger text-white " >
+              <i class="mdi mdi-delete me-2 "></i></button>
+          </td>
+        </tr>
+      </tbody>     
+    </table>   
+  </div>  
+
+
+ 

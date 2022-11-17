@@ -1,0 +1,152 @@
+/* You can add global styles to this file, and also import other style files */
+@function theme-color($key: "primary") {
+    @return map-get($theme-colors, $key);
+  }
+
+  @function mix($j,$k,$l) {
+    @return $j;
+  }
+
+  /* === Added Deprecated Hover Mixin ===*/
+
+
+@mixin hover() {
+    &:hover { @content; }
+  }
+  
+  @mixin hover-focus() {
+    &:hover,
+    &:focus {
+      @content;
+    }
+  }
+  
+  @mixin plain-hover-focus() {
+    &,
+    &:hover,
+    &:focus {
+      @content;
+    }
+  }
+  
+  @mixin hover-focus-active() {
+    &:hover,
+    &:focus,
+    &:active {
+      @content;
+    }
+}
+
+.imgdiv{
+  //background-image: url("assets/images/faces/avtar.png");
+  //background-color:rgb(0, 70, 128) !important;
+  //background-repeat: repeat-y;
+  height: 200px;
+  width: 200px;
+}
+
+.img1{
+  height: 200px;
+  width: 200px;
+}
+
+
+.text-primary {
+  color:rgb(0, 70, 128) !important;
+}
+
+.text-primary-text {
+  color:rgb(0, 70, 128) !important;
+}
+
+.text-secondary {
+    color: #00ff2f !important;
+}
+
+.text-danger{
+  color: #ED2939 !important;
+}
+// .btn-danger{
+//   color: #ED2939 !important;
+// }
+.text-white {
+    color: white !important;
+}
+@function lighten($j,$k) {
+    @return $j;
+}
+@function lighten($j,$k) {
+    @return $j;
+}
+
+$utilities-text-colors: ("primary": "red");
+$utilities-border-colors: "primary";
+$negative-spacers: 1;
+
+@import "~bootstrap/scss/functions";
+@import './assets/scss/variables';
+@import "~bootstrap/scss/variables";
+@import "~compass-mixins/lib/compass";
+@import "~compass-mixins/lib/animate";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/utilities";
+@import "./assets/scss/fonts";
+@import "./assets/scss/functions";
+
+/* === Icon fonts === */
+@import "~@mdi/font/scss/materialdesignicons";
+
+
+
+
+
+/* === Template mixins === */
+@import "./assets/scss/mixins/animation";
+@import "./assets/scss/mixins/badges";
+@import "./assets/scss/mixins/buttons";
+@import "./assets/scss/mixins/misc";
+@import "./assets/scss/mixins/color-functions";
+@import "./assets/scss/mixins/cards";
+@import "./assets/scss/mixins/blockqoute";
+@import "./assets/scss/mixins/popovers";
+@import "./assets/scss/mixins/tooltips";
+
+/* === Core Styles === */
+@import "./assets/scss/background";
+@import "./assets/scss/typography";
+@import "./assets/scss/reset";
+@import "./assets/scss/responsive";
+@import "./assets/scss/misc";
+@import "./assets/scss/utilities";
+@import "./assets/scss/demo";
+@import "./assets/scss/spinner";
+
+/* === Components === */
+@import "./assets/scss/components/forms";
+@import "./assets/scss/components/checkbox-radio";
+@import "./assets/scss/components/icons";
+@import "./assets/scss/components/tables";
+@import "./assets/scss/components/accordions";
+@import "./assets/scss/components/buttons";
+@import "./assets/scss/components/breadcrumbs";
+@import "./assets/scss/components/badges";
+@import "./assets/scss/components/cards";
+@import "./assets/scss/components/preview";
+@import "./assets/scss/components/tooltips";
+@import "./assets/scss/components/popovers";
+@import "./assets/scss/components/lists";
+@import "./assets/scss/components/bootstrap-progress";
+@import "./assets/scss/components/bootstrap-alerts";
+@import "./assets/scss/components/tabs";
+@import "./assets/scss/components/dropdowns"; 
+@import "./assets/scss/components/date-picker"; 
+@import "./assets/scss/components/pagination";
+@import "./assets/scss/components/portfolio";
+@import "./assets/scss/components/todo-list";
+
+@import "./assets/scss/components/landing-screens/auth";
+
+/* === Layout === */
+@import "./assets/scss/layout";
