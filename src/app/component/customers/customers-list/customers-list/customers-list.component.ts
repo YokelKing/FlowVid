@@ -51,6 +51,8 @@ loadCustomers(){
   )
 }
 
+
+
 editCustomer(data: ICustomer) : void {
   this.router.navigate([`customers/cust-create/${data.id}`]);
 //const ref = this.modalService.open(CustomerCreateComponent,{centered:true}) ;

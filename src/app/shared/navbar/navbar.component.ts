@@ -13,7 +13,6 @@ import { IUser } from '../models/user';
 export class NavbarComponent implements OnInit {
   public iconOnlyToggled = false;
   public sidebarToggled = false;
-  
   currentUser$ : Observable<IUser>;
   constructor(config: NgbDropdownConfig,
     private accountService: UserPagesService) {
@@ -21,7 +20,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentUser$ = this.accountService.currentUser$;
+    this.currentUser$ = this.accountService.getCurrentUser();
  
   }
 

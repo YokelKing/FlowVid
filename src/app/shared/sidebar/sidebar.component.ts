@@ -11,11 +11,12 @@ import { IUser } from '../models/user';
 export class SidebarComponent implements OnInit {
   public uiBasicCollapsed = false;
   public samplePagesCollapsed = false;
+  displayName: string =null;
   currentUser$ : Observable<IUser>;
   constructor( private accountService: UserPagesService) { }
 
   ngOnInit() {
-    this.currentUser$ = this.accountService.currentUser$;
+    this.currentUser$ = this.accountService.getCurrentUser();
  
     const body = document.querySelector('body');
 

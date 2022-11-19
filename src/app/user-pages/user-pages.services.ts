@@ -57,7 +57,7 @@ const roleUrl = baseUrl + 'role'
         return this.http.post(this.baseUrl +'account/login' ,
          values)
         .pipe(map((user: IUser) => {
-          if(user) {
+          if(user != null){
             localStorage.setItem('token', user.token);
             this.currentUserSource.next(user);
           }

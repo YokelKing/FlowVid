@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   //apiUrl:'https://flowtmstest.azurewebsites.net/api/'
-  apiUrl:'https://localhost:44344/api/'
+ // apiUrl:'https://localhost:44344/api/'
+ apiUrl: 'https://api20221119132824.azurewebsites.net/api/'
+ 
 };
 
 /*
