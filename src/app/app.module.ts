@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule, ThemeService } from 'ng2-charts';
@@ -18,10 +18,10 @@ import { ContentAnimateDirective } from './shared/directives/content-animate.dir
 import { TodoListComponent } from './apps/todo-list/todo-list.component';
 import { HomeComponent } from './shared/home/home.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-
+import { CustomersModule } from './component/customers/customers.module';
 @NgModule({
   declarations: [
-    AppComponent,   
+    AppComponent,
     FooterComponent,
     DashboardComponent,
     TodoListComponent,
@@ -31,25 +31,29 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     HomeComponent,
     NavbarComponent,
     SidebarComponent,
-     
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,     
+    NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    CustomersModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger',
     })
-    
+
 
   ],
+  exports: [CustomersModule],
   providers: [ThemeService,
-  {provide: HTTP_INTERCEPTORS, useClass : JwtInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class AppModule { }

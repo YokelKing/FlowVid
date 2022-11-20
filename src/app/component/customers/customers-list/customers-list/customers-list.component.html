@@ -1,12 +1,85 @@
- <app-customer-create></app-customer-create> 
-
-
+<app-customer-create></app-customer-create>
 
 <div class="page-title">
   <h2>Customers List</h2>
 </div>
 
- <h4 *ngIf = "!customers">  <em>Loading ...</em></h4> 
+<h4 *ngIf="!customers"><em>Loading ...</em></h4>
+<div class="example-header">
+  <mat-form-field>
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Filter"
+    />
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+    </ng-container>
+
+    <!-- Code Column -->
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Code
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.code }} </mat-cell>
+    </ng-container>
+
+    <!-- Type Column -->
+    <!-- <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.type}} </mat-cell>
+    </ng-container>         -->
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Status
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.status }} </mat-cell>
+    </ng-container>
+
+    <!-- Created Date Column -->
+    <ng-container matColumnDef="createdDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Created Type
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.createdDate | date }} </mat-cell>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <th mat-cell *matCellDef="let row">
+        <button (click)="editCustomer(row)" class="btn btn-primary">
+          <i class="mdi mdi-account-plus"></i>
+        </button>
+        <button (click)="deleteCustomer(row)" class="btn btn-danger text-white">
+          <i class="mdi mdi-delete me-2"></i>
+        </button>
+      </th>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
 
 <!-- <table mat-table [dataSource]="dataSource"
 class="mat-elevation-z8 table" >
@@ -42,7 +115,7 @@ class="mat-elevation-z8 table" >
 <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
 <tr mat-row *matRowDef="let row; columns:displayColumns;"></tr>
 </table> -->
-
+<!-- 
 <div  class="table-responsive">
     <table 
     
@@ -101,7 +174,4 @@ class="mat-elevation-z8 table" >
         </tr>
       </tbody>     
     </table>   
-  </div>  
-
-
- 
+  </div>    -->

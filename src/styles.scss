@@ -1,43 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 @function theme-color($key: "primary") {
-    @return map-get($theme-colors, $key);
-  }
+  @return map-get($theme-colors, $key);
+}
 
-  @function mix($j,$k,$l) {
-    @return $j;
-  }
+@function mix($j, $k, $l) {
+  @return $j;
+}
 
-  /* === Added Deprecated Hover Mixin ===*/
+/* === Added Deprecated Hover Mixin ===*/
 
 
 @mixin hover() {
-    &:hover { @content; }
+  &:hover {
+    @content;
   }
-  
-  @mixin hover-focus() {
-    &:hover,
-    &:focus {
-      @content;
-    }
-  }
-  
-  @mixin plain-hover-focus() {
-    &,
-    &:hover,
-    &:focus {
-      @content;
-    }
-  }
-  
-  @mixin hover-focus-active() {
-    &:hover,
-    &:focus,
-    &:active {
-      @content;
-    }
 }
 
-.imgdiv{
+@mixin hover-focus() {
+
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin plain-hover-focus() {
+
+  &,
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin hover-focus-active() {
+
+  &:hover,
+  &:focus,
+  &:active {
+    @content;
+  }
+}
+
+.imgdiv {
   //background-image: url("assets/images/faces/avtar.png");
   //background-color:rgb(0, 70, 128) !important;
   //background-repeat: repeat-y;
@@ -45,41 +52,46 @@
   width: 200px;
 }
 
-.img1{
+.img1 {
   height: 200px;
   width: 200px;
 }
 
 
 .text-primary {
-  color:rgb(0, 70, 128) !important;
+  color: rgb(0, 70, 128) !important;
 }
 
 .text-primary-text {
-  color:rgb(0, 70, 128) !important;
+  color: rgb(0, 70, 128) !important;
 }
 
 .text-secondary {
-    color: #00ff2f !important;
+  color: #00ff2f !important;
 }
 
-.text-danger{
+.text-danger {
   color: #ED2939 !important;
 }
+
 // .btn-danger{
 //   color: #ED2939 !important;
 // }
 .text-white {
-    color: white !important;
-}
-@function lighten($j,$k) {
-    @return $j;
-}
-@function lighten($j,$k) {
-    @return $j;
+  color: white !important;
 }
 
-$utilities-text-colors: ("primary": "red");
+@function lighten($j, $k) {
+  @return $j;
+}
+
+@function lighten($j, $k) {
+  @return $j;
+}
+
+$utilities-text-colors: (
+  "primary": "red"
+);
 $utilities-border-colors: "primary";
 $negative-spacers: 1;
 
@@ -140,8 +152,8 @@ $negative-spacers: 1;
 @import "./assets/scss/components/bootstrap-progress";
 @import "./assets/scss/components/bootstrap-alerts";
 @import "./assets/scss/components/tabs";
-@import "./assets/scss/components/dropdowns"; 
-@import "./assets/scss/components/date-picker"; 
+@import "./assets/scss/components/dropdowns";
+@import "./assets/scss/components/date-picker";
 @import "./assets/scss/components/pagination";
 @import "./assets/scss/components/portfolio";
 @import "./assets/scss/components/todo-list";
