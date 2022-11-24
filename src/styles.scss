@@ -95,6 +95,28 @@ $utilities-text-colors: (
 $utilities-border-colors: "primary";
 $negative-spacers: 1;
 
+
+.mat-table {
+  display: table;
+  width: 100%;
+
+  > .mat-header-row, > .mat-row {
+      display: table-row;
+      padding: 0;
+      border: none;
+      margin: 10px;
+
+      > .mat-header-cell, > .mat-cell {
+          display: table-cell;
+          height: 48px;
+          vertical-align: middle;
+          padding: 15px 30px;
+
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+  }
+}
+
 @import "~bootstrap/scss/functions";
 @import './assets/scss/variables';
 @import "~bootstrap/scss/variables";

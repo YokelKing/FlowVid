@@ -48,10 +48,10 @@ export class CustomersListComponent implements OnInit {
  * Set the paginator and sort after the view init since this component will
  * be able to query its view for the initialized paginator and sort.
  */
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -69,6 +69,9 @@ export class CustomersListComponent implements OnInit {
         console.log(result)
         this.customers = result;
         this.dataSource = new MatTableDataSource(result);
+          // Assign the paginator *after* dataSource is set
+              this.dataSource.paginator = this.paginator;
+              this.dataSource.sort = this.sort;
 
       }, error => {
         console.log(error);

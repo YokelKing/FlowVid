@@ -27,7 +27,7 @@
           </div>
           <div class="nav-profile-text">
             <p class="mb-1 text-black">Welcome 
-              {{(currentUser$ | async).displayName}} 
+              {{(currentUser$ | async)?.displayName}} 
                </p> 
           </div>
         </a>
