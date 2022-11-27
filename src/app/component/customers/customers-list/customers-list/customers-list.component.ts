@@ -10,7 +10,7 @@ import { CustomerCreateComponent } from '../../customer-create/customer-create/c
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-customers-list',
   templateUrl: './customers-list.component.html',
@@ -112,6 +112,8 @@ export class CustomersListComponent implements OnInit {
         this.editCustomerForm.get('name')?.setValue(data.name);
         this.editCustomerForm.get('code')?.setValue(data.code);
       });
+      this.loadCustomers();
+
   }
   deleteCustomer(data: ICustomer): void {
 
@@ -120,30 +122,40 @@ export class CustomersListComponent implements OnInit {
         (data) => data,
         err => console.log(data.name + "has not been deleted")
       );
+      alert("Customer has been deleted")
+  
+      
+      // Swal.fire({
+      //   title: 'Are you sure want to remove?',
+      //   text: 'You will not be able to recover this file!',
+      //   icon: 'warning',
+      //   showCancelButton: true,
+      //   confirmButtonText: 'Yes, delete it!',
+      //   cancelButtonText: 'No, keep it'
+      // }).then((data) => {
+      //   if (data.name) {
+      //     Swal.fire(
+      //       'Deleted!',
+      //       'Your imaginary file has been deleted.',
+      //       'success'
+      //     )
+      //   } else if (data.dismiss === Swal.DismissReason.cancel) {
+      //     Swal.fire(
+      //       'Cancelled',
+      //       'Your imaginary file is safe :)',
+      //       'error'
+      //     )
+      //   }
+      // })
+      
+
     this.customers = this.customers.filter(r => r.id !== data.id)
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/customers/cust-list']);
+  });
 
   }
 
-
-
-  open(content) {
-    this.modalService.open(content,
-      { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-        this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
 
 }
 

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ICustomer } from 'src/app/shared/models/customers';
 import { CustomersService } from '../../customers.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-customer-create',
@@ -11,6 +12,9 @@ import { CustomersService } from '../../customers.service';
   styleUrls: ['./customer-create.component.scss']
 })
 export class CustomerCreateComponent implements OnInit {
+  //@ViewChild('myModal', { static: false }) myModal;
+
+  [x: string]: any;
   title: string;
   customer: ICustomer; 
   closeResult: string;
@@ -94,29 +98,47 @@ else{
     (this.customerForm.value)
     .subscribe(data => {
       console.log(" Customer " + data.id + "has been created");
-      this.router.navigate(['/customers/cust-list']);
+     // alert("Customer has been created");
+  
+     Swal.fire('Customer has been created');
+      //this.router.navigate(['/customers/cust-list',]);
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate(['/customers/cust-list']);
+    });
     }, error => console.log(error));
+
+    this.modalService.dismissAll();
+
+
+
   }
   
   private editCustomer(): void {
     this.customerService.updateCustomer(this.customerID,
        this.customerForm.value).
     subscribe( (result) => {
-      console.log("Customer"+ result.name +"has been updated")
+      console.log("Customer"+ result.name +"has been updated");
+      //alert("Customer has been updated");
+      Swal.fire('Customer has been updated');
     
-      this.router.navigate(['/customers/cust-list']);
-      this.customerForm.reset();
+    //  this.router.navigate(['/customers/cust-list']);
+
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate(['/customers/cust-list']);
+    });
+    //  this.customerForm.reset();
     }, error => console.log(error))
+    this.modalService.dismissAll();
   }
 
-  open(content) {
-    this.modalService.open(content,
-       {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+
+  open(content:any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-  }
+  } 
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -127,4 +149,7 @@ else{
       return  `with: ${reason}`;
     }
   }
+
+
+  
 }

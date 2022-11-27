@@ -1,5 +1,8 @@
+
+
 <div class="page-header">
-     
+
+
  <button  (click)="open(mymodal)" *ngIf="customerID"
         type="button" class="btn btn-facebook " 
         data-bs-toggle="modal" 
@@ -23,24 +26,24 @@
         <h4 *ngIf="!customerID" class="modal-title" id="modal-basic-title">
           Add Customer</h4>
       <button type="button" class="close" 
-      aria-label="Close" 
+      aria-label="Close" data-dismiss="modal" #closebutton
       (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">×</span>
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="customerForm" 
+      <form [formGroup]="customerForm"
       *ngIf="customerForm"
       class="pt-3">
         <div class="form-group">
-          <input formControlName="name"
+          <input formControlName="name" required="true"
            type="text" 
            class="form-control form-control-lg"                 
            placeholder="Name">
         </div>
         <div class="form-group">
           <input formControlName="code" 
-          type="text" 
+          type="text"  required="true"
           class="form-control form-control-lg" 
            placeholder="Code">
         </div>       
@@ -48,18 +51,20 @@
     </div>
     <div class="modal-footer">
       <button *ngIf="customerID"
-       type="submit"
+       type="submit" id="closeModal"
        class="btn btn-facebook" 
        (click)="SaveCustomer()"
       >Save</button>
       <button *ngIf="!customerID"
-       type="submit"
-       class="btn btn-facebook" 
+       type="submit" [disabled]="customerForm .invalid"
+       class="btn btn-facebook" id="closeModal" 
        (click)="SaveCustomer()"
       >Create</button>
        <button (click)="modal.close('Save click')"
-       type="reset" 
+       type="reset" data-dismiss="modal" #closebutton
      class="btn btn-danger" 
     >Cancel</button>
     </div>
+
+
   <!-- </ng-template>  -->
