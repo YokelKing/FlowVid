@@ -79,8 +79,8 @@ else{
     // cust.name = this.customerForm.get("name").value;
     // cust.code =  this.customerForm.get("code").value;
 
-    // if(this.editCustomerForm.invalid){
-    //   return console.error(this.editCustomerForm.value);
+    // if(this.CustomerForm.invalid){
+    //   return;
     //    }
       if(this.customerID === 0 )
       {

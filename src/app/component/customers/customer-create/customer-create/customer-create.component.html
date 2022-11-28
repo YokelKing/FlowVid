@@ -27,7 +27,7 @@
     <form [formGroup]="customerForm" *ngIf="customerForm" class="pt-3">
       <div class="form-group">
         <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*"
-          [ngClass]="{ 'is-invalid': isSubmitted && f['name'].errors }" />
+          [ngClass]="{'is-invalid': isSubmitted && f['name'].errors }" />
         <div *ngIf="isSubmitted && f['name'].errors" class="invalid-feedback">
           <div *ngIf="f['name'].errors['required']">Name is required</div>
         </div>
@@ -41,7 +41,7 @@
     <button *ngIf="customerID" type="submit" id="closeModal" class="btn btn-facebook"
       (click)="SaveCustomer()">Save</button>
     <button *ngIf="!customerID" type="submit" class="btn btn-facebook" id="closeModal"
-      (click)="SaveCustomer()">Create</button>
+      (click)="SaveCustomer()" [disabled]="customerForm .invalid">Create</button>
     <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">Cancel</button>
   </div>
 
