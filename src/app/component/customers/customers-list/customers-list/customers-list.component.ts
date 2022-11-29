@@ -93,6 +93,24 @@ export class CustomersListComponent implements OnInit {
     //},(cancel) =>{
     //console.log("Cancel")
     //})
+
+    // const ref = this.modalService.open(CustomerCreateComponent, { centered: true });
+    // ref.componentInstance.customer = data;
+  
+    // ref.result.then((yes) => {
+    //   console.log("Yes Click");
+      
+  
+    //     this.loadCustomers();
+    // },
+    //   (cancel) => {
+    //     console.log("Cancel Click");
+  
+    //   })
+
+
+
+
   }
   private editSetForm() {
     console.log(this.customer);
@@ -117,42 +135,31 @@ export class CustomersListComponent implements OnInit {
   }
   deleteCustomer(data: ICustomer): void {
 
-    this.customerService.deleteCustomer(data)
-      .subscribe(
-        (data) => data,
-        err => console.log(data.name + "has not been deleted")
-      );
-      alert("Customer has been deleted")
-  
+
+
+      if(confirm("Are you sure to delete?")) {
+        // Initialize Params Object
       
-      // Swal.fire({
-      //   title: 'Are you sure want to remove?',
-      //   text: 'You will not be able to recover this file!',
-      //   icon: 'warning',
-      //   showCancelButton: true,
-      //   confirmButtonText: 'Yes, delete it!',
-      //   cancelButtonText: 'No, keep it'
-      // }).then((data) => {
-      //   if (data.name) {
-      //     Swal.fire(
-      //       'Deleted!',
-      //       'Your imaginary file has been deleted.',
-      //       'success'
-      //     )
-      //   } else if (data.dismiss === Swal.DismissReason.cancel) {
-      //     Swal.fire(
-      //       'Cancelled',
-      //       'Your imaginary file is safe :)',
-      //       'error'
-      //     )
-      //   }
-      // })
+        this.customerService.deleteCustomer(data)
+        .subscribe(
+          (data) => data,
+          err => console.log(data.name + "has not been deleted")
+        );
+        //sweetalert message popup
+        Swal.fire({
+          title: 'Hurray!!',
+          text:   "User has been deleted successfully",
+          icon: 'success'
+        });
+        this.customers = this.customers.filter(r => r.id !== data.id)
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000); 
+
+      }
       
 
-    this.customers = this.customers.filter(r => r.id !== data.id)
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/customers/cust-list']);
-  });
+ 
 
   }
 
