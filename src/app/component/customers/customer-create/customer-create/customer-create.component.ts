@@ -106,7 +106,18 @@ export class CustomerCreateComponent implements OnInit {
       (this.customerForm.value)
       .subscribe(data => {
         //console.log(" Customer " + data.id + "has been created");  
-        Swal.fire('Customer has been created');
+        ///Swal.fire('Customer has been created');
+
+
+        Swal.fire({  
+         // position: 'top-end',  
+          icon: 'success',  
+          title: 'Customer has been created',  
+          showConfirmButton: false,  
+          timer: 1500  
+        })  
+    
+        
         this.isSubmitted = false;
         // this.modal.close('Yes');
         this.modalService.dismissAll();

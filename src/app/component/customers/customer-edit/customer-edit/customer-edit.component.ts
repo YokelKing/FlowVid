@@ -54,7 +54,14 @@ export class CustomerEditComponent implements OnInit {
       .subscribe(
         (x) => {
           this.isSubmitted = false;
-          Swal.fire("Customer has been updated");
+          Swal.fire({  
+            // position: 'top-end',  
+             icon: 'success',  
+             title: 'Customer has been updated',  
+             showConfirmButton: false,  
+             timer: 1500  
+           })  
+       
 
           this.modal.close("Yes");
         },

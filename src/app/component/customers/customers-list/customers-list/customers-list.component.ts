@@ -160,24 +160,67 @@ export class CustomersListComponent implements OnInit {
   //     this.loadCustomers();
 
   // }
-  deleteCustomer(data: ICustomer): void {
-    if (confirm("Are you sure to delete?")) {
-      // Initialize Params Object
+  // deleteCustomer(data: ICustomer): void {
+  //   if (confirm("Are you sure to delete?")) {
+  //     // Initialize Params Object
 
-      this.customerService.deleteCustomer(data).subscribe(
-        (data) => data,
-        (err) => console.log(data.name + "has not been deleted")
-      );
-      //sweetalert message popup
-      Swal.fire({
-        title: "Hurray!!",
-        text: "User has been deleted successfully",
-        icon: "success",
-      });
-      this.customers = this.customers.filter((r) => r.id !== data.id);
-      setTimeout(() => {
+  //     this.customerService.deleteCustomer(data).subscribe(
+  //       (data) => data,
+  //       (err) => console.log(data.name + "has not been deleted")
+  //     );
+  //     //sweetalert message popup
+  //     Swal.fire({
+  //       title: "Hurray!!",
+  //       text: "User has been deleted successfully",
+  //       icon: "success",
+  //     });
+  //     this.customers = this.customers.filter((r) => r.id !== data.id);
+  //     setTimeout(() => {
+  //       window.location.reload();
+  //     }, 2000);
+  //   }
+  // }
+
+
+
+  deleteCustomer(data: ICustomer): void {
+
+    Swal.fire({  
+      title: 'Are you sure want to remove?',  
+      text: 'You will not be able to recover this file!',  
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'Yes, delete it!',  
+      cancelButtonText: 'No, keep it'  
+    }).then((result) => {  
+      if (result.value) { 
+        this.customerService.deleteCustomer(data);
+
+        this.customerService.deleteCustomer(data).subscribe(
+                (data) => data
+              );
+
+        this.customers = this.customers.filter((r) => r.id !== data.id);
+        Swal.fire(  
+          'Deleted!',  
+          'Your imaginary file has been deleted.',  
+          'success'  
+        )  
+
+        setTimeout(() => {
         window.location.reload();
       }, 2000);
-    }
-  }
+      } else if (result.dismiss === Swal.DismissReason.cancel) {  
+        Swal.fire(  
+          'Cancelled',  
+          'Your imaginary file is safe :)',  
+          'error'  
+        )  
+      }  
+    })  
+
 }
+
+
+}
+
