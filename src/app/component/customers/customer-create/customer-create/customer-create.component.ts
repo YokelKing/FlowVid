@@ -12,7 +12,6 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./customer-create.component.scss']
 })
 export class CustomerCreateComponent implements OnInit {
-  //@ViewChild('myModal', { static: false }) myModal;
 
   [x: string]: any;
   title: string;

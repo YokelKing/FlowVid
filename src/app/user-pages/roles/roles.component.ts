@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IRole } from 'src/app/shared/models/role';
 import { UserPagesService } from '../user-pages.services';
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
   selector: 'app-roles',
@@ -12,6 +15,19 @@ import { UserPagesService } from '../user-pages.services';
 })
 export class RolesComponent implements OnInit {
 public roles : IRole[];
+public displayedColumns: string[] = [
+  "id",
+  "name",
+  "status",
+  "createdDate",
+  "action",
+];
+
+dataSource: MatTableDataSource<IRole>;
+
+@ViewChild(MatPaginator) paginator: MatPaginator;
+@ViewChild(MatSort) sort: MatSort;
+
 editRoleForm : FormGroup;
 editRoleID;
 closeResult: string;
@@ -32,6 +48,13 @@ cancelClick = false;
     this.loadRoles();
   }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
+
   initForm(){
     this.editRoleForm = this.fb.group ({
       name: '',
@@ -42,7 +65,11 @@ cancelClick = false;
     this.userService.getRoles().subscribe(
       result => {
         this.roles = result;
-        console.log(result)
+        this.dataSource = new MatTableDataSource(result);
+        // Assign the paginator *after* dataSource is set
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log("resultttt",result)
       }, error => {
         console.log(error);
       }

@@ -52,13 +52,11 @@ export class CustomersListComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadCustomers();
   }
-
-
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -104,43 +102,32 @@ export class CustomersListComponent implements OnInit {
     );
   }
   deleteCustomer(data: ICustomer): void {
-
     Swal.fire({
-      title: 'Are you sure want to remove?',
-      text: 'You will not be able to recover this file!',
-      icon: 'warning',
+      title: "Are you sure want to remove?",
+      text: "You will not be able to recover this file!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.value) {
         this.customerService.deleteCustomer(data);
 
-        this.customerService.deleteCustomer(data).subscribe(
-          (data) => data
-        );
+        this.customerService.deleteCustomer(data).subscribe((data) => data);
 
         this.customers = this.customers.filter((r) => r.id !== data.id);
         Swal.fire(
-          'Deleted!',
-          'Your imaginary file has been deleted.',
-          'success'
-        )
+          "Deleted!",
+          "Your imaginary file has been deleted.",
+          "success"
+        );
 
         setTimeout(() => {
           window.location.reload();
         }, 2000);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
-        )
+        Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
       }
-    })
-
+    });
   }
-
-
 }
-
