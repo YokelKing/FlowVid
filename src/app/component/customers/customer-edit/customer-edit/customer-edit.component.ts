@@ -54,14 +54,14 @@ export class CustomerEditComponent implements OnInit {
       .subscribe(
         (x) => {
           this.isSubmitted = false;
-          Swal.fire({  
-            // position: 'top-end',  
-             icon: 'success',  
-             title: 'Customer has been updated',  
-             showConfirmButton: false,  
-             timer: 1500  
-           })  
-       
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Customer has been updated',
+            showConfirmButton: false,
+            timer: 1500
+          })
+
 
           this.modal.close("Yes");
         },
@@ -69,6 +69,7 @@ export class CustomerEditComponent implements OnInit {
           this.isSubmitted = false;
         }
       );
+    this.editForm.reset();
   }
 
   public setForm() {
