@@ -6,7 +6,7 @@ import { baseUrl, HTTP_OPTIONS } from 'src/app/apps/guards/api.url';
 import { IResource } from 'src/app/shared/models/resources';
 
 
-const jobUrl = baseUrl + 'Resources';
+const resourceUrl = baseUrl + 'Resources';
 //const userUrl = baseUrl + 'account';
 
 @Injectable({
@@ -19,22 +19,22 @@ export class ResourcesService {
     }
 
     getAllResources(){
-      return this.http.get<IResource[]>(jobUrl);
+      return this.http.get<IResource[]>(resourceUrl);
     }
 
     getResourceById(id){
-      return this.http.get<IResource>(`${jobUrl}/${id}`);
+      return this.http.get<IResource>(`${resourceUrl}/${id}`);
     }
 
     createResource(data){
-      return this.http.post<IResource>(jobUrl, data);
+      return this.http.post<IResource>(resourceUrl, data);
     }
 
     updateResource(id, data){
-      return this.http.put<IResource>(`${jobUrl}/${id}`, data);
+      return this.http.put<IResource>(`${resourceUrl}/${id}`, data);
     }
 
     deleteResource(data){
-      return this.http.delete(`${jobUrl}/${data.id}`);
+      return this.http.delete(`${resourceUrl}/${data.id}`);
     }
 }

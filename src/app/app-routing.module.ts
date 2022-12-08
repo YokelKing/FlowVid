@@ -29,6 +29,10 @@ const routes: Routes = [
   import('./component/resources/resources.module').
   then(m => m.ResourcesModule) },
 
+  { path: 'posts', loadChildren: () => 
+  import('./component/posts/posts.module').
+  then(m => m.PostsModule) },
+
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
   { path: '**', redirectTo:'home', pathMatch: 'full'},
 ];

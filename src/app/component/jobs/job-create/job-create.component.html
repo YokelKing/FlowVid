@@ -20,8 +20,13 @@
           <div *ngIf="isSubmitted && f['jobName'].errors" class="invalid-feedback">
             <div *ngIf="f['jobName'].errors['required']">Job Name is required</div>
           </div>
+          
+        <div *ngIf="f.jobName.invalid && (f.jobName.dirty || f.jobName.touched)" class="alert">
+          <span>Job Name is required!</span>
+        </div>
   
         </div>
+
         <div class="form-group">
           <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code">
           

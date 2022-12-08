@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title" id="modal-basic-title">
-    Update Job</h4>
+    Update Post</h4>
   <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
     <span aria-hidden="true">×</span>
   </button>
@@ -8,23 +8,19 @@
 <div class="modal-body">
   <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
     <div class="form-group">
-      <input formControlName="jobName" type="text" class="form-control form-control-lg" placeholder="Job Name*" />
-      <div *ngIf="editFormData.jobName.invalid && (editFormData.jobName.dirty || editFormData.jobName.touched)" class="alert">
-        <span>Name is required!</span>
+      <input formControlName="title" type="text" class="form-control form-control-lg" placeholder="Title*" />
+      <div *ngIf="editFormData.title.invalid && (editFormData.title.dirty || editFormData.title.touched)" class="alert">
+        <span>Title is required!</span>
       </div>
     </div>
     <div class="form-group">
-      <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code">
+      <input formControlName="description" type="text" class="form-control form-control-lg" placeholder="Description" />
     </div>
-    
-    <div class="form-group">
-      <input formControlName="description" type="text" class="form-control form-control-lg" placeholder="Description">
-      </div>
   </form>
 </div>
 <div class="modal-footer">
   <button type="submit" [disabled]="editForm.invalid" class="btn btn-primary mr-2"
-    (click)="editJob()">Update</button>
+    (click)="editPost()">Update</button>
 
   <button [disabled]="isSubmitted" class="btn btn btn-danger" (click)="modal.close('Cancel')">Cancel</button>
 

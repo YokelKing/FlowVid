@@ -71,6 +71,14 @@
 
       </a>
     </li>
+
+    
+    <li class="nav-item" [ngClass]="{ 'active': posts.isActive }">
+      <a class="nav-link" routerLink="posts/posts-list" routerLinkActive #posts="routerLinkActive">
+        <span class="menu-title">Posts</span>
+
+      </a>
+    </li>
   <!--  <li class="nav-item" [ngClass]="{ 'active': resources.isActive }">
       <a class="nav-link" routerLink="error-pages/404" routerLinkActive #resources="routerLinkActive">
         <span class="menu-title">Resources</span>
