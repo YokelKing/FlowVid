@@ -56,6 +56,13 @@
         <i class="mdi  mdi-account-multiple-outline menu-icon"></i>
       </a>
     </li>
+
+    <li class="nav-item" [ngClass]="{ 'active': jobs.isActive }">
+      <a class="nav-link" routerLink="jobs/jobs-list" routerLinkActive #jobs="routerLinkActive">
+        <span class="menu-title">Jobs</span>
+        <i class="mdi  mdi-account-multiple-outline menu-icon"></i>
+      </a>
+    </li>
   <!--  <li class="nav-item" [ngClass]="{ 'active': resources.isActive }">
       <a class="nav-link" routerLink="error-pages/404" routerLinkActive #resources="routerLinkActive">
         <span class="menu-title">Resources</span>

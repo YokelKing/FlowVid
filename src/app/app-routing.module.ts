@@ -22,6 +22,9 @@ const routes: Routes = [
   { path: 'customers', loadChildren: () => 
   import('./component/customers/customers.module').
   then(m => m.CustomersModule) },
+  { path: 'jobs', loadChildren: () => 
+  import('./component/jobs/jobs.module').
+  then(m => m.JobsModule) },
 
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
   { path: '**', redirectTo:'home', pathMatch: 'full'},
