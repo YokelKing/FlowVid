@@ -11,25 +11,25 @@ import {
   NgbActiveModal,
   NgbModal,
 } from "@ng-bootstrap/ng-bootstrap";
-import { IJob } from "src/app/shared/models/jobs";
-import {JobsService} from "../jobs.service"
+import { IResource } from "src/app/shared/models/resources";
+import {ResourcesService} from "../resources.service"
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 @Component({
-  selector: "app-job-edit",
-  templateUrl: "./job-edit.component.html",
-  styleUrls: ["./job-edit.component.scss"],
+  selector: "app-resource-edit",
+  templateUrl: "./resource-edit.component.html",
+  styleUrls: ["./resource-edit.component.scss"],
 })
-export class JobEditComponent implements OnInit {
+export class ResourceEditComponent implements OnInit {
   title: string;
-  job: IJob;
+  resource: IResource;
   closeResult: string;
   editForm: FormGroup;
-  JobID?: number;
+  ResourceID?: number;
   isSubmitted = false;
   constructor(
     public modal: NgbActiveModal,
-    private JobsService: JobsService,
+    private ResourcesService: ResourcesService,
     private modalService: NgbModal,
     private fb: FormBuilder,
     private router: Router,
@@ -44,20 +44,20 @@ export class JobEditComponent implements OnInit {
     return this.editForm.controls;
   }
 
-  editJob() {
+  editResource() {
     if (this.editForm.invalid || this.isSubmitted) {
       return;
     }
     this.isSubmitted = true;
-    this.JobsService
-      .updateJob(this.job.id, this.editForm.value)
+    this.ResourcesService
+      .updateResource(this.resource.id, this.editForm.value)
       .subscribe(
         (x) => {
           this.isSubmitted = false;
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Job has been updated',
+            title: 'Resource has been updated',
             showConfirmButton: false,
             timer: 1500
           })
@@ -74,10 +74,9 @@ export class JobEditComponent implements OnInit {
 
   public setForm() {
     this.editForm = this.fb.group({
-      id: [this.job.id],
-      jobName: [this.job.jobName, Validators.required],
-      code: [this.job.code, ""],
-      description: [this.job.description, ""],
+      id: [this.resource.id],
+      name: [this.resource.name, Validators.required],
+      code: [this.resource.code, ""],
     });
   }
 }

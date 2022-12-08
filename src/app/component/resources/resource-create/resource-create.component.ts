@@ -3,27 +3,27 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { IJob } from 'src/app/shared/models/jobs';
-import { JobsService } from '../jobs.service';
+import { IResource } from 'src/app/shared/models/resources';
+import { ResourcesService } from '../resources.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
-  selector: 'app-job-create',
-  templateUrl: './job-create.component.html',
-  styleUrls: ['./job-create.component.scss']
+  selector: 'app-resource-create',
+  templateUrl: './resource-create.component.html',
+  styleUrls: ['./resource-create.component.scss']
 })
-export class JobCreateComponent implements OnInit {
+export class ResourceCreateComponent implements OnInit {
 
   [x: string]: any;
   title: string;
-  job: IJob;
+  resource: IResource;
   closeResult: string;
-  jobForm: FormGroup;
-  JobID?: number;
+  resourceForm: FormGroup;
+  ResourceID?: number;
   isSubmitted = false;
   constructor(
     public modal: NgbActiveModal,
-    private jobService: JobsService,
+    private resourceService: ResourcesService,
     private modalService: NgbModal,
     private fb: FormBuilder,
     private router: Router,
@@ -31,15 +31,14 @@ export class JobCreateComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.jobForm = this.fb.group({
-      jobName: ['', Validators.required],
-      code: ['',Validators.required],
-      description: ['']
+    this.resourceForm = this.fb.group({
+      name: ['', Validators.required],
+      code: ['']
     });
     this.loadData();
   }
   get f(): { [key: string]: AbstractControl } {
-    return this.jobForm.controls;
+    return this.resourceForm.controls;
   }
 
   loadData() {
@@ -49,21 +48,19 @@ export class JobCreateComponent implements OnInit {
   }
 
 
-  addNewJob() {
+  addNewResource() {
 
-    console.log("1234", this.jobForm.value)
-
-    if (this.jobForm.invalid || this.isSubmitted) {
+    if (this.resourceForm.invalid || this.isSubmitted) {
       return;
     }
     this.isSubmitted = true;
-    this.jobService.createJob
-      (this.jobForm.value)
+    this.resourceService.createResource
+      (this.resourceForm.value)
       .subscribe(data => {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'Job has been created',
+          title: 'Resource has been created',
           showConfirmButton: false,
           timer: 1500
         })
@@ -72,13 +69,13 @@ export class JobCreateComponent implements OnInit {
         this.isSubmitted = false;
         this.modalService.dismissAll();
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/jobs/jobs-list']);
+          this.router.navigate(['/resources/resources-list']);
         });
 
       }, error => {
         this.isSubmitted = false;
       });
-    //this.jobForm.reset();
+    this.resourceForm.reset();
   }
 
 

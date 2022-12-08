@@ -16,19 +16,29 @@
     <div class="modal-body">
       <form [formGroup]="jobForm" *ngIf="jobForm" class="pt-3">
         <div class="form-group">
-          <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
-          <div *ngIf="isSubmitted && f['name'].errors" class="invalid-feedback">
-            <div *ngIf="f['name'].errors['required']">Name is required</div>
+          <input formControlName="jobName" type="text" class="form-control form-control-lg" placeholder="Job Name*" />
+          <div *ngIf="isSubmitted && f['jobName'].errors" class="invalid-feedback">
+            <div *ngIf="f['jobName'].errors['required']">Job Name is required</div>
           </div>
   
-  
-          <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert">
-            <span>Name is required!</span>
-          </div>
         </div>
         <div class="form-group">
-          <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code" />
+          <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code">
+          
+          <div *ngIf="isSubmitted && f['code'].errors" class="invalid-feedback">
+            <div *ngIf="f['code'].errors['required']">Job Code is required</div>
         </div>
+        </div>
+
+
+        <div class="form-group">
+          <input formControlName="description" type="text" class="form-control form-control-lg" placeholder="Description">
+          
+          <!-- <div *ngIf="isSubmitted && f['code'].errors" class="invalid-feedback">
+            <div *ngIf="f['code'].errors['required']">Job Code is required</div>
+        </div> -->
+        </div>
+
       </form>
     </div>
     <div class="modal-footer">
