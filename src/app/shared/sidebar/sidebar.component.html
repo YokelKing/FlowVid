@@ -73,12 +73,21 @@
     </li>
 
     
-    <li class="nav-item" [ngClass]="{ 'active': posts.isActive }">
-      <a class="nav-link" routerLink="posts/posts-list" routerLinkActive #posts="routerLinkActive">
-        <span class="menu-title">Posts</span>
+    <li class="nav-item" [ngClass]="{ 'active': divisions.isActive }">
+      <a class="nav-link" routerLink="divisions/divisions-list" routerLinkActive #divisions="routerLinkActive">
+        <span class="menu-title">Divisions</span>
 
       </a>
     </li>
+
+    
+    <!-- <li class="nav-item" [ngClass]="{ 'active': divisions.isActive }">
+      <a class="nav-link" routerLink="divisions/divisions-list" routerLinkActive #divisions="routerLinkActive">
+        <span class="menu-title">Divisions</span>
+
+      </a>
+    </li>
+     -->
   <!--  <li class="nav-item" [ngClass]="{ 'active': resources.isActive }">
       <a class="nav-link" routerLink="error-pages/404" routerLinkActive #resources="routerLinkActive">
         <span class="menu-title">Resources</span>

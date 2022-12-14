@@ -33,6 +33,11 @@ const routes: Routes = [
   import('./component/posts/posts.module').
   then(m => m.PostsModule) },
 
+  { path: 'divisions', loadChildren: () => 
+  import('./component/divisions/divisions.module').
+  then(m => m.DivisionsModule) },
+
+
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
   { path: '**', redirectTo:'home', pathMatch: 'full'},
 ];
