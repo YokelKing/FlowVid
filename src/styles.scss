@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';    
 
 @function theme-color($key: "primary") {
   @return map-get($theme-colors, $key);
 }
+
 
 @function mix($j, $k, $l) {
   @return $j;
@@ -94,6 +96,28 @@ $utilities-text-colors: (
 );
 $utilities-border-colors: "primary";
 $negative-spacers: 1;
+
+
+.mat-table {
+  display: table;
+  width: 100%;
+
+  > .mat-header-row, > .mat-row {
+      display: table-row;
+      padding: 0;
+      border: none;
+      margin: 10px;
+
+      > .mat-header-cell, > .mat-cell {
+          display: table-cell;
+          height: 48px;
+          vertical-align: middle;
+          padding: 15px 30px;
+
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+  }
+}
 
 @import "~bootstrap/scss/functions";
 @import './assets/scss/variables';

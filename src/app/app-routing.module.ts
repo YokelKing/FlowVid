@@ -22,6 +22,21 @@ const routes: Routes = [
   { path: 'customers', loadChildren: () => 
   import('./component/customers/customers.module').
   then(m => m.CustomersModule) },
+  { path: 'jobs', loadChildren: () => 
+  import('./component/jobs/jobs.module').
+  then(m => m.JobsModule) },
+  { path: 'resources', loadChildren: () => 
+  import('./component/resources/resources.module').
+  then(m => m.ResourcesModule) },
+
+  { path: 'posts', loadChildren: () => 
+  import('./component/posts/posts.module').
+  then(m => m.PostsModule) },
+
+  { path: 'divisions', loadChildren: () => 
+  import('./component/divisions/divisions.module').
+  then(m => m.DivisionsModule) },
+
 
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
   { path: '**', redirectTo:'home', pathMatch: 'full'},

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CustomersListComponent } from './customers-list/customers-list/customers-list.component';
 import { CustomerCreateComponent } from './customer-create/customer-create/customer-create.component';
+import { CustomerEditComponent } from './customer-edit/customer-edit/customer-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { MatTableModule } from '@angular/material/table';
 // import { MatPaginatorModule } from '@angular/material/paginator';
@@ -82,7 +83,7 @@ const MATERIAL_MODULES = [
 const routes: Routes = [
   { path: 'cust-list', component: CustomersListComponent },
   { path: 'cust-create', component: CustomerCreateComponent },
-  { path: 'cust-create/:id', component: CustomerCreateComponent }
+  { path: 'cust-edit/:id', component: CustomerEditComponent }
 ]
 
 // const materialModules = [
@@ -93,7 +94,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CustomersListComponent,
-    CustomerCreateComponent
+    CustomerCreateComponent,
+    CustomerEditComponent
   ],
   imports: [
     CommonModule,
@@ -104,6 +106,9 @@ const routes: Routes = [
 
   ],
   exports: [...MATERIAL_MODULES],
+  providers: [
+    NgbActiveModal,
+  ]
 
 })
 export class CustomersModule { }

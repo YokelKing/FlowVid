@@ -19,6 +19,7 @@ import { TodoListComponent } from './apps/todo-list/todo-list.component';
 import { HomeComponent } from './shared/home/home.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { CustomersModule } from './component/customers/customers.module';
+import { JobsModule } from './component/jobs/jobs.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,13 +44,14 @@ import { CustomersModule } from './component/customers/customers.module';
     ReactiveFormsModule,
     ChartsModule,
     CustomersModule,
+    JobsModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger',
     })
 
 
   ],
-  exports: [CustomersModule],
+  exports: [CustomersModule,JobsModule],
   providers: [ThemeService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent],

@@ -1,5 +1,6 @@
 <app-customer-create></app-customer-create>
 
+
 <div class="page-title">
   <h2>Customers List</h2>
 </div>
@@ -7,11 +8,7 @@
 <h4 *ngIf="!customers"><em>Loading ...</em></h4>
 <div class="example-header">
   <mat-form-field>
-    <input
-      matInput
-      (keyup)="applyFilter($event.target.value)"
-      placeholder="Filter"
-    />
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
   </mat-form-field>
 </div>
 

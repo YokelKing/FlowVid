@@ -8,7 +8,7 @@
           <span class="login-status online"></span> <!--change to offline or busy as needed-->              
         </div>
         <div class="nav-profile-text">
-          <span class="font-weight-bold mb-2">  {{(currentUser$ | async).displayName}} </span>
+          <span class="font-weight-bold mb-2">  {{(currentUser$ | async)?.displayName}} </span>
           <span class="text-secondary text-small">Admin</span>
         </div>
         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -56,6 +56,38 @@
         <i class="mdi  mdi-account-multiple-outline menu-icon"></i>
       </a>
     </li>
+
+    <li class="nav-item" [ngClass]="{ 'active': jobs.isActive }">
+      <a class="nav-link" routerLink="jobs/jobs-list" routerLinkActive #jobs="routerLinkActive">
+        <span class="menu-title">Jobs</span>
+
+      </a>
+    </li>
+
+    
+    <li class="nav-item" [ngClass]="{ 'active': resources.isActive }">
+      <a class="nav-link" routerLink="resources/resources-list" routerLinkActive #resources="routerLinkActive">
+        <span class="menu-title">Resources</span>
+
+      </a>
+    </li>
+
+    
+    <li class="nav-item" [ngClass]="{ 'active': divisions.isActive }">
+      <a class="nav-link" routerLink="divisions/divisions-list" routerLinkActive #divisions="routerLinkActive">
+        <span class="menu-title">Divisions</span>
+
+      </a>
+    </li>
+
+    
+    <!-- <li class="nav-item" [ngClass]="{ 'active': divisions.isActive }">
+      <a class="nav-link" routerLink="divisions/divisions-list" routerLinkActive #divisions="routerLinkActive">
+        <span class="menu-title">Divisions</span>
+
+      </a>
+    </li>
+     -->
   <!--  <li class="nav-item" [ngClass]="{ 'active': resources.isActive }">
       <a class="nav-link" routerLink="error-pages/404" routerLinkActive #resources="routerLinkActive">
         <span class="menu-title">Resources</span>
