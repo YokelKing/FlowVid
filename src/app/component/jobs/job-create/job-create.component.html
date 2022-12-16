@@ -1,0 +1,59 @@
+<div class="page-header">
+    <button (click)="open(mymodal)" type="button" class="btn btn-primary mr-2">
+      Add Job
+    </button>
+  </div>
+  
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        Add Job
+      </h4>
+      <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="jobForm" *ngIf="jobForm" class="pt-3">
+        <div class="form-group">
+          <input formControlName="jobName" type="text" class="form-control form-control-lg" placeholder="Job Name*" />
+          <div *ngIf="isSubmitted && f['jobName'].errors" class="invalid-feedback">
+            <div *ngIf="f['jobName'].errors['required']">Job Name is required</div>
+          </div>
+          
+        <div *ngIf="f.jobName.invalid && (f.jobName.dirty || f.jobName.touched)" class="alert">
+          <span>Job Name is required!</span>
+        </div>
+  
+        </div>
+
+        <div class="form-group">
+          <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code">
+          
+          <div *ngIf="isSubmitted && f['code'].errors" class="invalid-feedback">
+            <div *ngIf="f['code'].errors['required']">Job Code is required</div>
+        </div>
+        </div>
+
+
+        <div class="form-group">
+          <input formControlName="description" type="text" class="form-control form-control-lg" placeholder="Description">
+          
+          <!-- <div *ngIf="isSubmitted && f['code'].errors" class="invalid-feedback">
+            <div *ngIf="f['code'].errors['required']">Job Code is required</div>
+        </div> -->
+        </div>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary mr-2" (click)="addNewJob()" [disabled]="jobForm.invalid">
+        Create
+      </button>
+  
+  
+      <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">
+        Cancel
+      </button>
+    </div>
+  </ng-template>
