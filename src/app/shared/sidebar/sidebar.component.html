@@ -80,6 +80,12 @@
       </a>
     </li>
 
+    <li class="nav-item" [ngClass]="{ 'active': locations.isActive }">
+      <a class="nav-link" routerLink="locations/locations-list" routerLinkActive #locations="routerLinkActive">
+        <span class="menu-title">Site Locations</span>
+
+      </a>
+    </li>
     
     <!-- <li class="nav-item" [ngClass]="{ 'active': divisions.isActive }">
       <a class="nav-link" routerLink="divisions/divisions-list" routerLinkActive #divisions="routerLinkActive">

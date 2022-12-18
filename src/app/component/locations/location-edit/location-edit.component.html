@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">
+    Update Location</h4>
+  <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
+    <div class="form-group">
+      <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
+      <div *ngIf="editFormData.name.invalid && (editFormData.name.dirty || editFormData.name.touched)" class="alert">
+        <span>Name is required!</span>
+      </div>
+    </div>
+
+
+    <!-- <div class="form-group">
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Customer Name</mat-label>
+      <input type="text" matInput [formControl]="customername" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of customers | async" [value]="option.id">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+</div> -->
+
+
+
+<div class="form-group">  
+  <select formControlName="customername" class="form-control" (change)="changeCustomer($event)">  
+  <option *ngFor="let cust of customers" [ngValue]="cust.name" class="form-control form-control-lg">{{cust.name}}</option>  
+  </select>  
+  <div *ngIf="editFormData.customername.touched && editFormData.customername.invalid" class="alert alert-danger">  
+      <div *ngIf="editFormData.customername.errors.required">Customer Name is required.</div>  
+  </div>  
+</div>  
+
+
+
+
+
+    <div class="form-group">
+      <input formControlName="postCode" type="text" class="form-control form-control-lg" placeholder="postCode">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" [disabled]="editForm.invalid" class="btn btn-primary mr-2"
+    (click)="editLocation()">Update</button>
+
+  <button [disabled]="isSubmitted" class="btn btn btn-danger" (click)="modal.close('Cancel')">Cancel</button>
+
+</div>

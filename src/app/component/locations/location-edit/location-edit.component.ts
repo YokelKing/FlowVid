@@ -1,0 +1,124 @@
+import { Component, OnInit, ViewChild } from "@angular/core";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl
+} from "@angular/forms";
+
+import { Router, ActivatedRoute } from "@angular/router";
+import {
+  ModalDismissReasons,
+  NgbActiveModal,
+  NgbModal,
+} from "@ng-bootstrap/ng-bootstrap";
+import { ILocation } from "src/app/shared/models/locations";
+import {LocationsService} from "../locations.service"
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import { CustomersService } from "../../customers/customers.service";
+import { ICustomer } from "src/app/shared/models/customers";
+
+@Component({
+  selector: "app-location-edit",
+  templateUrl: "./location-edit.component.html",
+  styleUrls: ["./location-edit.component.scss"],
+})
+export class LocationEditComponent implements OnInit {
+  customers: ICustomer[];
+  title: string;
+  location: ILocation;
+  closeResult: string;
+  editForm: FormGroup;
+  LocationID?: number;
+  isSubmitted = false;
+  constructor(
+    private customerService: CustomersService,
+    public modal: NgbActiveModal,
+    private LocationsService: LocationsService,
+    private modalService: NgbModal,
+    private fb: FormBuilder,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
+
+  ngOnInit(): void {
+    this.setForm();
+    this.loadCustomers();
+  }
+
+  get editFormData() {
+    return this.editForm.controls;
+  }
+
+
+
+  loadCustomers() {
+    this.customerService.getAllCustomers().subscribe(
+      (result) => {
+        console.log("ABC", result);
+        this.customers = result;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  editLocation() {
+    if (this.editForm.invalid || this.isSubmitted) {
+      return;
+    }
+    this.isSubmitted = true;
+
+
+
+    this.loadCustomers();
+    this.LocationsService
+      .updateLocation(this.location.id, this.editForm.value)
+      .subscribe(
+        (x) => {
+          this.isSubmitted = false;
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Location has been updated',
+            showConfirmButton: false,
+            timer: 1500
+          })
+
+
+          this.modal.close("Yes");
+        },
+        (error) => {
+          this.isSubmitted = false;
+        }
+      );
+    this.editForm.reset();
+  }
+
+  public setForm() {
+    this.editForm = this.fb.group({
+      id: [this.location.id],
+      name: [this.location.name, Validators.required],
+      customername: [this.location.customername, ""],
+      postCode: [this.location.postCode, ""],
+
+      
+    });
+  }
+
+  // Choose city using select dropdown
+  changeCustomer(e) {
+    console.log(e.value)
+    this.customername.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+
+   // Getter method to access formcontrols
+   get customername() {
+    return this.editForm.get('customername');
+  }
+
+}

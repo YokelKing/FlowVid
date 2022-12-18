@@ -1,0 +1,44 @@
+<div class="page-header">
+    <button (click)="open(mymodal)" type="button" class="btn btn-primary mr-2">
+      Add Location
+    </button>
+  </div>
+  
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        Add Location
+      </h4>
+      <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="locationForm" *ngIf="locationForm" class="pt-3">
+        <div class="form-group">
+          <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
+          <div *ngIf="isSubmitted && f['name'].errors" class="invalid-feedback">
+            <div *ngIf="f['name'].errors['required']">Name is required</div>
+          </div>
+  
+  
+          <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert">
+            <span>Name is required!</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <input formControlName="postCode" type="text" class="form-control form-control-lg" placeholder="Post Code" />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary mr-2" (click)="addNewLocation()" [disabled]="locationForm.invalid">
+        Create
+      </button>
+  
+  
+      <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">
+        Cancel
+      </button>
+    </div>
+  </ng-template>
