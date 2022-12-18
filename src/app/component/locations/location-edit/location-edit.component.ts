@@ -101,7 +101,7 @@ export class LocationEditComponent implements OnInit {
     this.editForm = this.fb.group({
       id: [this.location.id],
       name: [this.location.name, Validators.required],
-      customername: [this.location.customername, ""],
+      customerId: [this.location.customerId, ""],
       postCode: [this.location.postCode, ""],
 
       
@@ -111,14 +111,14 @@ export class LocationEditComponent implements OnInit {
   // Choose city using select dropdown
   changeCustomer(e) {
     console.log(e.value)
-    this.customername.setValue(e.target.value, {
+    this.customerId.setValue(e.target.value, {
       onlySelf: true
     })
   }
 
    // Getter method to access formcontrols
-   get customername() {
-    return this.editForm.get('customername');
+   get customerId() {
+    return this.editForm.get('customerId');
   }
 
 }

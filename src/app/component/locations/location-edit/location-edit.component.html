@@ -31,11 +31,11 @@
 
 
 <div class="form-group">  
-  <select formControlName="customername" class="form-control" (change)="changeCustomer($event)">  
-  <option *ngFor="let cust of customers" [ngValue]="cust.name" class="form-control form-control-lg">{{cust.name}}</option>  
+  <select formControlName="customerId" class="form-control form-control-lg" (change)="changeCustomer($event)"> 
+  <option *ngFor="let cust of customers" [ngValue]="cust.id" class="form-control form-control-lg">{{cust.name}}</option>  
   </select>  
-  <div *ngIf="editFormData.customername.touched && editFormData.customername.invalid" class="alert alert-danger">  
-      <div *ngIf="editFormData.customername.errors.required">Customer Name is required.</div>  
+  <div *ngIf="editFormData.customerId.touched && editFormData.customerId.invalid" class="alert alert-danger">  
+      <div *ngIf="editFormData.customerId.errors.required">Customer Name is required.</div>  
   </div>  
 </div>  
 
