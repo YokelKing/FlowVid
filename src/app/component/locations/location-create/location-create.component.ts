@@ -6,14 +6,15 @@ import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-
 import { ILocation } from 'src/app/shared/models/locations';
 import { LocationsService } from '../locations.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-
+import { CustomersService } from '../../customers/customers.service';
+import { ICustomer } from "src/app/shared/models/customers";
 @Component({
   selector: 'app-location-create',
   templateUrl: './location-create.component.html',
   styleUrls: ['./location-create.component.scss']
 })
 export class LocationCreateComponent implements OnInit {
-
+  customers: ICustomer[];
   [x: string]: any;
   title: string;
   location: ILocation;
@@ -22,6 +23,7 @@ export class LocationCreateComponent implements OnInit {
   LocationID?: number;
   isSubmitted = false;
   constructor(
+    private customerService: CustomersService,
     public modal: NgbActiveModal,
     private locationService: LocationsService,
     private modalService: NgbModal,
@@ -32,10 +34,22 @@ export class LocationCreateComponent implements OnInit {
   ngOnInit(): void {
 
     this.locationForm = this.fb.group({
+   
+      customerId: ['', Validators.required],
       name: ['', Validators.required],
-      postCode: ['']
+      streetNumber: ['', Validators.required],
+      streetName: ['', Validators.required],
+      suburb: ['', Validators.required],
+      city: ['', Validators.required],
+      postCode: ['',Validators.required],
+      lon: ['', ""],
+      lat: ['', ""],
+      comment: ['', ""],
+      type: ['', Validators.required],
     });
     this.loadData();
+    
+    this.loadCustomers();
   }
   get f(): { [key: string]: AbstractControl } {
     return this.locationForm.controls;
@@ -45,6 +59,17 @@ export class LocationCreateComponent implements OnInit {
 
     this.title = "Add new ";
 
+  }
+
+  loadCustomers() {
+    this.customerService.getAllCustomers().subscribe(
+      (result) => {
+        this.customers = result;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 
@@ -81,7 +106,7 @@ export class LocationCreateComponent implements OnInit {
 
 
   open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, {  size: 'xl', ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -96,6 +121,19 @@ export class LocationCreateComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+   // Choose city using select dropdown
+   changeCustomer(e) {
+    console.log(e.value)
+    this.customerId.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+
+   // Getter method to access formcontrols
+   get customerId() {
+    return this.locationForm.get('customerId');
   }
 
 }

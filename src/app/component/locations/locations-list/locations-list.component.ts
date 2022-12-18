@@ -89,7 +89,6 @@ export class LocationsListComponent implements OnInit {
   loadCustomers() {
     this.customerService.getAllCustomers().subscribe(
       (result) => {
-        console.log("HIII",result);
         this.customers = result;
       },
       (error) => {
@@ -117,6 +116,7 @@ export class LocationsListComponent implements OnInit {
   editLocation(data: ILocation): void {
     const ref = this.modalService.open(LocationEditComponent, {
       centered: true,
+      size: 'xl'
     });
     ref.componentInstance.location = data;
 

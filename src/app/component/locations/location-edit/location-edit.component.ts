@@ -56,7 +56,6 @@ export class LocationEditComponent implements OnInit {
   loadCustomers() {
     this.customerService.getAllCustomers().subscribe(
       (result) => {
-        console.log("ABC", result);
         this.customers = result;
       },
       (error) => {
@@ -100,9 +99,18 @@ export class LocationEditComponent implements OnInit {
   public setForm() {
     this.editForm = this.fb.group({
       id: [this.location.id],
+      customerId: [this.location.customerId, Validators.required],
       name: [this.location.name, Validators.required],
-      customerId: [this.location.customerId, ""],
-      postCode: [this.location.postCode, ""],
+      streetNumber: [this.location.streetNumber, Validators.required],
+      streetName: [this.location.streetName, Validators.required],
+      suburb: [this.location.suburb, Validators.required],
+      city: [this.location.city, Validators.required],
+      postCode: [this.location.postCode, Validators.required],
+      lon: [this.location.lon, ""],
+      lat: [this.location.lat, ""],
+      comment: [this.location.comment, ""],
+      type: [this.location.type, Validators.required],
+     // status: [this.location.status, Validators.required],
 
       
     });
@@ -110,7 +118,7 @@ export class LocationEditComponent implements OnInit {
 
   // Choose city using select dropdown
   changeCustomer(e) {
-    console.log(e.value)
+    console.log(e.target.value)
     this.customerId.setValue(e.target.value, {
       onlySelf: true
     })
