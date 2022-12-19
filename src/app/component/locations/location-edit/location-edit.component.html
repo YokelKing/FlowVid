@@ -1,0 +1,116 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">
+    Update Location</h4>
+  <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
+    <div class="container">
+      <div class="row">
+  
+
+
+
+        <div class="col-md form-group">
+          <label>Name*</label>
+          <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
+          <div *ngIf="editFormData.name.invalid && (editFormData.name.dirty || editFormData.name.touched)"
+            class="alert">
+            <span>Name is required!</span>
+          </div>
+        </div>
+
+        
+        <div class="col-md form-group">
+          <label>Customer Name*</label>
+          <select formControlName="customerId" class="form-control form-control-lg" (change)="changeCustomer($event)">
+            <option *ngFor="let cust of customers" [value]="cust.id" class="form-control form-control-lg">
+              {{cust.name}}
+            </option>
+          </select>
+          <div *ngIf="editFormData.customerId.touched && editFormData.customerId.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.customerId.errors.required">Customer Name is required.</div>
+          </div>
+        </div>
+      
+        <div class="col-md form-group">
+          <label>Street Number*</label>
+          <input formControlName="streetNumber" type="text" class="form-control form-control-lg" placeholder="streetNumber*">
+          <div *ngIf="editFormData.streetNumber.touched && editFormData.streetNumber.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.streetNumber.errors.required">Street Number is required.</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md form-group">
+          <label>streetName*</label>
+          <input formControlName="streetName" type="text" class="form-control form-control-lg" placeholder="streetName*">
+          <div *ngIf="editFormData.streetName.touched && editFormData.streetName.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.streetName.errors.required">Street Name is required.</div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>suburb*</label>
+          <input formControlName="suburb" type="text" class="form-control form-control-lg" placeholder="suburb*">
+          <div *ngIf="editFormData.suburb.touched && editFormData.suburb.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.suburb.errors.required">Suburb is required.</div>
+          </div>
+        </div>
+        
+        <div class="col-md form-group">
+          <label>City*</label>
+          <input formControlName="city" type="text" class="form-control form-control-lg" placeholder="city*">
+          <div *ngIf="editFormData.city.touched && editFormData.city.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.city.errors.required">city is required.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md form-group">
+          <label>postCode*</label>
+          <input formControlName="postCode" type="text" class="form-control form-control-lg" placeholder="postCode*">
+          <div *ngIf="editFormData.postCode.touched && editFormData.postCode.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.postCode.errors.required">postCode is required.</div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>lon</label>
+          <input formControlName="lon" type="text" class="form-control form-control-lg" placeholder="lon">       
+        </div>
+        <div class="col-md form-group">
+          <label>lat</label>
+          <input formControlName="lat" type="text" class="form-control form-control-lg" placeholder="lat">       
+        </div>
+        </div>
+
+
+
+        <div class="row">
+      
+          <div class="col-md form-group">
+            <label>comment</label>
+            <input formControlName="comment" type="text" class="form-control form-control-lg" placeholder="comment*">       
+          </div>
+
+          <div class="col-md form-group">
+            <label>type*</label>
+            <input formControlName="type" type="text" class="form-control form-control-lg" placeholder="type*">
+            <div *ngIf="editFormData.type.touched && editFormData.type.invalid" class="alert alert-danger">
+              <div *ngIf="editFormData.type.errors.required">type is required.</div>
+            </div>
+          </div>
+       
+          </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" [disabled]="editForm.invalid" class="btn btn-primary mr-2"
+    (click)="editLocation()">Update</button>
+
+  <button [disabled]="isSubmitted" class="btn btn btn-danger" (click)="modal.close('Cancel')">Cancel</button>
+
+</div>

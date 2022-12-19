@@ -36,6 +36,9 @@ const routes: Routes = [
   { path: 'divisions', loadChildren: () => 
   import('./component/divisions/divisions.module').
   then(m => m.DivisionsModule) },
+  { path: 'locations', loadChildren: () => 
+  import('./component/locations/locations.module').
+  then(m => m.LocationsModule) },
 
 
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
