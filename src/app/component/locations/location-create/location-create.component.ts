@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ILocation } from 'src/app/shared/models/locations';
@@ -19,7 +19,7 @@ export class LocationCreateComponent implements OnInit {
   title: string;
   location: ILocation;
   closeResult: string;
-  locationForm: FormGroup;
+  locationForm!: FormGroup;
   LocationID?: number;
   isSubmitted = false;
   constructor(
@@ -29,26 +29,56 @@ export class LocationCreateComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) {
+    this.location = {} as ILocation;
+  }
 
   ngOnInit(): void {
+    this.locationForm = new FormGroup({
+      customerId: new FormControl(this.location.customerId, [
+        Validators.required
+      ]),
+      name: new FormControl(this.location.name, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(25),
+      ]),
 
-    this.locationForm = this.fb.group({
-   
-      customerId: ['', Validators.required],
-      name: ['', Validators.required],
-      streetNumber: ['', Validators.required],
-      streetName: ['', Validators.required],
-      suburb: ['', Validators.required],
-      city: ['', Validators.required],
-      postCode: ['',Validators.required],
-      lon: ['', ""],
-      lat: ['', ""],
-      comment: ['', ""],
-      type: ['', Validators.required],
+      streetNumber: new FormControl(this.location.streetNumber, [
+        Validators.required
+      ]),
+
+      streetName: new FormControl(this.location.streetName, [
+        Validators.required
+      ]),
+
+      suburb: new FormControl(this.location.suburb, [
+        Validators.required
+      ]),
+
+      city: new FormControl(this.location.city, [
+        Validators.required
+      ]),
+      postCode: new FormControl(this.location.postCode, [
+        Validators.required
+      ]),
+      lon: new FormControl(this.location.lon, [
+        Validators.maxLength(20),
+      ]),
+      lat: new FormControl(this.location.lat, [
+        Validators.maxLength(20),
+      ]),
+      comment: new FormControl(this.location.comment, [
+        Validators.maxLength(20),
+      ]),
+
+      type: new FormControl(this.location.type, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
     });
     this.loadData();
-    
+
     this.loadCustomers();
   }
   get f(): { [key: string]: AbstractControl } {
@@ -72,10 +102,48 @@ export class LocationCreateComponent implements OnInit {
     );
   }
 
+  get customerId() {
+    return this.locationForm.get('customerId')!;
+  }
+
+  get name() {
+    return this.locationForm.get('name')!;
+  }
+  get streetNumber() {
+    return this.locationForm.get('streetNumber')!;
+  }
+  get streetName() {
+    return this.locationForm.get('streetName')!;
+  }
+
+  get city() {
+    return this.locationForm.get('city')!;
+  }
+  get suburb() {
+    return this.locationForm.get('suburb')!;
+  }
+  get postCode() {
+    return this.locationForm.get('postCode')!;
+  }
+  get lon() {
+    return this.locationForm.get('lon')!;
+  }
+  get lat() {
+    return this.locationForm.get('lat')!;
+  }
+  get comment() {
+    return this.locationForm.get('comment')!;
+  }
+  get type() {
+    return this.locationForm.get('type')!;
+  }
 
   addNewLocation() {
 
     if (this.locationForm.invalid || this.isSubmitted) {
+      for (const control of Object.keys(this.locationForm.controls)) {
+        this.locationForm.controls[control].markAsTouched();
+      }
       return;
     }
     this.isSubmitted = true;
@@ -106,7 +174,7 @@ export class LocationCreateComponent implements OnInit {
 
 
   open(content: any) {
-    this.modalService.open(content, {  size: 'xl', ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, { size: 'xl', ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -123,17 +191,14 @@ export class LocationCreateComponent implements OnInit {
     }
   }
 
-   // Choose city using select dropdown
-   changeCustomer(e) {
+  // Choose city using select dropdown
+  changeCustomer(e) {
     console.log(e.value)
     this.customerId.setValue(e.target.value, {
       onlySelf: true
     })
   }
 
-   // Getter method to access formcontrols
-   get customerId() {
-    return this.locationForm.get('customerId');
-  }
+
 
 }
