@@ -31,7 +31,7 @@ export class LocationsListComponent implements OnInit {
   customers: ICustomer[];
   locations: ILocation[];
   public displayedColumns: string[] = [
-    // "id",
+   "id",
     // "customerId",
     "customername",
     "name",
@@ -43,9 +43,9 @@ export class LocationsListComponent implements OnInit {
     "lon",
     "lat",
     "comment",
-    //"type",
-    //"status",
-    //"createdDate",
+    "type",
+    "status",
+    "createdDate",
     "action",
   ];
   dataSource: MatTableDataSource<ILocation>;
