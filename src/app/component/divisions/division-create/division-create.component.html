@@ -16,13 +16,8 @@
     <div class="modal-body">
       <form [formGroup]="divisionForm" *ngIf="divisionForm" class="pt-3">
         <div class="form-group">
-          <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
-          <div *ngIf="isSubmitted && f['name'].errors" class="invalid-feedback">
-            <div *ngIf="f['name'].errors['required']">Title is required</div>
-          </div>
-  
-  
-          <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert">
+          <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />       
+          <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert btn-danger">
             <span>Name is required!</span>
           </div>
         </div>

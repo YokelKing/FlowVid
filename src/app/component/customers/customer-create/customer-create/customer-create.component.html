@@ -17,12 +17,8 @@
     <form [formGroup]="customerForm" *ngIf="customerForm" class="pt-3">
       <div class="form-group">
         <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
-        <div *ngIf="isSubmitted && f['name'].errors" class="invalid-feedback">
-          <div *ngIf="f['name'].errors['required']">Name is required</div>
-        </div>
-
-
-        <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert">
+       
+        <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert btn-danger">
           <span>Name is required!</span>
         </div>
       </div>

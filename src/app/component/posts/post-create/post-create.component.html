@@ -17,12 +17,9 @@
       <form [formGroup]="postForm" *ngIf="postForm" class="pt-3">
         <div class="form-group">
           <input formControlName="title" type="text" class="form-control form-control-lg" placeholder="Title*" />
-          <div *ngIf="isSubmitted && f['title'].errors" class="invalid-feedback">
-            <div *ngIf="f['title'].errors['required']">Title is required</div>
-          </div>
+          
   
-  
-          <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)" class="alert">
+          <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)" class="alert btn-danger">
             <span>Title is required!</span>
           </div>
         </div>
