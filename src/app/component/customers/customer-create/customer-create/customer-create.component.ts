@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ICustomer } from 'src/app/shared/models/customers';
@@ -13,27 +13,46 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class CustomerCreateComponent implements OnInit {
 
+
+
   [x: string]: any;
   title: string;
   customer: ICustomer;
   closeResult: string;
-  customerForm: FormGroup;
+  customerForm!: FormGroup;
   customerID?: number;
   isSubmitted = false;
   constructor(
+    
     public modal: NgbActiveModal,
     private customerService: CustomersService,
     private modalService: NgbModal,
     private fb: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) {     this.customer = {} as ICustomer;
+  }
 
   ngOnInit(): void {
 
-    this.customerForm = this.fb.group({
-      name: ['', Validators.required],
-      code: ['']
+    // this.customerForm = this.fb.group({
+    //   name: ['', Validators.required],
+    //   code: ['']
+    // });
+
+    this.customerForm = new FormGroup({
+      name: new FormControl(this.customer.name, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(25),
+      ]),
+      code: new FormControl(this.customer.code, [
+        Validators.maxLength(10),
+      ]),
+
     });
+
+
+
     this.loadData();
   }
   get f(): { [key: string]: AbstractControl } {
@@ -46,10 +65,22 @@ export class CustomerCreateComponent implements OnInit {
 
   }
 
+  get name() {
+    return this.customerForm.get('name')!;
+  }
+
+  get code() {
+    return this.customerForm.get('code')!;
+  }
+
+
 
   addNewCustomer() {
 
     if (this.customerForm.invalid || this.isSubmitted) {
+      for (const control of Object.keys(this.customerForm.controls)) {
+        this.customerForm.controls[control].markAsTouched();
+      }
       return;
     }
     this.isSubmitted = true;
