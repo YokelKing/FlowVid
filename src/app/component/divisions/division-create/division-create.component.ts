@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDivision } from 'src/app/shared/models/divisions';
@@ -18,7 +18,7 @@ export class DivisionCreateComponent implements OnInit {
   title: string;
   division: IDivision;
   closeResult: string;
-  divisionForm: FormGroup;
+  divisionForm!: FormGroup;
   DivisionID?: number;
   isSubmitted = false;
   constructor(
@@ -27,7 +27,7 @@ export class DivisionCreateComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) { this.division = {} as IDivision; }
 
   ngOnInit(): void {
 
@@ -36,6 +36,23 @@ export class DivisionCreateComponent implements OnInit {
       code: [''],
       type: ['']
     });
+
+    this.divisionForm = new FormGroup({
+      name: new FormControl(this.division.name, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(25),
+      ]),
+      code: new FormControl(this.division.code, [
+        Validators.maxLength(20),
+      ]),
+      type: new FormControl(this.division.type, [
+        Validators.maxLength(20),
+      ]),
+
+    });
+
+
     this.loadData();
   }
   get f(): { [key: string]: AbstractControl } {
@@ -48,10 +65,24 @@ export class DivisionCreateComponent implements OnInit {
 
   }
 
+  get name() {
+    return this.divisionForm.get('name')!;
+  }
+
+  get code() {
+    return this.divisionForm.get('code')!;
+  }
+  get type() {
+    return this.divisionForm.get('type')!;
+  }
+
 
   addNewDivision() {
 
     if (this.divisionForm.invalid || this.isSubmitted) {
+      for (const control of Object.keys(this.divisionForm.controls)) {
+        this.divisionForm.controls[control].markAsTouched();
+      }
       return;
     }
     this.isSubmitted = true;
