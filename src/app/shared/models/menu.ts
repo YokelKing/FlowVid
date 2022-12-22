@@ -1,8 +1,20 @@
 export interface IMenu {
-    id: number;
-    menuName: string;
-    subMenu: string;
-    content: string;
-    iconClass: string;
-    url:string
+    id ?: number;
+    displayName: string;
+    iconName: string;
+    route: string;
+    menuURL: string;
+    parentId ? :number
+    menuHeirarchy ? :number;    
+}
+export class Menu implements  IMenu
+{
+    id ?: number;
+    displayName: string;
+    iconName: string;
+    route: string;
+    menuURL: string;
+    parentId ? :number
+    menuHeirarchy ? :number; 
+    Children ? :Array<Menu> ;
 }
