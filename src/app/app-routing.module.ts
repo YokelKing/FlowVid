@@ -41,6 +41,22 @@ const routes: Routes = [
   then(m => m.LocationsModule) },
 
 
+  { path: 'type', loadChildren: () => 
+  import('./component/type/type.module').
+  then(m => m.TypeModule) },
+
+  { path: 'source', loadChildren: () => 
+  import('./component/source/source.module').
+  then(m => m.SourceModule) },
+
+  { path: 'priority', loadChildren: () => 
+  import('./component/priority/priority.module').
+  then(m => m.PriorityModule) },
+
+  { path: 'progress', loadChildren: () => 
+  import('./component/progress/progress.module').
+  then(m => m.ProgressModule) },
+
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
   { path: '**', redirectTo:'home', pathMatch: 'full'},
 ];

@@ -74,6 +74,37 @@
   </a>
 </li>
 
+<li class="nav-item" [ngClass]="{ 'active': source.isActive }">
+  <a class="nav-link" routerLink="source/source-list" routerLinkActive #source="routerLinkActive">
+    <span class="menu-title">Job Source</span>
+
+  </a>
+</li>
+
+
+
+<li class="nav-item" [ngClass]="{ 'active': type.isActive }">
+  <a class="nav-link" routerLink="type/type-list" routerLinkActive #type="routerLinkActive">
+    <span class="menu-title">Job Type</span>
+
+  </a>
+</li>
+
+<li class="nav-item" [ngClass]="{ 'active': priority.isActive }">
+  <a class="nav-link" routerLink="priority/priority-list" routerLinkActive #priority="routerLinkActive">
+    <span class="menu-title">Job Priority</span>
+
+  </a>
+</li>
+
+<li class="nav-item" [ngClass]="{ 'active': progress.isActive }">
+  <a class="nav-link" routerLink="progress/progress-list" routerLinkActive #progress="routerLinkActive">
+    <span class="menu-title">Job Progress Status</span>
+
+  </a>
+</li>
+
+
 <!-- Static menu end-->
 
     </ul>

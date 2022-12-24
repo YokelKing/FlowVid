@@ -7,7 +7,6 @@ import { IResource } from 'src/app/shared/models/resources';
 
 
 const resourceUrl = baseUrl + 'Resources';
-//const userUrl = baseUrl + 'account';
 
 @Injectable({
   providedIn: 'root'

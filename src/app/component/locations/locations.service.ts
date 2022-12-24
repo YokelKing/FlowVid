@@ -7,8 +7,6 @@ import { ILocation } from 'src/app/shared/models/locations';
 
 
 const locationUrl = baseUrl + 'SiteLocations';
-//const userUrl = baseUrl + 'account';
-
 @Injectable({
   providedIn: 'root'
 })
