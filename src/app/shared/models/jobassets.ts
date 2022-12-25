@@ -1,7 +1,7 @@
 export interface IJobasset {
     id: number;
    customerId: number,
-   customername:string,
+   customerName:string,
    name:string,
    code:string,
     status: boolean,

@@ -33,7 +33,7 @@ export class JobassetsListComponent implements OnInit {
   public displayedColumns: string[] = [
    "id",
     // "customerId",
-    "customername",
+    "customerName",
     "name",
     "code",
     "type",

@@ -9,10 +9,6 @@
   <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
     <div class="container">
       <div class="row">
-  
-
-
-
         <div class="col-md form-group">
           <label>Name*</label>
           <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
@@ -21,7 +17,6 @@
             <span>Name is required!</span>
           </div>
         </div>
-
         
         <div class="col-md form-group">
           <label>Customer Name*</label>
@@ -48,15 +43,12 @@
           </div>
         </div>
       </div>
- 
-
-    </div>
+      </div>
   </form>
 </div>
 <div class="modal-footer">
   <button type="submit" [disabled]="editForm.invalid" class="btn btn-primary mr-2"
     (click)="editJobasset()">Update</button>
-
   <button [disabled]="isSubmitted" class="btn btn btn-danger" (click)="modal.close('Cancel')">Cancel</button>
 
 </div>
