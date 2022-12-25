@@ -14,11 +14,11 @@
           <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
         </a>
       </li>
-      <h4>Dynamic Menu</h4>
+      <!-- <h4>Dynamic Menu</h4>
       <li class="nav-item" *ngFor="let item of ObjMenus">
         <a class="nav-link" [routerLink]="[item.menuURL]" routerLinkActive #Customer="routerLinkActive">
           <span class="menu-title">{{item.displayName}} </span></a>
-        <!-- <i class="mdi mdi-home menu-icon"></i> -->
+         <i class="mdi mdi-home menu-icon"></i> 
         <i class="fa fa-chevron-down" *ngIf="item.parentId"></i>
         <ul class="" style="padding-left: 30px">
           <li class="nav-item" *ngFor="let item1 of item.Children">
@@ -27,10 +27,9 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> -->
 
 <!-- Static menu start-->
-<h4>Static Menu</h4>
 <li class="nav-item" [ngClass]="{ 'active': user.isActive }">
   <a class="nav-link" routerLink="user-pages/basic-elements" routerLinkActive #user="routerLinkActive">
     <span class="menu-title">Users</span>
@@ -100,6 +99,13 @@
 <li class="nav-item" [ngClass]="{ 'active': progress.isActive }">
   <a class="nav-link" routerLink="progress/progress-list" routerLinkActive #progress="routerLinkActive">
     <span class="menu-title">Job Progress Status</span>
+
+  </a>
+</li>
+
+<li class="nav-item" [ngClass]="{ 'active': jobassets.isActive }">
+  <a class="nav-link" routerLink="jobassets/jobassets-list" routerLinkActive #jobassets="routerLinkActive">
+    <span class="menu-title">Job Asset</span>
 
   </a>
 </li>

@@ -57,6 +57,10 @@ const routes: Routes = [
   import('./component/progress/progress.module').
   then(m => m.ProgressModule) },
 
+  { path: 'jobassets', loadChildren: () => 
+  import('./component/jobassets/jobassets.module').
+  then(m => m.JobassetsModule) },
+
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
   { path: '**', redirectTo:'home', pathMatch: 'full'},
 ];
