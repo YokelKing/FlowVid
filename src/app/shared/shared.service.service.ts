@@ -5,7 +5,7 @@ import { baseUrl } from '../apps/guards/api.url';
 import { IMenu } from './models/menu';
 
 
-const menuUrl = baseUrl + 'menu/'
+const menuUrl = baseUrl + 'MenuAccess'
 @Injectable({
   providedIn: 'root'
 })
