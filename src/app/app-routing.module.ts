@@ -28,6 +28,14 @@ const routes: Routes = [
   { path: 'resources', loadChildren: () => 
   import('./component/resources/resources.module').
   then(m => m.ResourcesModule) },
+  { path: 'teams', loadChildren: () => 
+  import('./component/teams/teams.module').
+  then(m => m.TeamsModule) },
+
+  { path: 'teamresources', loadChildren: () => 
+  import('./component/teamresources/teamresources.module').
+  then(m => m.TeamresourcesModule) },
+
 
   { path: 'posts', loadChildren: () => 
   import('./component/posts/posts.module').
@@ -40,6 +48,26 @@ const routes: Routes = [
   import('./component/locations/locations.module').
   then(m => m.LocationsModule) },
 
+
+  { path: 'type', loadChildren: () => 
+  import('./component/type/type.module').
+  then(m => m.TypeModule) },
+
+  { path: 'source', loadChildren: () => 
+  import('./component/source/source.module').
+  then(m => m.SourceModule) },
+
+  { path: 'priority', loadChildren: () => 
+  import('./component/priority/priority.module').
+  then(m => m.PriorityModule) },
+
+  { path: 'progress', loadChildren: () => 
+  import('./component/progress/progress.module').
+  then(m => m.ProgressModule) },
+
+  { path: 'jobassets', loadChildren: () => 
+  import('./component/jobassets/jobassets.module').
+  then(m => m.JobassetsModule) },
 
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
   { path: '**', redirectTo:'home', pathMatch: 'full'},

@@ -1,5 +1,8 @@
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ng-container *ngIf="currentUser$ | async">
+    <div class="container">  
+
     <ul class="nav">
       <li class="nav-item nav-profile">
         <a href="javascript:;" class="nav-link">
@@ -14,11 +17,46 @@
           <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
         </a>
       </li>
-      <h4>Dynamic Menu</h4>
+
+
+            <h4>Dynamic Menu</h4>
+
+
+            
+            
+            <li class="dropdown cssState" *ngFor="let item of navItems">
+              <a class="nav-link" [routerLink]="[item.menuURL]" routerLinkActive #Customer="routerLinkActive">
+                <span class="menu-title">{{item.displayName}} </span></a>
+              <ul class="" style="padding-left: 30px">
+                <li class="nav-item" *ngFor="let item1 of item.children" >
+                  <a class="nav-link" [routerLink]="[item1.menuURL]" routerLinkActive #Customer="routerLinkActive">
+                    <span class="menu-title">{{item1.displayName}} </span>
+                  </a>
+                  <ul class="" style="padding-left: 30px" *ngIf="item1.children">
+                    <li class="nav-item" *ngFor="let item2 of item1.children">
+                      <a class="nav-link" [routerLink]="[item2.menuURL]" routerLinkActive #Customer="routerLinkActive">
+                        <span class="menu-title">{{item2.displayName}} </span>
+                      </a>       
+                      <ul class="" style="padding-left: 30px" *ngIf="item2.children">
+                        <li class="nav-item" *ngFor="let item3 of item2.children">
+                          <a class="nav-link" [routerLink]="[item3.menuURL]" routerLinkActive #Customer="routerLinkActive">
+                            <span class="menu-title">{{item3.displayName}} </span>
+                          </a>                
+                        </li>
+                      </ul>         
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          <!-- </ul>
+        </ng-container>
+      </nav> -->
+      <!-- <h4>Dynamic Menu</h4>
       <li class="nav-item" *ngFor="let item of ObjMenus">
         <a class="nav-link" [routerLink]="[item.menuURL]" routerLinkActive #Customer="routerLinkActive">
           <span class="menu-title">{{item.displayName}} </span></a>
-        <!-- <i class="mdi mdi-home menu-icon"></i> -->
+         <i class="mdi mdi-home menu-icon"></i> 
         <i class="fa fa-chevron-down" *ngIf="item.parentId"></i>
         <ul class="" style="padding-left: 30px">
           <li class="nav-item" *ngFor="let item1 of item.Children">
@@ -27,10 +65,9 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> -->
 
 <!-- Static menu start-->
-<h4>Static Menu</h4>
 <li class="nav-item" [ngClass]="{ 'active': user.isActive }">
   <a class="nav-link" routerLink="user-pages/basic-elements" routerLinkActive #user="routerLinkActive">
     <span class="menu-title">Users</span>
@@ -59,6 +96,21 @@
   </a>
 </li>
 
+<li class="nav-item" [ngClass]="{ 'active': teams.isActive }">
+  <a class="nav-link" routerLink="teams/teams-list" routerLinkActive #teams="routerLinkActive">
+    <span class="menu-title">Teams</span>
+
+  </a>
+</li>
+
+<li class="nav-item" [ngClass]="{ 'active': teamresources.isActive }">
+  <a class="nav-link" routerLink="teamresources/teamresources-list" routerLinkActive #teamresources="routerLinkActive">
+    <span class="menu-title">Team Resources</span>
+
+  </a>
+</li>
+
+
 
 <li class="nav-item" [ngClass]="{ 'active': divisions.isActive }">
   <a class="nav-link" routerLink="divisions/divisions-list" routerLinkActive #divisions="routerLinkActive">
@@ -74,8 +126,78 @@
   </a>
 </li>
 
+<li class="nav-item" [ngClass]="{ 'active': source.isActive }">
+  <a class="nav-link" routerLink="source/source-list" routerLinkActive #source="routerLinkActive">
+    <span class="menu-title">Job Source</span>
+
+  </a>
+</li>
+
+
+
+<li class="nav-item" [ngClass]="{ 'active': type.isActive }">
+  <a class="nav-link" routerLink="type/type-list" routerLinkActive #type="routerLinkActive">
+    <span class="menu-title">Job Type</span>
+
+  </a>
+</li>
+
+<li class="nav-item" [ngClass]="{ 'active': priority.isActive }">
+  <a class="nav-link" routerLink="priority/priority-list" routerLinkActive #priority="routerLinkActive">
+    <span class="menu-title">Job Priority</span>
+
+  </a>
+</li>
+
+<li class="nav-item" [ngClass]="{ 'active': progress.isActive }">
+  <a class="nav-link" routerLink="progress/progress-list" routerLinkActive #progress="routerLinkActive">
+    <span class="menu-title">Job Progress Status</span>
+
+  </a>
+</li>
+
+<li class="nav-item" [ngClass]="{ 'active': jobassets.isActive }">
+  <a class="nav-link" routerLink="jobassets/jobassets-list" routerLinkActive #jobassets="routerLinkActive">
+    <span class="menu-title">Job Asset</span>
+
+  </a>
+</li>
+
+
 <!-- Static menu end-->
 
+
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"                     aria-expanded="false">
+    Multi-level Item
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#"> Menu Item 1</a></li>
+    <li><a class="dropdown-item" href="#"> Menu Item 2</a></li>
+    <li class="dropdown-submenu">
+      <a class="dropdown-item" href="#"> Second Level <span
+          class="float-end custom-toggle-arrow">>></span></a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Second Level Item 1</a></li>
+        <li><a class="dropdown-item" href="#">Second Level Item 2</a></li>
+
+        <li class="dropdown-submenu">
+          <a class="dropdown-item" href="#"> Third Level <span
+              class="float-end custom-toggle-arrow">>></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Third Level Item 1</a></li>
+            <li><a class="dropdown-item" href="#">Third Level Item 2</a></li>
+          </ul>
+        </li>
+
+
+      </ul>
+    </li>
+  </ul>
+</li>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+ 
     </ul>
+    </div>
   </ng-container>
 </nav>

@@ -142,7 +142,7 @@ export class LocationsListComponent implements OnInit {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.value) {
-        this.locationService.deleteLocation(data);
+        //this.locationService.deleteLocation(data);
 
         this.locationService.deleteLocation(data).subscribe((data) => data);
 

@@ -6,8 +6,6 @@ import { ICustomer } from 'src/app/shared/models/customers';
 
 
 const customerUrl = baseUrl + 'Customers';
-//const userUrl = baseUrl + 'account';
-
 @Injectable({
   providedIn: 'root'
 })

@@ -113,7 +113,7 @@ export class JobsListComponent implements OnInit {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.value) {
-        this.jobService.deleteJob(data);
+        //this.jobService.deleteJob(data);
 
         this.jobService.deleteJob(data).subscribe((data) => data);
 

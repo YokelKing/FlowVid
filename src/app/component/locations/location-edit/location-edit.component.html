@@ -9,10 +9,6 @@
   <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
     <div class="container">
       <div class="row">
-  
-
-
-
         <div class="col-md form-group">
           <label>Name*</label>
           <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
@@ -22,8 +18,7 @@
           </div>
         </div>
 
-        
-        <div class="col-md form-group">
+          <div class="col-md form-group">
           <label>Customer Name*</label>
           <select formControlName="customerId" class="form-control form-control-lg" (change)="changeCustomer($event)">
             <option *ngFor="let cust of customers" [value]="cust.id" class="form-control form-control-lg">
@@ -86,18 +81,15 @@
         </div>
         </div>
 
-
-
-        <div class="row">
-      
+        <div class="row">      
           <div class="col-md form-group">
-            <label>comment</label>
+            <label>Comment</label>
             <input formControlName="comment" type="text" class="form-control form-control-lg" placeholder="comment*">       
           </div>
 
           <div class="col-md form-group">
-            <label>type*</label>
-            <input formControlName="type" type="text" class="form-control form-control-lg" placeholder="type*">
+            <label>Type*</label>
+            <input formControlName="type" type="text" class="form-control form-control-lg" placeholder="Type*">
             <div *ngIf="editFormData.type.touched && editFormData.type.invalid" class="alert alert-danger">
               <div *ngIf="editFormData.type.errors.required">type is required.</div>
             </div>
