@@ -111,7 +111,7 @@ export class ResourcesListComponent implements OnInit {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.value) {
-        this.resourceService.deleteResource(data);
+        //this.resourceService.deleteResource(data);
 
         this.resourceService.deleteResource(data).subscribe((data) => data);
 

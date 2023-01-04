@@ -7,8 +7,6 @@ import { IJob } from 'src/app/shared/models/Jobs';
 
 
 const jobUrl = baseUrl + 'Jobs';
-//const userUrl = baseUrl + 'account';
-
 @Injectable({
   providedIn: 'root'
 })

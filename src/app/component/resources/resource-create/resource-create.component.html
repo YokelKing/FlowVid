@@ -16,18 +16,26 @@
     <div class="modal-body">
       <form [formGroup]="resourceForm" *ngIf="resourceForm" class="pt-3">
         <div class="form-group">
-          <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
-          <div *ngIf="isSubmitted && f['name'].errors" class="invalid-feedback">
-            <div *ngIf="f['name'].errors['required']">Name is required</div>
-          </div>
-  
-  
-          <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert">
-            <span>Name is required!</span>
+          <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" required minlength="3" maxlength="25" class="form-control form-control-lg"  [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+            <div *ngIf="name.errors?.['required']">
+              This field is required.
+            </div>
+            <div *ngIf="name.errors?.['minlength']">
+              This field must have at least 3 character.
+            </div>
+            <div *ngIf="name.errors?.['maxlength']">
+              This field must have at most 25 characters.
+            </div>
           </div>
         </div>
         <div class="form-group">
-          <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code" />
+          <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code" [class.is-invalid]="code.invalid && (code.dirty || code.touched)" />
+          <div *ngIf="code.invalid && (code.dirty || code.touched)" class="invalid-feedback">
+            <div *ngIf="code.errors?.['maxlength']">
+              This field must have at most 10 characters.
+            </div>
+          </div>
         </div>
       </form>
     </div>

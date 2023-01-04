@@ -1,0 +1,134 @@
+<app-location-create></app-location-create>
+
+<div class="page-title">
+  <h2>Locations List</h2>
+</div>
+
+<h4 *ngIf="!locations"><em>Loading ...</em></h4>
+<div class="example-header">
+  <mat-form-field>
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Filter"
+    />
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+   <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+    </ng-container>
+
+     <!-- <ng-container matColumnDef="customerId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Customer ID </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.customerId }} </mat-cell>
+        </ng-container> -->
+
+    <ng-container matColumnDef="customername">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Customer Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.customername }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Location Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="streetNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Street Number</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row"> {{ row.streetNumber }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="streetName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Street Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.streetName }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="suburb">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Suburb
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.suburb }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        City
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.city }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="postCode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        postCode
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.postCode }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lon">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> lon </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.lon }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lat">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> lat </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.lat }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="comment">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        comment
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.comment }} </mat-cell>
+    </ng-container>
+
+  <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        type
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.type }} </mat-cell>
+    </ng-container> 
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Status
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.status }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="createdDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Created Date
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.createdDate | date }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <th mat-cell *matCellDef="let row">
+        <button (click)="editLocation(row)" class="btn btn-primary">
+          <i class="mdi mdi-account-plus"></i>
+        </button>
+        <button (click)="deleteLocation(row)" class="btn btn-danger text-white">
+          <i class="mdi mdi-delete me-2"></i>
+        </button>
+      </th>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

@@ -7,7 +7,6 @@ import { IPost } from 'src/app/shared/models/posts';
 
 
 const postUrl = baseUrl + 'Post';
-//const userUrl = baseUrl + 'account';
 
 @Injectable({
   providedIn: 'root'

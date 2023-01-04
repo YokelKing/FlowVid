@@ -1,0 +1,65 @@
+<div class="page-header">
+  <button (click)="open(mymodal)" type="button" class="btn btn-primary mr-2">
+    Add Job Asset
+  </button>
+</div>
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      Add Job Asset
+    </h4>
+    <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="jobassetForm" *ngIf="jobassetForm" class="pt-3">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md form-group">
+            <label>Customer Name*</label>
+            <select formControlName="customerId" class="form-control form-control-lg" (change)="changeCustomer($event)">
+              <option value="" disabled selected>Select Customer</option>
+              <option *ngFor="let cust of customers" [value]="cust.id" class="form-control form-control-lg">
+                {{cust.name}}
+              </option>
+            </select>
+            <div *ngIf="f.customerId.touched && f.customerId.invalid" class="alert alert-danger">
+              <div *ngIf="f.customerId.errors.required">Customer Name is required.</div>
+            </div>
+          </div>
+
+          <div class="col-md form-group">
+            <label>Name*</label>
+            <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
+            <div *ngIf="f.name.invalid && f.name.touched" class="alert alert-danger">
+              <span>Name is required!</span>
+            </div>
+          </div>
+
+          <div class="col-md form-group">
+            <label>Code</label>
+            <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code">
+          </div>
+
+          <div class="col-md form-group">
+            <label>Type*</label>
+            <input formControlName="type" type="text" class="form-control form-control-lg" placeholder="Type*">
+            <div *ngIf="f.type.touched && f.type.invalid" class="alert alert-danger">
+              <div *ngIf="f.type.errors.required">Type is required.</div>
+            </div>
+          </div>
+        </div>            
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary mr-2" (click)="addNewJobasset()" [disabled]="f.invalid">
+      Create
+    </button>
+    <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">
+      Cancel
+    </button>
+  </div>
+</ng-template>

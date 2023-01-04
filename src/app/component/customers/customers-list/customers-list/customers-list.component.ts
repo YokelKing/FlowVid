@@ -111,7 +111,7 @@ export class CustomersListComponent implements OnInit {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.value) {
-        this.customerService.deleteCustomer(data);
+        //this.customerService.deleteCustomer(data);
 
         this.customerService.deleteCustomer(data).subscribe((data) => data);
 

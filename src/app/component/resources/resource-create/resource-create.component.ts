@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder,FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IResource } from 'src/app/shared/models/resources';
@@ -18,7 +18,7 @@ export class ResourceCreateComponent implements OnInit {
   title: string;
   resource: IResource;
   closeResult: string;
-  resourceForm: FormGroup;
+  resourceForm!: FormGroup;
   ResourceID?: number;
   isSubmitted = false;
   constructor(
@@ -27,13 +27,25 @@ export class ResourceCreateComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) {  this.resource = {} as IResource;}
 
   ngOnInit(): void {
 
     this.resourceForm = this.fb.group({
       name: ['', Validators.required],
       code: ['']
+    });
+
+    this.resourceForm = new FormGroup({
+      name: new FormControl(this.resource.name, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(25),
+      ]),
+      code: new FormControl(this.resource.code, [
+        Validators.maxLength(10),
+      ]),
+
     });
     this.loadData();
   }
@@ -47,10 +59,20 @@ export class ResourceCreateComponent implements OnInit {
 
   }
 
+  get name() {
+    return this.resourceForm.get('name')!;
+  }
+
+  get code() {
+    return this.resourceForm.get('code')!;
+  }
 
   addNewResource() {
 
     if (this.resourceForm.invalid || this.isSubmitted) {
+      for (const control of Object.keys(this.resourceForm.controls)) {
+        this.resourceForm.controls[control].markAsTouched();
+      }
       return;
     }
     this.isSubmitted = true;

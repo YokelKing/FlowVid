@@ -112,7 +112,7 @@ export class PostsListComponent implements OnInit {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.value) {
-        this.postService.deletePost(data);
+        //this.postService.deletePost(data);
 
         this.postService.deletePost(data).subscribe((data) => data);
 

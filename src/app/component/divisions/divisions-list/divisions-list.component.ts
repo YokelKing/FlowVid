@@ -113,7 +113,7 @@ export class DivisionsListComponent implements OnInit {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.value) {
-        this.divisionService.deleteDivision(data);
+       // this.divisionService.deleteDivision(data);
 
         this.divisionService.deleteDivision(data).subscribe((data) => data);
 
