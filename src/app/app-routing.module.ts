@@ -28,6 +28,14 @@ const routes: Routes = [
   { path: 'resources', loadChildren: () => 
   import('./component/resources/resources.module').
   then(m => m.ResourcesModule) },
+  { path: 'teams', loadChildren: () => 
+  import('./component/teams/teams.module').
+  then(m => m.TeamsModule) },
+
+  { path: 'teamresources', loadChildren: () => 
+  import('./component/teamresources/teamresources.module').
+  then(m => m.TeamresourcesModule) },
+
 
   { path: 'posts', loadChildren: () => 
   import('./component/posts/posts.module').

@@ -96,6 +96,21 @@
   </a>
 </li>
 
+<li class="nav-item" [ngClass]="{ 'active': teams.isActive }">
+  <a class="nav-link" routerLink="teams/teams-list" routerLinkActive #teams="routerLinkActive">
+    <span class="menu-title">Teams</span>
+
+  </a>
+</li>
+
+<li class="nav-item" [ngClass]="{ 'active': teamresources.isActive }">
+  <a class="nav-link" routerLink="teamresources/teamresources-list" routerLinkActive #teamresources="routerLinkActive">
+    <span class="menu-title">Team Resources</span>
+
+  </a>
+</li>
+
+
 
 <li class="nav-item" [ngClass]="{ 'active': divisions.isActive }">
   <a class="nav-link" routerLink="divisions/divisions-list" routerLinkActive #divisions="routerLinkActive">
