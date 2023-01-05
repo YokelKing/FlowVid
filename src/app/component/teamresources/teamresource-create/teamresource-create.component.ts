@@ -5,6 +5,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ITeamresource } from 'src/app/shared/models/teamresources';
 import { TeamresourcesService } from '../teamresources.service';
+import { TeamsService } from "../../teams/teams.service";
+import { ResourcesService } from "../../resources/resources.service";
+
+//import { CustomersService } from '../../customers/customers.service';
+
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
@@ -23,6 +28,8 @@ export class TeamresourceCreateComponent implements OnInit {
   isSubmitted = false;
   constructor(
     public modal: NgbActiveModal,
+    private TeamsService: TeamsService,
+    private resourceService: ResourcesService,
     private teamResourceService: TeamresourcesService,
     private modalService: NgbModal,
     private fb: FormBuilder,
@@ -32,26 +39,23 @@ export class TeamresourceCreateComponent implements OnInit {
   ngOnInit(): void {
 
     this.teamresourceForm = this.fb.group({
-      name: ['', Validators.required],
-      code: [''],
-      type: ['']
+      teamId: ['', Validators.required],
+      resourceId: ['', Validators.required]
     });
 
     this.teamresourceForm = new FormGroup({
-      name: new FormControl(this.teamresource.name, [
+      teamId: new FormControl(this.teamresource.teamId, [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(25),
       ]),
-      code: new FormControl(this.teamresource.code, [
-        Validators.maxLength(10),
-      ]),
-      type: new FormControl(this.teamresource.type, [
-        Validators.maxLength(10),
+      resourceId: new FormControl(this.teamresource.resourceId, [
+        Validators.required,
       ]),
 
     });
     this.loadData();
+    
+    this.loadTeams();
+    this.loadResources();
   }
   get f(): { [key: string]: AbstractControl } {
     return this.teamresourceForm.controls;
@@ -63,16 +67,14 @@ export class TeamresourceCreateComponent implements OnInit {
 
   }
 
-  get name() {
-    return this.teamresourceForm.get('name')!;
+  get teamId() {
+    return this.teamresourceForm.get('teamId')!;
   }
 
-  get code() {
-    return this.teamresourceForm.get('code')!;
+  get resourceId() {
+    return this.teamresourceForm.get('resourceId')!;
   }
-  get type() {
-    return this.teamresourceForm.get('type')!;
-  }
+
 
   addNewTeamresource() {
 
@@ -108,6 +110,29 @@ export class TeamresourceCreateComponent implements OnInit {
   }
 
 
+  loadTeams() {
+    this.TeamsService.getAllTeams().subscribe(
+      (result) => {
+        this.teams = result;
+        console.log("myteam",result);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  loadResources() {
+    this.resourceService.getAllResources().subscribe(
+      (result) => {
+        this.resources = result;
+        console.log("myresources",result);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -126,5 +151,20 @@ export class TeamresourceCreateComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
+  changeTeam(e) {
+    console.log(e.value)
+    this.teamId.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+
+  changeResource(e) {
+    console.log(e.value)
+    this.resourceId.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+
 
 }

@@ -14,22 +14,19 @@
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.resource.id }} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-       Name
+      Resource Name
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.resource.name }} </mat-cell>
     </ng-container>
 
         <!-- Type Column -->
-        <ng-container matColumnDef="type">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Type </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.resource.type}} </mat-cell>
-        </ng-container> 
+ 
 
 
     
@@ -52,17 +49,17 @@
     <!-- Status Column -->
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        Status
+        Team Name
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.resource.status }} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.team.name }} </mat-cell>
     </ng-container>
 
     <!-- Created Date Column -->
     <ng-container matColumnDef="createdDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        Created Date
+        Team Code
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.resource.createdDate | date }} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.team.code  }} </mat-cell>
     </ng-container>
 
     <!-- Action Column -->
