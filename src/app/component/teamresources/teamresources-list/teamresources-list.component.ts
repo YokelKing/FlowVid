@@ -19,6 +19,8 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import Swal from "sweetalert2/dist/sweetalert2.js";
+
+import { TeamsService } from "../../teams/teams.service";
 @Component({
   selector: "app-teamresources-list",
   templateUrl: "./teamresources-list.component.html",
@@ -30,7 +32,6 @@ export class TeamresourcesListComponent implements OnInit {
     "id",
     "name",
     "code",
-    "type",
     "status",
     "createdDate",
     "action",
@@ -41,12 +42,15 @@ export class TeamresourcesListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   teamresource: ITeamresource;
+
+  teams:any;
   closeResult: string;
   teamresourceForm: FormGroup;
   id;
   isSubmitted = false;
 
   constructor(
+    private TeamsService: TeamsService,
     private route: ActivatedRoute,
     public modal: NgbActiveModal,
     private teamresourceService: TeamresourcesService,
@@ -57,6 +61,8 @@ export class TeamresourcesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTeamresources();
+    
+    this.loadTeams();
   }
 
   applyFilter(filterValue: string) {
@@ -67,6 +73,18 @@ export class TeamresourcesListComponent implements OnInit {
 
   get f(): { [key: string]: AbstractControl } {
     return this.teamresourceForm.controls;
+  }
+
+  loadTeams() {
+    this.TeamsService.getAllTeams().subscribe(
+      (result) => {
+        this.teams = result;
+        console.log("myteam12",result);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   loadTeamresources() {
