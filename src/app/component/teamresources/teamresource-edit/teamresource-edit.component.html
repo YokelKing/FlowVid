@@ -7,7 +7,34 @@
 </div>
 <div class="modal-body">
   <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
-    <div class="form-group">
+
+    <div class="col-md form-group">
+      <label>Team Name*</label>
+      <select formControlName="teamId" class="form-control form-control-lg" (change)="changeTeam($event)">
+        <option value="" disabled selected>Select Team</option>
+        <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-lg">
+          {{team.name}} 
+          
+        </option>
+      </select>
+      <div *ngIf="editFormData.teamId.touched && editFormData.teamId.invalid" class="alert alert-danger">
+        <div *ngIf="editFormData.teamId.errors.required">Team Name is required.</div>
+      </div>
+    </div>
+
+    <div class="col-md form-group">
+      <label>Resource Name*</label>
+      <select formControlName="resourceId" class="form-control form-control-lg" (change)="changeResource($event)">
+        <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-lg">
+          {{data.name}}
+        </option>
+      </select>
+      <div *ngIf="editFormData.resourceId.touched && editFormData.resourceId.invalid" class="alert alert-danger">
+        <div *ngIf="editFormData.resourceId.errors.required">Resource Name is required.</div>
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
       <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
       <div *ngIf="editFormData.name.invalid && (editFormData.name.dirty || editFormData.name.touched)" class="alert">
         <span>Name is required!</span>
@@ -18,7 +45,7 @@
     </div>
     <div class="form-group">
       <input formControlName="type" type="text" class="form-control form-control-lg" placeholder="Type">
-    </div>
+    </div> -->
   </form>
 </div>
 <div class="modal-footer">

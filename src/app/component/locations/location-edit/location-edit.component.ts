@@ -116,7 +116,7 @@ export class LocationEditComponent implements OnInit {
     });
   }
 
-  // Choose city using select dropdown
+  // Choose customer using select dropdown
   changeCustomer(e) {
     console.log(e.target.value)
     this.customerId.setValue(e.target.value, {

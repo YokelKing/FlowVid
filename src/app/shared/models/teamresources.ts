@@ -3,6 +3,8 @@ export interface ITeamresource {
     name: string,
     code: string,
     status: boolean,
+    resourceId:number,
+    teamId:number
     type: string,
     createdDate: Date,
     createdBy: string,

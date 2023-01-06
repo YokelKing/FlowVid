@@ -72,7 +72,7 @@ export class TeamsListComponent implements OnInit {
   loadTeams() {
     this.teamService.getAllTeams().subscribe(
       (result) => {
-        console.log(result);
+        console.log("asdf",result);
         this.teams = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set
