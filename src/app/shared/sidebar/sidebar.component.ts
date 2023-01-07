@@ -6,15 +6,25 @@ import { NavItem } from '../models/nav-item';
 import { Router, NavigationEnd } from '@angular/router';
 import { SharedServiceService } from '../shared.service.service'
 import { IMenu, Menu } from '../models/menu';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
+  animations: [
+    trigger('indicatorRotate', [
+      state('collapsed', style({ transform: 'rotate(270deg)' })),
+      state('expanded', style({ transform: 'rotate(360deg)' })),
+      transition('expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
+      ),
+    ])
+  ],
 })
 
 export class SidebarComponent implements OnInit {
-
+ 
 
   public uiBasicCollapsed = false;
   public samplePagesCollapsed = false;
@@ -76,19 +86,7 @@ export class SidebarComponent implements OnInit {
     // debugger;
     this.sharedServiceService.getMenus().subscribe(
       result => {
-        this.navItems = result;
-        for (let cost of this.navItems) {
-          this.navItems.filter(x => x.parentId === cost.id);
-          this.ObjMenu.id = cost.id;
-          this.ObjMenu.displayName = cost.displayName;
-          this.ObjMenu.menuURL = cost.menuURL;
-          this.ObjMenu.parentId = cost.parentId;
-          this.ObjMenu.Children = this.navItems.filter(x => x.parentId === cost.id);
-          this.ObjMenus.push(this.ObjMenu);
-          this.ObjMenu = new Menu();
-
-        }
-
+       this.navItems = result;       
 
       }, error => {
         console.log(error);
