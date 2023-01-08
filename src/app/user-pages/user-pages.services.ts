@@ -14,12 +14,14 @@ const userUrl = baseUrl + 'account';
 const roleUrl = baseUrl + 'role'
 
 
-@Injectable({
+  @Injectable({
     providedIn: 'root'
   })
 
   export class UserPagesService {
-    baseUrl = environment.apiUrl;
+  // const baseUrl = environment.apiUrl;
+    private baseUrl= environment.apiUrl;
+
     private currentUserSource = new ReplaySubject<IUser>(1);
     currentUser$ = this.currentUserSource.asObservable();
     constructor(private http: HttpClient,
