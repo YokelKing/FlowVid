@@ -38,10 +38,10 @@ export class TeamresourceCreateComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.teamresourceForm = this.fb.group({
-      teamId: ['', Validators.required],
-      resourceId: ['', Validators.required]
-    });
+    // this.teamresourceForm = this.fb.group({
+    //   teamId: ['', Validators.required],
+    //   resourceId: ['', Validators.required]
+    // });
 
     this.teamresourceForm = new FormGroup({
       teamId: new FormControl(this.teamresource.teamId, [

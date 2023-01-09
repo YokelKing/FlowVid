@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">
+    Update Jobtype</h4>
+  <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
+    <div class="form-group">
+      <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
+      <div *ngIf="editFormData.name.invalid && (editFormData.name.dirty || editFormData.name.touched)" class="alert">
+        <span>Name is required!</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" [disabled]="editForm.invalid" class="btn btn-primary mr-2"
+    (click)="editJobtype()">Update</button>
+
+  <button [disabled]="isSubmitted" class="btn btn btn-danger" (click)="modal.close('Cancel')">Cancel</button>
+
+</div>

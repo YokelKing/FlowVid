@@ -69,6 +69,10 @@ const routes: Routes = [
   import('./component/jobassets/jobassets.module').
   then(m => m.JobassetsModule) },
 
+  { path: 'jobtypes', loadChildren: () => 
+  import('./component/jobtypes/jobtypes.module').
+  then(m => m.JobtypesModule) },
+
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
   { path: '**', redirectTo:'home', pathMatch: 'full'},
 ];
