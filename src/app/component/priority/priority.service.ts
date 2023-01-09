@@ -17,7 +17,7 @@ export class PriorityService {
     private router: Router) {     
     }
 
-    getAllPrioritys(){
+    getAllPriority(){
       return this.http.get<IPriority[]>(priorityUrl);
     }
 

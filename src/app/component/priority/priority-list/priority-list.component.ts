@@ -69,7 +69,7 @@ export class PriorityListComponent implements OnInit {
   }
 
   loadPriority() {
-    this.priorityService.getAllPrioritys().subscribe(
+    this.priorityService.getAllPriority().subscribe(
       (result) => {
         console.log(result);
         this.priority = result;
