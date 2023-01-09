@@ -10,7 +10,7 @@ export interface IJob {
     jobPriorityID:number,
     jobSourceID:number,
     jobProgressStatusID:number,
-    //jobTypeID:number,
+    jobTypeID:number,
     externalRefNo,
     jobTask:any,
     jobDocument:any,

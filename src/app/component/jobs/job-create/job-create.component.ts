@@ -17,7 +17,8 @@ import { DivisionsService } from "../../divisions/divisions.service";
 import { TypesService } from "../../type/type.service";
 import { PriorityService } from "../../priority/priority.service";
 import { SourceService } from "../../source/source.service";
-import { ProgressService } from "../../progress/progress.service";    
+import { ProgressService } from "../../progress/progress.service";   
+import { JobtypesService } from "../../jobtypes/jobtypes.service";    
 
 @Component({
   selector: 'app-job-create',
@@ -44,6 +45,7 @@ export class JobCreateComponent implements OnInit {
     private PriorityService: PriorityService,
     private SourceService: SourceService,
     private ProgressService: ProgressService,
+    private JobtypesService: JobtypesService,
     private jobService: JobsService,
     private modalService: NgbModal,
     private fb: FormBuilder,
@@ -92,26 +94,26 @@ export class JobCreateComponent implements OnInit {
       ]),
 
       jobTask: new FormControl(this.job.jobTask, [
-        Validators.required,
+       
       ]),
 
 
       jobDocument: new FormControl(this.job.jobDocument, [
-        Validators.required,
+      
       ]),
 
 
       resourceJobCost: new FormControl(this.job.resourceJobCost, [
-        Validators.required,
+       
       ]),
       
       externalRefNo: new FormControl(this.job.externalRefNo, [
      ]),
 
       
-      // jobTypeID: new FormControl(this.job.jobTypeID, [
-      //   Validators.required,
-      // ]),
+      jobTypeID: new FormControl(this.job.jobTypeID, [
+        Validators.required,
+      ]),
  
       
 
@@ -132,7 +134,7 @@ export class JobCreateComponent implements OnInit {
     this.loadJobPriority();
     this.loadJobSource();
     this.loadJobProgressStatus();
-    //this.loadJobTypes();
+    this.loadJobTypes();
   }
   get f(): { [key: string]: AbstractControl } {
     return this.jobForm.controls;
@@ -296,6 +298,18 @@ export class JobCreateComponent implements OnInit {
   );
 }
 
+loadJobTypes() {
+  this.JobtypesService.getAllJobtypes().subscribe(
+    (result) => {
+      this.jobtypes = result;
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+}
+
+
 
 
 
@@ -358,9 +372,9 @@ export class JobCreateComponent implements OnInit {
   }
 
 
-  // get jobTypeID() {
-  //   return this.jobForm.get('jobTypeID')!;
-  // }
+  get jobTypeID() {
+    return this.jobForm.get('jobTypeID')!;
+  }
 
     // Choose customer using select dropdown
     changeCustomer(e) {
@@ -436,12 +450,12 @@ export class JobCreateComponent implements OnInit {
   
 
 
-    // jobTypeID(e) {
-    //  
-    //   this.jobTypeID.setValue(e.target.value, {
-    //     onlySelf: true
-    //   })
-    // }
+    changeJobType(e) {
+     
+      this.jobTypeID.setValue(e.target.value, {
+        onlySelf: true
+      })
+    }
   
 
     

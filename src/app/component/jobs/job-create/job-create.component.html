@@ -179,22 +179,21 @@
               <div *ngIf="f.jobProgressStatusID.errors.required">jobProgressStatus Name is required.</div>
             </div>
           </div>
-
-          <!-- <div class="col-md form-group">
-            <label>Resource Name*</label>
-            <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
-              <option value="" disabled selected>Select Resource</option>
-              <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
+<div class="col-md form-group">
+            <label>jobType Name*</label>
+            <select formControlName="jobTypeID" class="form-control form-control-sm" (change)="changeJobType($event)">
+              <option value="" disabled selected>Select jobType</option>
+              <option *ngFor="let data of jobtypes" [value]="data.id" class="form-control form-control-sm">
                 {{ data.name }}
               </option>
             </select>
-            <div *ngIf="f.resourceId.touched && f.resourceId.invalid" class="alert alert-danger">
-              <div *ngIf="f.resourceId.errors.required">
-                Resource Name is required.
+            <div *ngIf="f.jobTypeID.touched && f.jobTypeID.invalid" class="alert alert-danger">
+              <div *ngIf="f.jobTypeID.errors.required">
+                jobType Name is required.
               </div>
             </div>
           </div>
-           -->
+        
         </div>
       </div> 
     
