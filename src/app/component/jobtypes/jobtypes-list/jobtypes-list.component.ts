@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { IJob } from "src/app/shared/models/jobs";
-import { JobsService } from "../jobs.service";
+import { IJobtype } from "src/app/shared/models/jobtypes";
+import { JobtypesService } from "../jobtypes.service";
 import {
   NgbModal,
   ModalDismissReasons,
@@ -13,63 +13,49 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { JobEditComponent } from "../job-edit/job-edit.component";
+import { JobtypeEditComponent } from "../jobtype-edit/jobtype-edit.component";
 
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 @Component({
-  selector: "app-jobs-list",
-  templateUrl: "./jobs-list.component.html",
-  styleUrls: ["./jobs-list.component.scss"],
+  selector: "app-jobtypes-list",
+  templateUrl: "./jobtypes-list.component.html",
+  styleUrls: ["./jobtypes-list.component.scss"],
 })
-export class JobsListComponent implements OnInit {
-  jobs: IJob[];
+export class JobtypesListComponent implements OnInit {
+  jobtypes: IJobtype[];
   public displayedColumns: string[] = [
     "id",
-    "description",
-    "customer",
-    "division",
-    "jobAsset",
-    "jobIssueType",
-    "jobPriority",
-    "jobSource",
-    "team",
-    "jobProgressStatus",
-    "jobType",
-    "jobTask",
-    "jobDocument",
-    "resourceJobCost",
-    "dateOpend",
-    "dateDue",
-    "dateClosed",
+    "name",
+    "code",
     "status",
     "createdDate",
     "action",
   ];
-  dataSource: MatTableDataSource<IJob>;
+  dataSource: MatTableDataSource<IJobtype>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  job: IJob;
+  jobtype: IJobtype;
   closeResult: string;
-  jobForm: FormGroup;
+  jobtypeForm: FormGroup;
   id;
   isSubmitted = false;
 
   constructor(
     private route: ActivatedRoute,
     public modal: NgbActiveModal,
-    private jobService: JobsService,
+    private jobtypeService: JobtypesService,
     private modalService: NgbModal,
     private fb: FormBuilder,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.loadJobs();
+    this.loadJobtypes();
   }
 
   applyFilter(filterValue: string) {
@@ -79,14 +65,14 @@ export class JobsListComponent implements OnInit {
   }
 
   get f(): { [key: string]: AbstractControl } {
-    return this.jobForm.controls;
+    return this.jobtypeForm.controls;
   }
 
-  loadJobs() {
-    this.jobService.getAllJobs().subscribe(
+  loadJobtypes() {
+    this.jobtypeService.getAllJobtypes().subscribe(
       (result) => {
         console.log(result);
-        this.jobs = result;
+        this.jobtypes = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set
         this.dataSource.paginator = this.paginator;
@@ -98,24 +84,24 @@ export class JobsListComponent implements OnInit {
     );
   }
 
-  editJob(data: IJob): void {
-    const ref = this.modalService.open(JobEditComponent, {
+  editJobtype(data: IJobtype): void {
+    const ref = this.modalService.open(JobtypeEditComponent, {
       centered: true,
     });
-    ref.componentInstance.job = data;
+    ref.componentInstance.jobtype = data;
 
     ref.result.then(
       (yes) => {
         console.log("Yes Click");
 
-        this.loadJobs();
+        this.loadJobtypes();
       },
       (cancel) => {
         console.log("Cancel Click");
       }
     );
   }
-  deleteJob(data: IJob): void {
+  deleteJobtype(data: IJobtype): void {
     Swal.fire({
       title: "Are you sure want to remove?",
       text: "You will not be able to recover this file!",
@@ -125,11 +111,11 @@ export class JobsListComponent implements OnInit {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.value) {
-        //this.jobService.deleteJob(data);
+        //this.jobtypeService.deleteJobtype(data);
 
-        this.jobService.deleteJob(data).subscribe((data) => data);
+        this.jobtypeService.deleteJobtype(data).subscribe((data) => data);
 
-        this.jobs = this.jobs.filter((r) => r.id !== data.id);
+        this.jobtypes = this.jobtypes.filter((r) => r.id !== data.id);
         Swal.fire(
           "Deleted!",
           "Your imaginary file has been deleted.",
