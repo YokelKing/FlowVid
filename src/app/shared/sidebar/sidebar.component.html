@@ -17,7 +17,7 @@
       </li>
      
          <li class="nav-item dropdown" *ngFor="let item of navItems">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"    [routerLink]="[item.menuURL]" routerLinkActive #Customer="routerLinkActive">
+              <a class="nav-link" data-bs-toggle="dropdown" [routerLink]="[item.menuURL]" routerLinkActive #Customer="routerLinkActive">
                 <span class="menu-title">{{item.displayName}} </span></a>
               <ul class="dropdown-menu" style="padding-left: 30px">
                 <li class="nav-item" *ngFor="let item1 of item.children" >

@@ -93,19 +93,7 @@ export class JobCreateComponent implements OnInit {
         Validators.required,
       ]),
 
-      jobTask: new FormControl(this.job.jobTask, [
-       
-      ]),
 
-
-      jobDocument: new FormControl(this.job.jobDocument, [
-      
-      ]),
-
-
-      resourceJobCost: new FormControl(this.job.resourceJobCost, [
-       
-      ]),
       
       externalRefNo: new FormControl(this.job.externalRefNo, [
      ]),
