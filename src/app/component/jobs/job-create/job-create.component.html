@@ -108,43 +108,43 @@
             </div>
           </div>
           <div class="col-md form-group">
-            <label>jobAsset Name*</label>
+            <label>Job Asset Name*</label>
             <select formControlName="jobAssetID" class="form-control form-control-sm" (change)="changeJobAsset($event)">
-              <option value="" disabled selected>Select jobAsset</option>
+              <option value="" disabled selected>Select Job Asset</option>
               <option *ngFor="let data of assets" [value]="data.id" class="form-control form-control-sm">
                 {{ data.name }}
               </option>
             </select>
             <div *ngIf="f.jobAssetID.touched && f.jobAssetID.invalid" class="alert alert-danger">
-              <div *ngIf="f.jobAssetID.errors.required">jobAsset Name is required.</div>
+              <div *ngIf="f.jobAssetID.errors.required">Job Asset Name is required.</div>
             </div>
           </div>
 
           <div class="col-md form-group">
-            <label>jobIssueType Name*</label>
+            <label>Job IssueType Name*</label>
             <select formControlName="jobIssueTypeID" class="form-control form-control-sm" (change)="changeJobIssueType($event)">
-              <option value="" disabled selected>Select jobIssueType</option>
+              <option value="" disabled selected>Select Job IssueType</option>
               <option *ngFor="let data of types" [value]="data.id" class="form-control form-control-sm">
                 {{ data.name }}
               </option>
             </select>
             <div *ngIf="f.jobIssueTypeID.touched && f.jobIssueTypeID.invalid" class="alert alert-danger">
               <div *ngIf="f.jobIssueTypeID.errors.required">
-                jobIssueType Name is required.
+                Job IssueType Name is required.
               </div>
             </div>
           </div>
           <div class="col-md form-group">
-            <label>jobPriority Name*</label>
+            <label>Job Priority Name*</label>
             <select formControlName="jobPriorityID" class="form-control form-control-sm" (change)="changeJobPriority($event)">
-              <option value="" disabled selected>Select jobPriority</option>
+              <option value="" disabled selected>Select Job Priority</option>
               <option *ngFor="let data of priority" [value]="data.id" class="form-control form-control-sm">
                 {{ data.name }}
               </option>
             </select>
             <div *ngIf="f.jobPriorityID.touched && f.jobPriorityID.invalid" class="alert alert-danger">
               <div *ngIf="f.jobPriorityID.errors.required">
-                jobPriority Name is required.
+                Job Priority Name is required.
               </div>
             </div>
           </div>
@@ -154,53 +154,63 @@
         <div class="row">
         
           <div class="col-md form-group">
-            <label>jobSource Name*</label>
+            <label>Job Source Name*</label>
             <select formControlName="jobSourceID" class="form-control form-control-sm" (change)="changeJobSource($event)">
-              <option value="" disabled selected>Select jobSource</option>
+              <option value="" disabled selected>Select Job Source</option>
               <option *ngFor="let data of sources" [value]="data.id" class="form-control form-control-sm">
                 {{ data.name }}
               </option>
             </select>
             <div *ngIf="f.jobSourceID.touched && f.jobSourceID.invalid" class="alert alert-danger">
               <div *ngIf="f.jobSourceID.errors.required">
-                jobSource Name is required.
+                Job Source Name is required.
               </div>
             </div>
           </div>
           <div class="col-md form-group">
-            <label>jobProgressStatus Name*</label>
-            <select formControlName="teamId" class="form-control form-control-sm" (change)="changeJobProgressStatus($event)">
-              <option value="" disabled selected>Select jobProgressStatus</option>
+            <label>Job Progress Status Name*</label>
+            <select formControlName="jobProgressStatusID" class="form-control form-control-sm" (change)="changeJobProgressStatus($event)">
+              <option value="" disabled selected>Select Job Progress Status</option>
               <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
                 {{ data.name }}
               </option>
             </select>
             <div *ngIf="f.jobProgressStatusID.touched && f.jobProgressStatusID.invalid" class="alert alert-danger">
-              <div *ngIf="f.jobProgressStatusID.errors.required">jobProgressStatus Name is required.</div>
+              <div *ngIf="f.jobProgressStatusID.errors.required">Job Progress Status Name is required.</div>
             </div>
           </div>
 <div class="col-md form-group">
-            <label>jobType Name*</label>
+            <label>Job Type Name*</label>
             <select formControlName="jobTypeID" class="form-control form-control-sm" (change)="changeJobType($event)">
-              <option value="" disabled selected>Select jobType</option>
+              <option value="" disabled selected>Select Job Type</option>
               <option *ngFor="let data of jobtypes" [value]="data.id" class="form-control form-control-sm">
                 {{ data.name }}
               </option>
             </select>
             <div *ngIf="f.jobTypeID.touched && f.jobTypeID.invalid" class="alert alert-danger">
               <div *ngIf="f.jobTypeID.errors.required">
-                jobType Name is required.
+                Job Type Name is required.
               </div>
             </div>
+          </div>
+          <div class="col-md form-group">
+            <label>External RefNo*</label>
+            <input formControlName="externalRefNo" type="text" class="form-control form-control-sm"
+              placeholder="externalRefNo" />
+              <div *ngIf="f.externalRefNo.touched && f.externalRefNo.invalid" class="alert alert-danger">
+                <div *ngIf="f.externalRefNo.errors.required">
+                  External RefNo is required.
+                </div>
+              </div>
           </div>
         
         </div>
       </div> 
-    
+    <!--
 
       <div class="container">
         <div class="row">
-        
+         
           <div class="col-md form-group">
             <label>jobTask*</label>
             <input formControlName="jobTask" type="text" class="form-control form-control-sm"
@@ -217,19 +227,15 @@
             <label>resourceJobCost*</label>
             <input formControlName="resourceJobCost" type="text" class="form-control form-control-sm"
               placeholder="resourceJobCost" />
-          </div>
+          </div> 
 
           
-          <div class="col-md form-group">
-            <label>externalRefNo*</label>
-            <input formControlName="externalRefNo" type="text" class="form-control form-control-sm"
-              placeholder="externalRefNo" />
-          </div>
+    
 
 
         </div>
       </div> 
-    
+    -->
     </form>
   </div>
   <div class="modal-footer">
