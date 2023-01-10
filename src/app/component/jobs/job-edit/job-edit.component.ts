@@ -42,14 +42,14 @@ export class JobEditComponent implements OnInit {
   isSubmitted = false;
   customers: ICustomer[];
   teams:any;
-resources:any;
-divisions:any;
-assets:any;
-types:any;
-priority:any;
-sources:any;
-progress:any;
-jobtypes:any;
+  resources:any;
+  divisions:any;
+  assets:any;
+  types:any;
+  priority:any;
+  sources:any;
+  progress:any;
+  jobtypes:any;
 
   constructor(
     public modal: NgbActiveModal,
@@ -72,7 +72,6 @@ jobtypes:any;
 
   ngOnInit(): void {
     this.setForm();
-
     this.loadCustomers();
     this.loadTeams();
     this.loadResources();
@@ -270,10 +269,6 @@ jobtypes:any;
     return this.editForm.get('jobProgressStatusID')!;
   }
 
-  get externalRefNo() {
-    return this.editForm.get('externalRefNo')!;
-  }
-
   get jobTypeID() {
     return this.editForm.get('jobTypeID')!;
   }
@@ -363,37 +358,17 @@ jobtypes:any;
   public setForm() {
     this.editForm = this.fb.group({
       id: [this.job.id],
-      description: [this.job.description, Validators.required],
-      customerId: [this.job.customerId,
-      Validators.required
-      ],
-      teamId: [this.job.teamId,
-      Validators.required
-      ],
-      resourceId: [this.job.resourceId,
-      Validators.required
-      ],
-
-      divisionID: [this.job.divisionID,
-      Validators.required
-      ],
-
-      jobAssetID: [this.job.jobAssetID,
-      Validators.required
-      ],
-
-
-      jobIssueTypeID: [this.job.jobIssueTypeID,
-      Validators.required
-      ],
-
+      description: [this.job.description, ""],
+      customerId: [this.job.customerId,Validators.required],
+      teamId: [this.job.teamId,Validators.required],
+      resourceId: [this.job.resourceId,Validators.required],
+      divisionID: [this.job.divisionID,Validators.required],
+      jobAssetID: [this.job.jobAssetID,Validators.required],
+      jobIssueTypeID: [this.job.jobIssueTypeID,Validators.required],
       jobPriorityID: [this.job.jobPriorityID, Validators.required],
-
       jobSourceID: [this.job.jobSourceID, Validators.required],
       jobProgressStatusID: [this.job.jobProgressStatusID, Validators.required],
-
       externalRefNo: [this.job.externalRefNo, ""],
-
       jobTypeID: [this.job.jobTypeID, Validators.required],
     });
   }
