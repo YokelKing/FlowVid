@@ -38,9 +38,9 @@ export class JobsListComponent implements OnInit {
     "team",
     "jobProgressStatus",
     "jobType",
-    "jobTask",
-    "jobDocument",
-    "resourceJobCost",
+    // "jobTask",
+    // "jobDocument",
+    // "resourceJobCost",
     "dateOpend",
     "dateDue",
     "dateClosed",
@@ -100,6 +100,7 @@ export class JobsListComponent implements OnInit {
 
   editJob(data: IJob): void {
     const ref = this.modalService.open(JobEditComponent, {
+      size: 'xl',
       centered: true,
     });
     ref.componentInstance.job = data;

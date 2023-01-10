@@ -7,24 +7,204 @@
 </div>
 <div class="modal-body">
   <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
-    <div class="form-group">
-      <input formControlName="jobName" type="text" class="form-control form-control-lg" placeholder="Job Name*" />
-      <div *ngIf="editFormData.jobName.invalid && (editFormData.jobName.dirty || editFormData.jobName.touched)" class="alert">
-        <span>Name is required!</span>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md form-group">
+          <label>Description Name*</label>
+          <input formControlName="description" type="text" class="form-control form-control-sm"
+            placeholder="Description" />
+        </div>
+        <div class="col-md form-group">
+          <label>Customer Name*</label>
+          <select formControlName="customerId" class="form-control form-control-sm" (change)="changeCustomer($event)">
+            <option value="" disabled selected>Select Customer</option>
+            <option *ngFor="let cust of customers" [value]="cust.id" class="form-control form-control-sm">
+              {{ cust.name }}
+            </option>
+          </select>
+          <div *ngIf="editFormData.customerId.touched && editFormData.customerId.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.customerId.errors.required">
+              Customer Name is required.
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md form-group">
+          <label>Team Name*</label>
+          <select formControlName="teamId" class="form-control form-control-sm" (change)="changeTeam($event)">
+            <option value="" disabled selected>Select Team</option>
+            <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
+              {{team.name}}
+            </option>
+          </select>
+          <div *ngIf="editFormData.teamId.touched && editFormData.teamId.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.teamId.errors.required">Team Name is required.</div>
+          </div>
+        </div>
+
+
+        <div class="col-md form-group">
+          <label>Resource Name*</label>
+          <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
+            <option value="" disabled selected>Select Resource</option>
+            <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
+              {{data.name}}
+            </option>
+          </select>
+          <div *ngIf="editFormData.resourceId.touched && editFormData.resourceId.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.resourceId.errors.required">Resource Name is required.</div>
+          </div>
+        </div>
+       </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md form-group">
+          <label>Division Name*</label>
+          <select formControlName="divisionID" class="form-control form-control-sm" (change)="changeDivision($event)">
+            <option value="" disabled selected>Select Division</option>
+            <option *ngFor="let data of divisions" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="editFormData.divisionID.touched && editFormData.divisionID.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.divisionID.errors.required">
+              Division Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>jobAsset Name*</label>
+          <select formControlName="jobAssetID" class="form-control form-control-sm" (change)="changeJobAsset($event)">
+            <option value="" disabled selected>Select jobAsset</option>
+            <option *ngFor="let data of assets" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="editFormData.jobAssetID.touched && editFormData.jobAssetID.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.jobAssetID.errors.required">jobAsset Name is required.</div>
+          </div>
+        </div>
+
+        <div class="col-md form-group">
+          <label>jobIssueType Name*</label>
+          <select formControlName="jobIssueTypeID" class="form-control form-control-sm"
+            (change)="changeJobIssueType($event)">
+            <option value="" disabled selected>Select jobIssueType</option>
+            <option *ngFor="let data of types" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="editFormData.jobIssueTypeID.touched && editFormData.jobIssueTypeID.invalid"
+            class="alert alert-danger">
+            <div *ngIf="editFormData.jobIssueTypeID.errors.required">
+              jobIssueType Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>jobPriority Name*</label>
+          <select formControlName="jobPriorityID" class="form-control form-control-sm"
+            (change)="changeJobPriority($event)">
+            <option value="" disabled selected>Select jobPriority</option>
+            <option *ngFor="let data of priority" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="editFormData.jobPriorityID.touched && editFormData.jobPriorityID.invalid"
+            class="alert alert-danger">
+            <div *ngIf="editFormData.jobPriorityID.errors.required">
+              jobPriority Name is required.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="form-group">
-      <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md form-group">
+          <label>jobSource Name*</label>
+          <select formControlName="jobSourceID" class="form-control form-control-sm" (change)="changeJobSource($event)">
+            <option value="" disabled selected>Select jobSource</option>
+            <option *ngFor="let data of sources" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="editFormData.jobSourceID.touched && editFormData.jobSourceID.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.jobSourceID.errors.required">
+              jobSource Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>jobProgressStatus Name*</label>
+          <select formControlName="teamId" class="form-control form-control-sm"
+            (change)="changeJobProgressStatus($event)">
+            <option value="" disabled selected>Select jobProgressStatus</option>
+            <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="editFormData.jobProgressStatusID.touched && editFormData.jobProgressStatusID.invalid"
+            class="alert alert-danger">
+            <div *ngIf="editFormData.jobProgressStatusID.errors.required">jobProgressStatus Name is required.</div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>jobType Name*</label>
+          <select formControlName="jobTypeID" class="form-control form-control-sm" (change)="changeJobType($event)">
+            <option value="" disabled selected>Select jobType</option>
+            <option *ngFor="let data of jobtypes" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="editFormData.jobTypeID.touched && editFormData.jobTypeID.invalid" class="alert alert-danger">
+            <div *ngIf="editFormData.jobTypeID.errors.required">
+              jobType Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>externalRefNo*</label>
+          <input formControlName="externalRefNo" type="text" class="form-control form-control-sm"
+            placeholder="externalRefNo" />
+        </div>
+
+      </div>
     </div>
+    <!-- 
+
+      <div class="container">
+        <div class="row">
+         
+          <div class="col-md form-group">
+            <label>jobTask*</label>
+            <input formControlName="jobTask" type="text" class="form-control form-control-sm"
+              placeholder="jobTask" />
+          </div>
+
+          <div class="col-md form-group">
+            <label>jobDocument*</label>
+            <input formControlName="jobDocument" type="text" class="form-control form-control-sm"
+              placeholder="jobDocument" />
+          </div>
+
+          <div class="col-md form-group">
+            <label>resourceJobCost*</label>
+            <input formControlName="resourceJobCost" type="text" class="form-control form-control-sm"
+              placeholder="resourceJobCost" />
+          </div>      
+        </div>
+      </div> 
     
-    <div class="form-group">
-      <input formControlName="description" type="text" class="form-control form-control-lg" placeholder="Description">
-      </div>
+-->
   </form>
 </div>
 <div class="modal-footer">
-  <button type="submit" [disabled]="editForm.invalid" class="btn btn-primary mr-2"
-    (click)="editJob()">Update</button>
+  <button type="submit" [disabled]="editForm.invalid" class="btn btn-primary mr-2" (click)="editJob()">Update</button>
 
   <button [disabled]="isSubmitted" class="btn btn btn-danger" (click)="modal.close('Cancel')">Cancel</button>
 
