@@ -20,6 +20,8 @@ import { HomeComponent } from './shared/home/home.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { CustomersModule } from './component/customers/customers.module';
 import { JobsModule } from './component/jobs/jobs.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,14 +46,15 @@ import { JobsModule } from './component/jobs/jobs.module';
     ReactiveFormsModule,
     ChartsModule,
     CustomersModule,
-    JobsModule,
+    MatSidenavModule,
+    MatTabsModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger',
     })
 
 
   ],
-  exports: [CustomersModule,JobsModule],
+  exports: [CustomersModule],
   providers: [ThemeService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent],
@@ -59,3 +62,4 @@ import { JobsModule } from './component/jobs/jobs.module';
 
 })
 export class AppModule { }
+

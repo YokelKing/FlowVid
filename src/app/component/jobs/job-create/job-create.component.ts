@@ -19,7 +19,9 @@ import { PriorityService } from "../../priority/priority.service";
 import { SourceService } from "../../source/source.service";
 import { ProgressService } from "../../progress/progress.service";   
 import { JobtypesService } from "../../jobtypes/jobtypes.service";    
-
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 @Component({
   selector: 'app-job-create',
   templateUrl: './job-create.component.html',
@@ -34,6 +36,35 @@ export class JobCreateComponent implements OnInit {
   jobForm: FormGroup;
   JobID?: number;
   isSubmitted = false;
+  tabIndex: number = 0;
+  tabCount = 2;
+  public displayedColumns: string[] = [
+    "id",
+    "description",
+    "customer",
+    "division",
+    "jobAsset",
+    "jobIssueType",
+    "jobPriority",
+    "jobSource",
+    "team",
+    "jobProgressStatus",
+    "jobType",
+    // "jobTask",
+    // "jobDocument",
+    // "resourceJobCost",
+    "dateOpend",
+    "dateDue",
+    "dateClosed",
+    "status",
+    "createdDate",
+    "action",
+  ];
+  dataSource: MatTableDataSource<IJob>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(
     public modal: NgbActiveModal,
     private customerService: CustomersService,
@@ -107,6 +138,7 @@ export class JobCreateComponent implements OnInit {
 
     });
 
+    
 
 
 
@@ -123,11 +155,19 @@ export class JobCreateComponent implements OnInit {
     this.loadJobSource();
     this.loadJobProgressStatus();
     this.loadJobTypes();
+    this.loadJobs();
   }
   get f(): { [key: string]: AbstractControl } {
     return this.jobForm.controls;
   }
+  Task(type: string)
+  {
+      if (type.toLowerCase() == "next") {
+      this.tabIndex = (this.tabIndex + 1) % this.tabCount;
+      this.loadJobs();
+    }
 
+  }
   loadData() {
 
     this.title = "Add new ";
@@ -136,10 +176,7 @@ export class JobCreateComponent implements OnInit {
 
 
   addNewJob() {
-
-    console.log("1234", this.jobForm.value)
-
-    if (this.jobForm.invalid || this.isSubmitted) {
+  if (this.jobForm.invalid || this.isSubmitted) {
       return;
     }
     this.isSubmitted = true;
@@ -153,16 +190,15 @@ export class JobCreateComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-
-
         this.isSubmitted = false;
         this.modalService.dismissAll();
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/jobs/jobs-list']);
-        });
-
+        // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        //   this.router.navigate(['/jobs/jobs-list']);
+        // });
+   this.Task('next');
       }, error => {
         this.isSubmitted = false;
+        this.loadJobs();
       });
     //this.jobForm.reset();
   }
@@ -269,6 +305,22 @@ export class JobCreateComponent implements OnInit {
   this.SourceService.getAllSource().subscribe(
     (result) => {
       this.sources = result;
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+}
+loadJobs() {
+  this.jobService.getAllJobs().subscribe(
+    (result) => {
+      console.log(result);
+      this.jobs = result;
+      debugger;
+      this.dataSource = new MatTableDataSource(result);
+      // Assign the paginator *after* dataSource is set
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     },
     (error) => {
       console.log(error);
