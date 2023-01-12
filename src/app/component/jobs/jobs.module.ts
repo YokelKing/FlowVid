@@ -12,7 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import {MatTabsModule} from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 const routes: Routes = [
   { path: 'jobs-list', component: JobsListComponent },
@@ -35,6 +35,7 @@ const materialModules = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    MatTabsModule,
     RouterModule.forChild(routes),
     ...materialModules
 
