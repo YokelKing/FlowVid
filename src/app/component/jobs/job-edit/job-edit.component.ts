@@ -79,7 +79,7 @@ export class JobEditComponent implements OnInit {
 
     this.JobsService.getJobById(this.id).subscribe(data => {
       this.job = data;
-      console.log("asdf2222",this.job.id);
+      //console.log("asdf2222",this.job.id);
     }, error => console.log(error));
 
     this.setForm();
@@ -387,6 +387,9 @@ export class JobEditComponent implements OnInit {
       jobProgressStatusID: ["",Validators.required],
       externalRefNo: ["",Validators.required],
       jobTypeID: ["",Validators.required],
+      dateClosed: ["",Validators.required],
+      dateDue: ["",Validators.required],
+      dateOpend: ["",Validators.required],
       
 
       // description: [this.job.description, ""],
