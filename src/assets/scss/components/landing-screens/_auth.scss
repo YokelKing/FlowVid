@@ -22,8 +22,9 @@
 	}
 	.brand-logo {
 		margin-bottom: 2rem;
+		text-align:center;
 		img {
-			width: 150px;
+			max-width:10rem;
 		}
 	}
 	form {
@@ -41,6 +42,7 @@
 		.auth-form-btn {
 			padding: 1rem 3rem;
 			line-height: 1.5;
+			max-width: 100%;
 		}
 		.auth-link {
 			font-size: $default-font-size;
