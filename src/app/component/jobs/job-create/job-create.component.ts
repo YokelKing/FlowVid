@@ -8,7 +8,6 @@ import { JobsService } from '../jobs.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { CustomersService } from '../../customers/customers.service';
 import { ICustomer } from "src/app/shared/models/customers";
-//import { JobEditComponent } from "../job-edit/job-edit.component";
 import { TeamsService } from "../../teams/teams.service";
 import { ResourcesService } from "../../resources/resources.service";
 
@@ -25,6 +24,7 @@ import { MatTableDataSource } from "@angular/material/table";
 @Component({
   selector: 'app-job-create',
   templateUrl: './job-create.component.html',
+
   styleUrls: ['./job-create.component.scss']
 })
 export class JobCreateComponent implements OnInit {
@@ -132,6 +132,21 @@ export class JobCreateComponent implements OnInit {
       
       jobTypeID: new FormControl(this.job.jobTypeID, [
         Validators.required,
+      ]),
+ 
+
+      dateOpend: new FormControl(this.job.dateOpend, [
+       
+      ]),
+ 
+
+      dateDue: new FormControl(this.job.dateDue, [
+       
+      ]),
+ 
+
+      dateClosed: new FormControl(this.job.dateClosed, [
+       
       ]),
  
       
@@ -479,6 +494,21 @@ loadJobTypes() {
   get jobTypeID() {
     return this.jobForm.get('jobTypeID')!;
   }
+
+  get dateOpend() {
+    return this.jobForm.get('dateOpend')!;
+  }
+
+
+  get dateDue() {
+    return this.jobForm.get('dateDue')!;
+  }
+
+
+  get dateClosed() {
+    return this.jobForm.get('dateClosed')!;
+  }
+
 
     // Choose customer using select dropdown
     changeCustomer(e) {

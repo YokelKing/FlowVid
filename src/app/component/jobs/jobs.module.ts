@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { JobCreateComponent } from './job-create/job-create.component';
 import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal  } from '@ng-bootstrap/ng-bootstrap';
+
+import { JobCreateComponent } from './job-create/job-create.component';
 import { JobEditComponent } from './job-edit/job-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
@@ -24,18 +25,18 @@ const materialModules = [
   MatPaginatorModule,
   MatSortModule,
   MatFormFieldModule,
-  MatInputModule,
-  MatTabsModule
+  MatInputModule
 ];
 @NgModule({
   declarations: [
-    JobCreateComponent,
     JobEditComponent,
-    JobsListComponent
+    JobsListComponent,
+    JobCreateComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
+    MatTabsModule,
     RouterModule.forChild(routes),
     ...materialModules
 
