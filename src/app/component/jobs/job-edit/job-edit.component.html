@@ -1,18 +1,24 @@
-<div class="modal-header">
+<!-- <div class="modal-header">
   <h4 class="modal-title" id="modal-basic-title">
     Update Job</h4>
   <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
     <span aria-hidden="true">×</span>
   </button>
-</div>
-<div class="modal-body">
+</div> -->
+
+<h4 class="title">
+  Update Job</h4>
+  <div class="modal-body">
+    
+
+    
   <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
 
     <div class="container">
       <div class="row">
         <div class="col-md form-group">
           <label>Description Name*</label>
-          <input formControlName="description" type="text" class="form-control form-control-sm"
+          <input formControlName="description" type="text" class="form-control form-control-sm" 
             placeholder="Description" />
         </div>
         <div class="col-md form-group">
@@ -57,6 +63,7 @@
             <div *ngIf="editFormData.resourceId.errors.required">Resource Name is required.</div>
           </div>
         </div>
+
        </div>
     </div>
     <div class="container">
@@ -175,37 +182,12 @@
 
       </div>
     </div>
-    <!-- 
 
-      <div class="container">
-        <div class="row">
-         
-          <div class="col-md form-group">
-            <label>jobTask*</label>
-            <input formControlName="jobTask" type="text" class="form-control form-control-sm"
-              placeholder="jobTask" />
-          </div>
-
-          <div class="col-md form-group">
-            <label>jobDocument*</label>
-            <input formControlName="jobDocument" type="text" class="form-control form-control-sm"
-              placeholder="jobDocument" />
-          </div>
-
-          <div class="col-md form-group">
-            <label>resourceJobCost*</label>
-            <input formControlName="resourceJobCost" type="text" class="form-control form-control-sm"
-              placeholder="resourceJobCost" />
-          </div>      
-        </div>
-      </div> 
-    
--->
   </form>
 </div>
 <div class="modal-footer">
-  <button type="submit" [disabled]="editForm.invalid" class="btn btn-primary mr-2" (click)="editJob()">Update</button>
+  <button type="submit"  class="btn btn-primary mr-2" (click)="editJob()">Update</button>
 
-  <button [disabled]="isSubmitted" class="btn btn btn-danger" (click)="modal.close('Cancel')">Cancel</button>
+  <button  class="btn btn btn-danger" (click)="Cancel()">Cancel</button>
 
 </div>

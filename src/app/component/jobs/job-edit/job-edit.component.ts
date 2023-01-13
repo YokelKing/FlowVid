@@ -34,6 +34,7 @@ import { JobtypesService } from "../../jobtypes/jobtypes.service";
   styleUrls: ["./job-edit.component.scss"],
 })
 export class JobEditComponent implements OnInit {
+  [x: string]: any;
   title: string;
   job: IJob;
   closeResult: string;
@@ -67,10 +68,20 @@ export class JobEditComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+
+
+    this.id = this.route.snapshot.params['id'];
+  
+
+    this.JobsService.getJobById(this.id).subscribe(data => {
+      this.job = data;
+      console.log("asdf2222",this.job.id);
+    }, error => console.log(error));
+
     this.setForm();
     this.loadCustomers();
     this.loadTeams();
@@ -228,7 +239,12 @@ export class JobEditComponent implements OnInit {
     );
   }
 
+  Cancel()
+  {
+    
+    this.router.navigate([`jobs/job-create`]);
 
+  }
 
 
 
@@ -357,19 +373,34 @@ export class JobEditComponent implements OnInit {
 
   public setForm() {
     this.editForm = this.fb.group({
-      id: [this.job.id],
-      description: [this.job.description, ""],
-      customerId: [this.job.customerId,Validators.required],
-      teamId: [this.job.teamId,Validators.required],
-      resourceId: [this.job.resourceId,Validators.required],
-      divisionID: [this.job.divisionID,Validators.required],
-      jobAssetID: [this.job.jobAssetID,Validators.required],
-      jobIssueTypeID: [this.job.jobIssueTypeID,Validators.required],
-      jobPriorityID: [this.job.jobPriorityID, Validators.required],
-      jobSourceID: [this.job.jobSourceID, Validators.required],
-      jobProgressStatusID: [this.job.jobProgressStatusID, Validators.required],
-      externalRefNo: [this.job.externalRefNo, ""],
-      jobTypeID: [this.job.jobTypeID, Validators.required],
+      //id: this.route.snapshot.params['id'],
+
+      description: ["",Validators.required],
+      customerId: ["",Validators.required],
+      teamId: ["",Validators.required],
+      resourceId: ["",Validators.required],
+      divisionID: ["",Validators.required],
+      jobAssetID: ["",Validators.required],
+      jobIssueTypeID: ["",Validators.required],
+      jobPriorityID: ["",Validators.required],
+      jobSourceID: ["",Validators.required],
+      jobProgressStatusID: ["",Validators.required],
+      externalRefNo: ["",Validators.required],
+      jobTypeID: ["",Validators.required],
+      
+
+      // description: [this.job.description, ""],
+      // customerId: [this.job.customerId,Validators.required],
+      // teamId: [this.job.teamId,Validators.required],
+      // resourceId: [this.job.resourceId,Validators.required],
+      // divisionID: [this.job.divisionID,Validators.required],
+      // jobAssetID: [this.job.jobAssetID,Validators.required],
+      // jobIssueTypeID: [this.job.jobIssueTypeID,Validators.required],
+      // jobPriorityID: [this.job.jobPriorityID, Validators.required],
+      // jobSourceID: [this.job.jobSourceID, Validators.required],
+      // jobProgressStatusID: [this.job.jobProgressStatusID, Validators.required],
+      // externalRefNo: [this.job.externalRefNo, ""],
+      // jobTypeID: [this.job.jobTypeID, Validators.required],
     });
   }
 }

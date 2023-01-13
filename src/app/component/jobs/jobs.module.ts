@@ -24,7 +24,8 @@ const materialModules = [
   MatPaginatorModule,
   MatSortModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatTabsModule
 ];
 @NgModule({
   declarations: [
@@ -34,8 +35,7 @@ const materialModules = [
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    MatTabsModule,
+    ReactiveFormsModule,    
     RouterModule.forChild(routes),
     ...materialModules
 

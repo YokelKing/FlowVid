@@ -22,6 +22,7 @@ import { CustomersModule } from './component/customers/customers.module';
 import { JobsModule } from './component/jobs/jobs.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatTabsModule} from '@angular/material/tabs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     ReactiveFormsModule,
     ChartsModule,
     CustomersModule,
+    JobsModule,
     MatSidenavModule,
     MatTabsModule,
     ConfirmationPopoverModule.forRoot({
@@ -54,7 +56,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 
   ],
-  exports: [CustomersModule],
+  exports: [CustomersModule,JobsModule],
   providers: [ThemeService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent],
