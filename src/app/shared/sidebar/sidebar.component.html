@@ -16,31 +16,31 @@
         </a>
       </li>
      
-         <li class="nav-item dropdown" *ngFor="let item of navItems">
-              <a class="nav-link" data-bs-toggle="dropdown" [routerLink]="[item.menuURL]" routerLinkActive #Customer="routerLinkActive">
-                <span class="menu-title">{{item.displayName}} </span></a>
-              <ul class="dropdown-menu" style="padding-left: 30px">
-                <li class="nav-item" *ngFor="let item1 of item.children" >
-                  <a class="nav-link" [routerLink]="[item1.menuURL]" routerLinkActive #Customer="routerLinkActive">
-                    <span class="menu-title">{{item1.displayName}} </span>
-                  </a>
-                  <ul class="dropdown-submenu" style="padding-left: 30px" *ngIf="item1.children">
-                    <li class="nav-item" *ngFor="let item2 of item1.children">
-                      <a class="nav-link" [routerLink]="[item2.menuURL]" routerLinkActive #Customer="routerLinkActive">
-                        <span class="menu-title">{{item2.displayName}} </span>
-                      </a>       
-                      <ul class="" style="padding-left: 30px" *ngIf="item2.children">
-                        <li class="nav-item" *ngFor="let item3 of item2.children">
-                          <a class="nav-link" [routerLink]="[item3.menuURL]" routerLinkActive #Customer="routerLinkActive">
-                            <span class="menu-title">{{item3.displayName}} </span>
-                          </a>                
-                        </li>
-                      </ul>         
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>    
+      <li class="nav-item dropdown" ngbDropdown *ngFor="let item of navItems">
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle  [routerLink]="[item.menuURL]" routerLinkActive #Customer="routerLinkActive">
+          <span class="menu-title">{{item.displayName}} </span></a>
+        <ul class="dropdown-menu" *ngIf="item.children" ngbDropdownMenu>
+          <li class="nav-item" *ngFor="let item1 of item.children" >
+            <a class="nav-link" [routerLink]="[item1.menuURL]" routerLinkActive #Customer="routerLinkActive">
+              <span class="menu-title">{{item1.displayName}} </span>
+            </a>
+            <ul class="dropdown-submenu" *ngIf="item1.children">
+              <li class="nav-item" *ngFor="let item2 of item1.children">
+                <a class="nav-link" [routerLink]="[item2.menuURL]" routerLinkActive #Customer="routerLinkActive">
+                  <span class="menu-title">{{item2.displayName}} </span>
+                </a>       
+                <ul class="" *ngIf="item2.children">
+                  <li class="nav-item" *ngFor="let item3 of item2.children">
+                    <a class="nav-link" [routerLink]="[item3.menuURL]" routerLinkActive #Customer="routerLinkActive">
+                      <span class="menu-title">{{item3.displayName}} </span>
+                    </a>                
+                  </li>
+                </ul>         
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>    
     
     </ul>
     </div>

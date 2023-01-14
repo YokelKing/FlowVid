@@ -20,6 +20,9 @@ import { HomeComponent } from './shared/home/home.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { CustomersModule } from './component/customers/customers.module';
 import { JobsModule } from './component/jobs/jobs.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatTabsModule} from '@angular/material/tabs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +48,8 @@ import { JobsModule } from './component/jobs/jobs.module';
     ChartsModule,
     CustomersModule,
     JobsModule,
+    MatSidenavModule,
+    MatTabsModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger',
     })
@@ -59,3 +64,4 @@ import { JobsModule } from './component/jobs/jobs.module';
 
 })
 export class AppModule { }
+
