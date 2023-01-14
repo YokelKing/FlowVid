@@ -81,12 +81,16 @@
     &:hover,
     &:focus,
     &:active {
-      color: $white;
+      color: $value !important;
+      border-color: $value; 
     }
     &:focus,
     &:active {
+      color: $white!important;
       background: $value;
       border-color: $value;
+      outline: none;
+      box-shadow: none;
     }
   }
   .btn-outline-#{$color} {
@@ -103,4 +107,7 @@
   .btn-gradient-#{$color} {
     @include button-gradient-variant($value);
   }
+}
+button.close {
+  border: 1px solid #ccc;
 }
