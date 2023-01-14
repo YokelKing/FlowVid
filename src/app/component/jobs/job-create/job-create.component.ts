@@ -8,7 +8,6 @@ import { JobsService } from '../jobs.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { CustomersService } from '../../customers/customers.service';
 import { ICustomer } from "src/app/shared/models/customers";
-
 import { TeamsService } from "../../teams/teams.service";
 import { ResourcesService } from "../../resources/resources.service";
 
@@ -25,6 +24,7 @@ import { MatTableDataSource } from "@angular/material/table";
 @Component({
   selector: 'app-job-create',
   templateUrl: './job-create.component.html',
+
   styleUrls: ['./job-create.component.scss']
 })
 export class JobCreateComponent implements OnInit {
@@ -81,7 +81,7 @@ export class JobCreateComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {     this.job = {} as IJob;
+    private route: ActivatedRoute) {     this.job = {} as IJob;
   }
 
   ngOnInit(): void {
@@ -132,6 +132,21 @@ export class JobCreateComponent implements OnInit {
       
       jobTypeID: new FormControl(this.job.jobTypeID, [
         Validators.required,
+      ]),
+ 
+
+      dateOpend: new FormControl(this.job.dateOpend, [
+       
+      ]),
+ 
+
+      dateDue: new FormControl(this.job.dateDue, [
+       
+      ]),
+ 
+
+      dateClosed: new FormControl(this.job.dateClosed, [
+       
       ]),
  
       
@@ -203,7 +218,71 @@ export class JobCreateComponent implements OnInit {
     //this.jobForm.reset();
   }
 
+  editJob(data: IJob): void {
+    this.loadJobs();
 
+    
+    //this.jobService.deleteJob(data).subscribe((data) => data);
+    this.id = this.route.snapshot.params['id'];
+  
+
+    //this.jobService.deleteJob(data).subscribe((data) => data);
+    this.jobService.getJobById(data.id).subscribe(data => {
+      this.job = data;
+    }, error => console.log(error));
+
+    //this.router.navigate([`jobs/job-edit/${data.id}`]);
+
+    this.router.navigate(['jobs/job-edit',data.id]);
+    
+
+    // const ref = this.modalService.open(JobEditComponent, {
+    //   size: 'xl',
+    //   centered: true,
+    // });
+    // ref.componentInstance.job = data;
+
+    // ref.result.then(
+    //   (yes) => {
+    //     console.log("Yes Click");
+
+    //     this.loadJobs();
+    //   },
+    //   (cancel) => {
+    //     console.log("Cancel Click");
+    //   }
+    // );
+  }
+
+  deleteJob(data: IJob): void {
+    Swal.fire({
+      title: "Are you sure want to remove?",
+      text: "You will not be able to recover this file!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, keep it",
+    }).then((result) => {
+      if (result.value) {
+        //this.jobService.deleteJob(data);
+
+        this.jobService.deleteJob(data).subscribe((data) => data);
+
+        this.jobs = this.jobs.filter((r) => r.id !== data.id);
+        Swal.fire(
+          "Deleted!",
+          "Your imaginary file has been deleted.",
+          "success"
+        );
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+      }
+    });
+  }
 
   open(content: any) {
     this.modalService.open(content, { size: 'xl',  ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -316,7 +395,7 @@ loadJobs() {
     (result) => {
       console.log(result);
       this.jobs = result;
-      debugger;
+      //debugger;
       this.dataSource = new MatTableDataSource(result);
       // Assign the paginator *after* dataSource is set
       this.dataSource.paginator = this.paginator;
@@ -415,6 +494,21 @@ loadJobTypes() {
   get jobTypeID() {
     return this.jobForm.get('jobTypeID')!;
   }
+
+  get dateOpend() {
+    return this.jobForm.get('dateOpend')!;
+  }
+
+
+  get dateDue() {
+    return this.jobForm.get('dateDue')!;
+  }
+
+
+  get dateClosed() {
+    return this.jobForm.get('dateClosed')!;
+  }
+
 
     // Choose customer using select dropdown
     changeCustomer(e) {
