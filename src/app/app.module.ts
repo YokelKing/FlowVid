@@ -22,7 +22,7 @@ import { CustomersModule } from './component/customers/customers.module';
 import { JobsModule } from './component/jobs/jobs.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatTabsModule} from '@angular/material/tabs';
-
+import { MaterialModule } from './material.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +50,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     JobsModule,
     MatSidenavModule,
     MatTabsModule,
+    MaterialModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger',
     })
