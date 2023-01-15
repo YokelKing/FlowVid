@@ -16,8 +16,8 @@
         </a>
       </li>
      
-      <li class="nav-item dropdown" ngbDropdown *ngFor="let item of navItems">
-        <a class="nav-link dropdown-toggle" ngbDropdownToggle  [routerLink]="[item.menuURL]" routerLinkActive #Customer="routerLinkActive">
+      <!-- <li class="nav-item" ngbDropdown *ngFor="let item of navItems">
+        <a class="nav-link" [routerLink]="[item.menuURL]" routerLinkActive #Customer="routerLinkActive">
           <span class="menu-title">{{item.displayName}} </span></a>
         <ul class="dropdown-menu" *ngIf="item.children" ngbDropdownMenu>
           <li class="nav-item" *ngFor="let item1 of item.children" >
@@ -40,11 +40,23 @@
             </ul>
           </li>
         </ul>
-      </li>    
+      </li>     -->
     
+      <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default" style="width:100%">
+          <div id="main-menu" class="main-menu collapse navbar-collapse" style="width:100%">
+            <ul class="nav navbar-nav" style="width:100%">
+              <app-nav-menu *ngFor="let item of navItems" [item]="item" [ngClass]="{'menu-item-has-children dropdown': item && item.children.length > 0, 'menu-item-parent': item && item.children.length == 0}"></app-nav-menu>
+             
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
     </ul>
     </div>
-    
-
+    <div>
+   
+  </div>
   </ng-container>
 </nav>

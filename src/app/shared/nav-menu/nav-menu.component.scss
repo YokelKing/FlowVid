@@ -1,0 +1,30 @@
+/*:host {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  width: 100%;
+
+  .mat-list-item.active {
+    background-color: #d9d9d9;
+  }
+
+  &:hover,
+  &:focus {
+    > .mat-list-item:not(.expanded) {
+      background-color: #d9d9d9 !important;
+      z-index: 9;
+    }
+  }
+}
+  
+  .mat-list-item {
+  
+    display: flex;
+    width: auto;
+  
+    .routeIcon {
+      margin-right: 40px;
+    }
+  }*/
+
+
