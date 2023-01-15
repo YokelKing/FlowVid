@@ -9,6 +9,11 @@
             <label>Description Name*</label>
             <input formControlName="description" type="text" class="form-control form-control-sm"
               placeholder="Description" />
+              <div *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
+                <div *ngIf="f.description.errors.required">
+                  Description is required.
+                </div>
+              </div>
           </div>
           <div class="col-md form-group">
             <label>Customer Name*</label>
@@ -189,7 +194,7 @@
               placeholder="externalRefNo" />
               <div *ngIf="f.externalRefNo.touched && f.externalRefNo.invalid" class="alert alert-danger">
                 <div *ngIf="f.externalRefNo.errors.required">
-                  External RefNo is required.
+                  externalRef No is required.
                 </div>
               </div>
           </div>
@@ -397,6 +402,8 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <th mat-cell *matCellDef="let row">
+        <a href="#" [routerLink]="['/jobs/job-edit', row.id]" class="btn btn-primary">  <i class="mdi mdi-account-plus"></i></a>
+
         <button (click)="editJob(row)" class="btn btn-primary">
           <i class="mdi mdi-account-plus"></i>
         </button>

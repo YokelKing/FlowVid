@@ -127,6 +127,7 @@ export class JobCreateComponent implements OnInit {
 
       
       externalRefNo: new FormControl(this.job.externalRefNo, [
+        Validators.required,
      ]),
 
       
@@ -136,16 +137,19 @@ export class JobCreateComponent implements OnInit {
  
 
       dateOpend: new FormControl(this.job.dateOpend, [
+        Validators.required,
        
       ]),
  
 
       dateDue: new FormControl(this.job.dateDue, [
+        Validators.required,
        
       ]),
  
 
       dateClosed: new FormControl(this.job.dateClosed, [
+        Validators.required,
        
       ]),
  
