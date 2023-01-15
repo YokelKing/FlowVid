@@ -46,19 +46,9 @@
         <nav class="navbar navbar-expand-sm navbar-default" style="width:100%">
           <div id="main-menu" class="main-menu collapse navbar-collapse" style="width:100%">
             <ul class="nav navbar-nav" style="width:100%">
-              <li class="nav-item" *ngFor="let item of navItems">
-                <a class="nav-link" [routerLink]="[item.menuURL]" routerLinkActive #Customer="routerLinkActive">
-                  <span class="menu-title">{{item.displayName}} </span></a>
-                  <ul class="sub-menu children">
-                    <li class="nav-item" *ngFor="let item1 of item.children" >
-                      <a class="nav-link" [routerLink]="[item1.menuURL]" routerLinkActive #Customer="routerLinkActive">
-                        <span class="menu-title">{{item1.displayName}} </span>
-                      </a>
-                    </li>             
+              <app-nav-menu *ngFor="let item of navItems" [item]="item" [ngClass]="{'menu-item-has-children dropdown': item && item.children.length > 0, 'menu-item-parent': item && item.children.length == 0}"></app-nav-menu>
+             
             </ul>
-              </li>
-            </ul>
-            
           </div>
         </nav>
       </aside>
