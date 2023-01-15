@@ -76,6 +76,8 @@
   .btn-inverse-#{$color} {
     @include button-inverse-variant($value);
   }
+
+
   .btn-#{$color}:not(.btn-light) {
     color: $white;
     &:hover,
@@ -83,16 +85,18 @@
     &:active {
       color: $value !important;
       border-color: $value; 
+      background:$white;
     }
     &:focus,
     &:active {
       color: $white!important;
-      background: $value;
-      border-color: $value;
+      background:$value;
+      border-color:$value;
       outline: none;
       box-shadow: none;
     }
   }
+
   .btn-outline-#{$color} {
     &:hover,
     &:focus,
@@ -110,4 +114,14 @@
 }
 button.close {
   border: 1px solid #ccc;
+}
+.btn-small{
+  color:$primaryColor;
+    background: $white;
+    border-color:$primaryColor;
+    padding: 7px 20px;
+    &:hover, :focus{
+      color:$white;
+      background: $primaryColor;
+    }
 }
