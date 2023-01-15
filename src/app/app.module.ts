@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule, ThemeService } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './shared/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +22,7 @@ import { CustomersModule } from './component/customers/customers.module';
 import { JobsModule } from './component/jobs/jobs.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MaterialModule } from './material.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     ContentAnimateDirective,
     HomeComponent,
     NavbarComponent,
-    SidebarComponent,
+    
 
   ],
   imports: [
@@ -46,15 +47,18 @@ import {MatTabsModule} from '@angular/material/tabs';
     ReactiveFormsModule,
     ChartsModule,
     CustomersModule,
+    JobsModule,
     MatSidenavModule,
     MatTabsModule,
+    MaterialModule,
+    SharedModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger',
     })
 
 
   ],
-  exports: [CustomersModule],
+  exports: [CustomersModule,JobsModule],
   providers: [ThemeService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent],
