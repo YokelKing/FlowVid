@@ -11,7 +11,7 @@
   -webkit-transition:background $action-transition-duration $action-transition-timing-function;
   -moz-transition:background $action-transition-duration $action-transition-timing-function;
   -ms-transition:background $action-transition-duration $action-transition-timing-function;
-
+  box-shadow: 0 2px 10px 0 #00000010;
   .navbar-brand {
     width: 110px;
     height: 100%;
@@ -34,7 +34,6 @@
       margin-right: 0;
       padding: .25rem 0;
       width: 100%;
-      background: #eee;
 
       &:active,
       &:focus,
