@@ -21,7 +21,7 @@
 }
 .sidebar {
   min-height: calc(100vh - #{$navbar-height});
-  background: $sidebar-bg;
+  background:$white;
   font-family: $type1-regular;
   padding: 0;
   width: $sidebar-width-lg;
@@ -41,6 +41,7 @@
     &:not(.sub-menu) {
       padding-bottom: 60px;
     }
+  
 
     .nav-item {
       padding:0 $sidebar-menu-padding-x;
@@ -264,6 +265,8 @@
       }
     }
 }
+
+
 }
 
 
@@ -382,6 +385,7 @@
       }
     }
   }
+
 }
 // Sidebar icon only layout end
 
