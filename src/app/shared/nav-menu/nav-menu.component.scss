@@ -28,3 +28,19 @@
   }*/
 
 
+  .dropdown-list {
+    text-decoration: none;
+    display: flex;
+    height: 100%;
+    padding: 0px;
+    align-items: center;
+    text-align: left;
+    margin-right: 15px;
+    line-height: 25px;
+
+  }
+  .menu-name {
+text-transform: capitalize;
+width: 120px;
+
+  }
