@@ -1,0 +1,82 @@
+/*:host {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  width: 100%;
+
+  .mat-list-item.active {
+    background-color: #d9d9d9;
+  }
+
+  &:hover,
+  &:focus {
+    > .mat-list-item:not(.expanded) {
+      background-color: #d9d9d9 !important;
+      z-index: 9;
+    }
+  }
+}
+  
+  .mat-list-item {
+  
+    display: flex;
+    width: auto;
+  
+    .routeIcon {
+      margin-right: 40px;
+    }
+  }*/
+
+
+  .dropdown-list {
+    padding: 0.5rem 1rem !important;
+    color: #333;
+    width: 100%;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    &:hover,:focus {
+      background: #f6fffb;
+    }
+    .fa-chevron-down{
+      position: absolute;
+      right: 10px;
+      top: 6px;
+      &::after{
+        border-top: 0;
+        border-right: 0;
+        border-left: 0;
+        border-bottom: 0;
+        font: normal normal normal 24px/1 "Material Design Icons";
+          font-size: 24px;
+          line-height: 1;
+        content: "\f0140";
+        width: auto;
+        height: auto;
+        vertical-align: baseline;
+        font-size: 1rem;
+      }
+    }
+  }
+  .sub-menu {
+    list-style: none;
+    padding:0 10px 0 15px !important;
+    .dropdown-list {
+      border-radius: 20px;
+      &:hover,:focus {
+        background: #f6f6f6;
+        color: initial;
+      }
+    }
+  }
+  
+  .nav-profile:hover {
+    background: none !important;
+  }
+
+  .menu-name {
+text-transform: capitalize;
+width: 120px;
+
+  }

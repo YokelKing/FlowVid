@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule, ThemeService } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './shared/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,7 +34,7 @@ import { MaterialModule } from './material.module';
     ContentAnimateDirective,
     HomeComponent,
     NavbarComponent,
-    SidebarComponent,
+    
 
   ],
   imports: [
@@ -51,6 +51,7 @@ import { MaterialModule } from './material.module';
     MatSidenavModule,
     MatTabsModule,
     MaterialModule,
+    SharedModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger',
     })
