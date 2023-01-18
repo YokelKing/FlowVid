@@ -101,10 +101,10 @@ export class TeamresourcesListComponent implements OnInit {
     );
   }
 
-  editTeamresource(team_code,resource_code,id): void {
-    this.MstempDetails.teamId = team_code;
-    this.MstempDetails.resourceId = resource_code;
-    this.MstempDetails.id = id;
+  editTeamresource(data): void {
+    this.MstempDetails.teamId = data.team.id;
+    this.MstempDetails.resourceId = data.resource.id;
+    this.MstempDetails.id = data.id;
     const ref = this.modalService.open(TeamresourceEditComponent, {
       centered: true,
     });

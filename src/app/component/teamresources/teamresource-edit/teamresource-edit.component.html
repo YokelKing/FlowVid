@@ -12,7 +12,7 @@
       <label>Team Name*</label>
       <select formControlName="teamId" class="form-control form-control-lg" (change)="changeTeam($event)">
         <option value="" disabled selected>Select Team</option>
-        <option *ngFor="let team of teams" [value]="team.code" class="form-control form-control-lg">
+        <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-lg">
           {{team.name}} 
           
         </option>
@@ -25,7 +25,7 @@
     <div class="col-md form-group">
       <label>Resource Name*</label>
       <select formControlName="resourceId" class="form-control form-control-lg" (change)="changeResource($event)">
-        <option *ngFor="let data of resources" [value]="data.code" class="form-control form-control-lg">
+        <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-lg">
           {{data.name}}
         </option>
       </select>
