@@ -69,7 +69,6 @@ cancelClick = false;
         // Assign the paginator *after* dataSource is set
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log("resultttt",result)
       }, error => {
         console.log(error);
       }

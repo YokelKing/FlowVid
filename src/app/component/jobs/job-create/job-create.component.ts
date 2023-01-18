@@ -403,7 +403,7 @@ export class JobCreateComponent implements OnInit {
 loadJobs() {
   this.jobService.getAllJobs().subscribe(
     (result) => {
-      console.log(result);
+      
       this.jobs = result;
       //debugger;
       this.dataSource = new MatTableDataSource(result);

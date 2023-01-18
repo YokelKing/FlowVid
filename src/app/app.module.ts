@@ -23,6 +23,8 @@ import { JobsModule } from './component/jobs/jobs.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MaterialModule } from './material.module';
+import { LoginGuard } from 'src/app/apps/_helpers/login.guard';
+import { AuthGuard } from 'src/app/apps/_helpers/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +61,7 @@ import { MaterialModule } from './material.module';
 
   ],
   exports: [CustomersModule,JobsModule],
-  providers: [ThemeService,
+  providers: [ThemeService,AuthGuard,LoginGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
