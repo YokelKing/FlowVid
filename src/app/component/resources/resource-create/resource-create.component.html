@@ -40,11 +40,10 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-primary mr-2" (click)="addNewResource()" [disabled]="resourceForm.invalid">
+      <button type="submit" class="btn btn-primary mr-2" (click)="addNewResource()">
         Create
       </button>
-  
-  
+   
       <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">
         Cancel
       </button>

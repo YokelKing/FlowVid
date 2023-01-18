@@ -9,7 +9,7 @@
   <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
     <div class="form-group">
       <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
-      <div *ngIf="editFormData.name.invalid && (editFormData.name.dirty || editFormData.name.touched)" class="alert">
+      <div *ngIf="editFormData.name.invalid && (editFormData.name.dirty || editFormData.name.touched)" class="alert alert-danger">
         <span>Name is required!</span>
       </div>
     </div>
