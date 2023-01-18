@@ -62,7 +62,6 @@ export class TeamresourceEditComponent implements OnInit {
     this.TeamsService.getAllTeams().subscribe(
       (result) => {
         this.teams = result;
-        console.log("myteam",result);
       },
       (error) => {
         console.log(error);
@@ -74,7 +73,6 @@ export class TeamresourceEditComponent implements OnInit {
     this.resourceService.getAllResources().subscribe(
       (result) => {
         this.resources = result;
-        console.log("myresources",result);
       },
       (error) => {
         console.log(error);
@@ -83,11 +81,17 @@ export class TeamresourceEditComponent implements OnInit {
   }
 
 
+
+
+
   editTeamresource() {
     if (this.editForm.invalid || this.isSubmitted) {
       return;
     }
     this.isSubmitted = true;
+
+    this.loadTeams();
+    this.loadResources();
     this.TeamresourcesService
       .updateTeamresource(this.teamresource.id, this.editForm.value)
       .subscribe(
@@ -111,9 +115,6 @@ export class TeamresourceEditComponent implements OnInit {
     this.editForm.reset();
   }
 
-
-
-
   public setForm() {
     this.editForm = this.fb.group({
       id: [this.teamresource.id],
@@ -121,6 +122,7 @@ export class TeamresourceEditComponent implements OnInit {
       resourceId: [this.teamresource.resourceId, Validators.required],
     });
   }
+
 
 
   changeTeam(e) {
@@ -147,5 +149,6 @@ export class TeamresourceEditComponent implements OnInit {
    get resourceId() {
     return this.editForm.get('resourceId');
   }
+
 
 }
