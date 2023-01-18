@@ -42,7 +42,7 @@ export class TeamresourcesListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   teamresource: ITeamresource;
-
+  MstempDetails: any = {};
   teams:any;
   closeResult: string;
   teamresourceForm: FormGroup;
@@ -101,13 +101,14 @@ export class TeamresourcesListComponent implements OnInit {
     );
   }
 
-  editTeamresource(data: ITeamresource): void {
+  editTeamresource(team_code,resource_code,id): void {
+    this.MstempDetails.teamId = team_code;
+    this.MstempDetails.resourceId = resource_code;
+    this.MstempDetails.id = id;
     const ref = this.modalService.open(TeamresourceEditComponent, {
       centered: true,
     });
-
-   // console.log("Team",data);
-    ref.componentInstance.teamresource = data;
+    ref.componentInstance.teamresource = this.MstempDetails;
 
     ref.result.then(
       (yes) => {

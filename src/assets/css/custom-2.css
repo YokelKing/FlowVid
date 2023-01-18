@@ -1,0 +1,336 @@
+/* starts: Form controlls css */
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  color: #ae85ee;
+}
+/* ends:  Form controlls css*/
+
+/* starts: horizontal stripped form css*/
+label {
+  color: #75787d;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.form-horizontal .form-group::after {
+  clear: both;
+  display: table;
+  content: " ";
+}
+
+.card-body::before {
+  display: table;
+  content: " ";
+}
+
+
+.col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+  float: left;
+}
+
+
+form.form-bordered .form-group:not(:last-child) {
+  margin: 0;
+  border-bottom: 1px solid #ebeff5;
+}
+
+
+.form-horizontal .form-group::before {
+  display: table;
+  content: " ";
+}
+
+
+form.striped-rows .form-group {
+  margin: 0;
+}
+
+form.form-bordered .form-group .control-label {
+  padding-top: 10px;
+}
+
+form.striped-rows .form-group:nth-child(2n):not(:last-child) {
+  background-color: #f5f7fa;
+}
+
+
+form.form-bordered .form-group > div.col-md-4 {
+  padding: 12px 15px 12px 15px;
+  border-left: 1px solid #ebeff5;
+}
+
+.form-horizontal .control-label {
+  padding-top: 7px;
+  margin-bottom: 0;
+  text-align: right;
+}
+
+
+/*.form-horizontal.form-bordered .form-group .col-md-4 .select-cat {
+  margin-top: 31px;
+}*/
+
+/* ends: horizontal stripped form css*/
+
+
+
+
+.content {
+  padding: 1.375em 1.875em 1.875em 1.875em;
+}
+
+.btn-info.disabled, .btn-info:disabled {
+  color: #fff;
+  background-color: #9a67ea;
+  border-color: #6107ee;
+}
+
+.btn.disabled, .btn:disabled {
+  opacity: 0.8;
+}
+
+.btn-info {
+  color: #fff;
+  background: linear-gradient(to bottom right,#9853af,#623AA2);
+  border-color: #5215BD;
+}
+
+.btn-info:hover {
+  color: #fff;
+  background-color: #320b86;
+  border-color: #1a044b;
+}
+
+
+.stat-widget-five .stat-content {
+  margin-left: unset;
+}
+
+.stat-widget-five {
+  display: flex;
+  justify-content: end;
+}
+
+.vl {
+  border-left: 2px solid #a099b9;
+  height: 50px;
+  margin: auto;
+  margin-left: 50%;
+}
+
+[class*=" pe-7s-"], [class^="pe-7s-"] {
+  font-weight: bold;
+}
+
+.purple {
+  background: #e1dbf7;
+}
+
+.pink {
+  background: #ffebf8;
+}
+
+.green {
+  background: #e1f7f5;
+}
+
+.badge.pink-drk {
+  background: #bf5f82;
+}
+
+
+.card.brd-left-pink {
+  border-left: 5px solid #bf5f82;
+  background-color: #ffebf8;
+}
+
+.card.brd-left-purple {
+  border-left: 5px solid #512DA8;
+  background-color: #e1dbf7;
+}
+
+.card.brd-left-brown {
+  border-left: 5px solid #8c7b75;
+  background-color: #efdcd5;
+}
+
+.card.brd-left-green {
+  border-left: 5px solid #00867d;
+  background-color: #e1f7f5;
+}
+
+.card.left-brd-green {
+  border-left: 5px solid #00867d;
+}
+
+.card.left-brd-purple {
+  border-left: 5px solid #512DA8;
+}
+
+.card.left-brd-brown {
+  border-left: 5px solid #8c7b75;
+}
+
+.left-brd-pink {
+  border-left: 5px solid #bf5f82;
+}
+.left-brd-white {
+  border-left: 5px solid white;
+}
+
+.card-header {
+  border-bottom: unset;
+  border-radius: 10px 10px 0px 0px !important;
+}
+
+.flat-color-7 {
+  color: #8c7b75;
+}
+
+.flat-color-4 {
+  color: #bf5f82;
+}
+
+.flat-color-2 {
+  color: #512da8;
+}
+
+.flat-color-1 {
+  color: #00867d;
+}
+
+/* more colors changes */
+.right-panel header.header {
+  /*background: linear-gradient(to bottom, #0a011a 0%,#4c2dae 100%);*/
+  background: #675f77;
+}
+
+.right-panel .navbar-header {
+  /* background-color: #ebf1ff; */
+  /*background: linear-gradient(to bottom, #0a011a 0%,#4c2dae 100%);*/
+  background: unset;
+}
+
+aside.left-panel {
+  /*background: #f7f7f7;*/
+  background: #675f77;
+}
+
+.navbar {
+  /*background: #f7f7f7;*/
+  padding-bottom: 120px;
+  background: unset;
+}
+
+/*.navbar .navbar-nav > li.active {
+  background: #351679;
+  background-image: linear-gradient(105deg,#4b2cac,#ab9ec8) !important;
+}*/
+
+/*.navbar .navbar-nav > li.active {
+  background: #351679;
+  background-image: linear-gradient(105deg,#4b2cac,#ab9ec8) !important;
+}*/
+
+  .navbar .navbar-nav li.active {
+    background: #351679;
+    background-image: linear-gradient(105deg,#f7a9c5,#ab9ec8) !important;
+    border-left: 3px solid #bf5f82;
+  }
+
+.navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:focus, .navbar .navbar-nav > .active > a:hover {
+  color: #fff;
+}
+
+.navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button::before, .navbar .navbar-nav li .toggle_nav_button.nav-open::before {
+  color: #fff;
+}
+
+.navbar .navbar-nav li.menu-item-has-children .sub-menu {
+  background: #f7f7f7;
+}
+
+
+.navbar .navbar-nav .menu-item-has-children, .navbar .navbar-nav .menu-item-parent {
+  width: 100%;
+}
+
+  .navbar .navbar-nav li > a {
+    color: #fdfdfd;
+  }
+
+.navbar .navbar-nav li.active > a {
+  color: #393333;
+  font-weight: bold;
+}
+
+  .navbar .navbar-nav li > a:hover {
+    color: #000;
+    background-image: linear-gradient(105deg,#f7a9c5,#ab9ec8) !important;
+    /* font-weight: bold; */
+  }
+
+  .navbar .navbar-nav li.active > a:hover {
+    color: #000;
+  }
+
+  .navbar .navbar-nav li > a .menu-icon {
+    color: #fdfdfd;
+    padding-left: 5px;
+  }
+
+.navbar-brand span {
+  font-size: 23px;
+  font-weight: bold;
+  color: #fdfdfd;
+}
+
+.navbar .navbar-nav li > a:hover .menu-icon {
+  color: #fff;
+}
+
+.right-panel {
+  background: linear-gradient(180deg, rgb(171, 158, 200) 0%, rgb(221, 211, 242) 100%);
+  box-shadow: 0px 0px 400px 0px #baa8de;
+}
+
+footer.site-footer {
+  /*position: absolute;*/
+  bottom: 0px;
+  height: 45px;
+  width: 100%;
+}
+
+  footer.site-footer .footer-inner {
+    padding: 0.45em 0.55em;
+  }
+
+aside.left-panel {
+  box-shadow: 5px 0 20px rgb(171, 158, 200);
+}
+
+.breadcrumb > li.active > a {
+  font-weight: unset;
+}
+
+.dashboard-cards .card {
+  -webkit-box-shadow: unset;
+  box-shadow: unset;
+}
+
+.user-area .user-role {
+  color: #fdfdfd;
+}
+
+.user-area .user-role:hover {
+  color: #000;
+}
+
+
+/* starts:audit-observation/pending-audit */
+.pending-audit .col-md-12 .card .card-body.selected-pao-list .row:not(:last-child) {
+  padding: 5px 0px 5px 0px;
+  border-bottom: 1px solid #c6c6c6;
+}
+/* ends:audit-observation/pending-audit */

@@ -15,6 +15,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 const routes: Routes = [
   { path: 'jobs-list', component: JobsListComponent },
   { path: 'job-create', component: JobCreateComponent },
@@ -37,6 +39,8 @@ const materialModules = [
     CommonModule,
     ReactiveFormsModule,
     MatTabsModule,
+    MatDatepickerModule,
+    NgxMaterialTimepickerModule,
     RouterModule.forChild(routes),
     ...materialModules
 
