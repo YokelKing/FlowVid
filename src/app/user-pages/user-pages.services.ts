@@ -69,7 +69,9 @@ const roleUrl = baseUrl + 'role'
       }
       logout() {
         localStorage.removeItem('token');
-        this.currentUserSource.next(null);
+        localStorage.clear();
+        window.localStorage.clear();
+        this.currentUserSource.next(null);   
         this.router.navigateByUrl('/home');
       }
 

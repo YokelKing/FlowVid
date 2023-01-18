@@ -71,7 +71,7 @@ export class ResourcesListComponent implements OnInit {
   loadResources() {
     this.resourceService.getAllResources().subscribe(
       (result) => {
-        console.log(result);
+        
         this.resources = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set

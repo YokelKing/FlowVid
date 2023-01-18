@@ -42,7 +42,6 @@ export class UsersComponent implements OnInit {
         // Assign the paginator *after* dataSource is set
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log(result);
       },
       (error) => {
         console.log(error);

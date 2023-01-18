@@ -73,7 +73,7 @@ export class DivisionsListComponent implements OnInit {
   loadDivisions() {
     this.divisionService.getAllDivisions().subscribe(
       (result) => {
-        console.log(result);
+        
         this.divisions = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set

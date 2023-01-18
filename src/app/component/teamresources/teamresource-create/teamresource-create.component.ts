@@ -114,7 +114,6 @@ export class TeamresourceCreateComponent implements OnInit {
     this.TeamsService.getAllTeams().subscribe(
       (result) => {
         this.teams = result;
-        console.log("myteam",result);
       },
       (error) => {
         console.log(error);
@@ -126,7 +125,6 @@ export class TeamresourceCreateComponent implements OnInit {
     this.resourceService.getAllResources().subscribe(
       (result) => {
         this.resources = result;
-        console.log("myresources",result);
       },
       (error) => {
         console.log(error);
@@ -153,14 +151,14 @@ export class TeamresourceCreateComponent implements OnInit {
   }
 
   changeTeam(e) {
-    console.log(e.value)
+    
     this.teamId.setValue(e.target.value, {
       onlySelf: true
     })
   }
 
   changeResource(e) {
-    console.log(e.value)
+    
     this.resourceId.setValue(e.target.value, {
       onlySelf: true
     })

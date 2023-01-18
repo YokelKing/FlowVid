@@ -100,7 +100,7 @@ export class LocationsListComponent implements OnInit {
   loadLocations() {
     this.locationService.getAllLocations().subscribe(
       (result) => {
-        console.log(result);
+        
         this.locations = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set
