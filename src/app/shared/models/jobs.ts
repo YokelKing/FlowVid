@@ -1,4 +1,5 @@
 export interface IJob {
+        [x: string]: any;
         id: number;
         customerId:number,
         teamId:number,
