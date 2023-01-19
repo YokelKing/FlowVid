@@ -208,7 +208,7 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <mat-form-field class="wid-100">
             <mat-label>Start Time</mat-label>
             <input matInput readonly [ngxTimepicker]="timepicker" formControlName="StartTime" 
@@ -216,7 +216,7 @@
               (focus)="SetStartTimeOnFocus()">
             <ngx-material-timepicker #timepicker></ngx-material-timepicker>
           </mat-form-field>
-        </div>
+        </div> -->
         <div class="col-md-3">
           <mat-form-field class="wid-100">
             <mat-label>End Date</mat-label>
@@ -227,7 +227,7 @@
             <mat-datepicker #enddatepicker></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <mat-form-field class="wid-100">
             <mat-label>End Time</mat-label>
             <input matInput readonly  [ngxTimepicker]="endtimepicker" formControlName="EndTime" 
@@ -235,7 +235,7 @@
               (focus)="SetEndTimeOnFocus()">
             <ngx-material-timepicker #endtimepicker></ngx-material-timepicker>
           </mat-form-field>
-        </div>
+        </div> -->
        
   
   </div>
@@ -253,19 +253,19 @@
 </mat-tab>
 </mat-tab-group>
 <div class="modal-footer">
-  <button type="submit" class="btn btn-primary mr-2" (click)="addNewJob()" [disabled]="jobForm.invalid">
+  <button type="submit" class="btn btn-primary mr-2" (click)="addNewJob()">
     Create
   </button>
   <!-- <button class="btn btn-info " type="button" [disabled]="jobForm.invalid" 
   (click)="Task('next');">Save Next</button> -->
-  <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">
+  <button (click)="Cancel()" type="reset" data-dismiss="modal" class="btn btn-danger">
     Cancel
   </button>
 </div>
   
 </div>
 
-<div class="page-title">
+<!-- <div class="page-title">
 <h2>Jobs List</h2>
 </div>
 
@@ -278,14 +278,13 @@
 
 <div class="example-container mat-elevation-z8">
 <mat-table [dataSource]="dataSource" matSort>
-  <!-- ID Column -->
+ 
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
     <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
   </ng-container>
 
    
-      <!-- Description Column -->
       <ng-container matColumnDef="description">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Description </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
@@ -354,7 +353,7 @@
     <mat-cell *matCellDef="let row"> {{ row.jobType.name }} </mat-cell>
   </ng-container>
   
-  <!-- <ng-container matColumnDef="jobTask">
+ <ng-container matColumnDef="jobTask">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       jobTask
     </mat-header-cell>
@@ -373,7 +372,7 @@
       resourceJobCost
     </mat-header-cell>
     <mat-cell *matCellDef="let row"> {{ row.resourceJobCost }} </mat-cell>
-  </ng-container> -->
+  </ng-container> 
   <ng-container matColumnDef="dateOpend">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       dateOpend
@@ -394,7 +393,6 @@
     </mat-header-cell>
     <mat-cell *matCellDef="let row"> {{ row.dateClosed | date }} </mat-cell>
   </ng-container>
-  <!-- Status Column -->
   <ng-container matColumnDef="status">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       Status
@@ -402,7 +400,6 @@
     <mat-cell *matCellDef="let row"> {{ row.status }} </mat-cell>
   </ng-container>
 
-  <!-- Created Date Column -->
   <ng-container matColumnDef="createdDate">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       Created Date
@@ -410,7 +407,6 @@
     <mat-cell *matCellDef="let row"> {{ row.createdDate | date }} </mat-cell>
   </ng-container>
 
-  <!-- Action Column -->
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef>Action</th>
     <th mat-cell *matCellDef="let row">
@@ -428,4 +424,4 @@
 </mat-table>
 
 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>
+</div> -->

@@ -228,22 +228,53 @@ export class JobCreateComponent implements OnInit {
     //this.jobForm.reset();
   }
 
+
+  Cancel() {
+    
+    this.router.navigate(['jobs/jobs-list']);
+  }
   editJob(data: IJob): void {
     this.loadJobs();
 
-    
-    //this.jobService.deleteJob(data).subscribe((data) => data);
-    this.id = this.route.snapshot.params['id'];
+    // this.id = this.route.snapshot.params['id'];
   
 
-    //this.jobService.deleteJob(data).subscribe((data) => data);
-    this.jobService.getJobById(data.id).subscribe(data => {
-      this.job = data;
-    }, error => console.log(error));
+    // this.jobService.getJobById(data.id).subscribe(data => {
+    //   this.job = data;
+    // }, error => console.log(error));
 
     //this.router.navigate([`jobs/job-edit/${data.id}`]);
 
-    this.router.navigate(['jobs/job-edit',data.id]);
+//console.log("sadf",data);
+    
+    this.jobDetails.customerId = data.customer.id;
+    this.jobDetails.divisionID = data.division.id;
+    this.jobDetails.teamId = data.team.id;
+
+   // this.jobDetails.resourceId = data.resource.id;
+
+
+    this.jobDetails.jobAssetID = data.jobAsset.id;
+    this.jobDetails.jobIssueTypeID = data.jobIssueType.id;
+
+
+    this.jobDetails.jobPriorityID = data.jobPriority.id;
+    this.jobDetails.jobSourceID = data.jobSource.id;
+    
+    this.jobDetails.jobProgressStatusID = data.jobProgressStatus.id;
+    this.jobDetails.jobTypeID = data.jobType.id;
+
+    this.jobDetails.externalRefNo = data.externalRefNo;
+
+   // this.jobDetails.jobTypeID = data.resource.id;
+
+
+    this.jobDetails.description = data.description;
+    this.jobDetails.id = data.id;
+
+console.log("jobDetails",this.jobDetails);
+
+    this.router.navigate(['jobs/job-edit',this.jobDetails]);
     
 
     // const ref = this.modalService.open(JobEditComponent, {
@@ -602,7 +633,7 @@ loadJobTypes() {
     }
   
     public onStartDateChange(event: MatDatepickerInputEvent<Date>): void {
-      debugger;
+      //debugger;
       this.minEndDate = new Date(event.value);
       let selectedEndDate = this.jobForm.controls["EndDate"].value;
       if (selectedEndDate != "") {
