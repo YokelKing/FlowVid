@@ -146,6 +146,7 @@ export class JobCreateComponent implements OnInit {
      
 
       dateOpend: new FormControl(this.job.dateOpend, [
+        Validators.required
        
       ]),
  
@@ -236,8 +237,7 @@ export class JobCreateComponent implements OnInit {
   editJob(data: IJob): void {
     this.loadJobs();
 
-    // this.id = this.route.snapshot.params['id'];
-  
+    // this.id = this.route.snapshot.params['id'];  
 
     // this.jobService.getJobById(data.id).subscribe(data => {
     //   this.job = data;
@@ -245,34 +245,24 @@ export class JobCreateComponent implements OnInit {
 
     //this.router.navigate([`jobs/job-edit/${data.id}`]);
 
-//console.log("sadf",data);
     
     this.jobDetails.customerId = data.customer.id;
     this.jobDetails.divisionID = data.division.id;
     this.jobDetails.teamId = data.team.id;
-
-   // this.jobDetails.resourceId = data.resource.id;
-
-
+    this.jobDetails.resourceId = data.resource.id;
     this.jobDetails.jobAssetID = data.jobAsset.id;
     this.jobDetails.jobIssueTypeID = data.jobIssueType.id;
-
-
     this.jobDetails.jobPriorityID = data.jobPriority.id;
-    this.jobDetails.jobSourceID = data.jobSource.id;
-    
+    this.jobDetails.jobSourceID = data.jobSource.id;    
     this.jobDetails.jobProgressStatusID = data.jobProgressStatus.id;
     this.jobDetails.jobTypeID = data.jobType.id;
-
-    this.jobDetails.externalRefNo = data.externalRefNo;
-
-   // this.jobDetails.jobTypeID = data.resource.id;
-
-
+    this.jobDetails.externalRefNo = data.externalRefNo;  
+    this.jobDetails.dateOpend = data.dateOpend;
+   this.jobDetails.dateDue = data.dateDue;
+   this.jobDetails.dateClosed = data.dateClosed;
     this.jobDetails.description = data.description;
     this.jobDetails.id = data.id;
 
-console.log("jobDetails",this.jobDetails);
 
     this.router.navigate(['jobs/job-edit',this.jobDetails]);
     

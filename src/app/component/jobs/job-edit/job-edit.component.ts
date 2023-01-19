@@ -385,7 +385,7 @@ export class JobEditComponent implements OnInit {
       description: ["",Validators.required],
       customerId: ["",Validators.required],
       teamId: ["",Validators.required],
-      //resourceId: ["",Validators.required],
+      resourceId: ["",Validators.required],
       divisionID: ["",Validators.required],
       jobAssetID: ["",Validators.required],
       jobIssueTypeID: ["",Validators.required],
@@ -394,9 +394,9 @@ export class JobEditComponent implements OnInit {
       jobProgressStatusID: ["",Validators.required],
       externalRefNo: ["",Validators.required],
       jobTypeID: ["",Validators.required],
-      // dateClosed: ["",Validators.required],
-      // dateDue: ["",Validators.required],
-      // dateOpend: ["",Validators.required],
+      dateClosed: ["",Validators.required],
+      dateDue: ["",Validators.required],
+      dateOpend: ["",Validators.required],
       
 
     //   description: [this.job.description ,Validators.required],

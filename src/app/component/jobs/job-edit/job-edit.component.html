@@ -1,19 +1,8 @@
-<!-- <div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">
-    Update Job</h4>
-  <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
-    <span aria-hidden="true">×</span>
-  </button>
-</div> -->
 
 <h4 class="title">
   Update Job</h4>
-  <div class="modal-body">
-    
-
-    
+  <div class="modal-body">    
   <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
-
     <div class="container">
       <div class="row">
         <div class="col-md form-group">
@@ -35,8 +24,6 @@
             </div>
           </div>
         </div>
-
-
         <div class="col-md form-group">
           <label>Team Name*</label>
           <select formControlName="teamId" class="form-control form-control-sm" (change)="changeTeam($event)">
@@ -51,7 +38,7 @@
         </div>
 
 
-        <!-- <div class="col-md form-group">
+       <div class="col-md form-group">
           <label>Resource Name*</label>
           <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
             <option value="" disabled selected>Select Resource</option>
@@ -62,7 +49,7 @@
           <div *ngIf="editFormData.resourceId.touched && editFormData.resourceId.invalid" class="alert alert-danger">
             <div *ngIf="editFormData.resourceId.errors.required">Resource Name is required.</div>
           </div>
-        </div> -->
+        </div> 
 
        </div>
     </div>
@@ -175,9 +162,9 @@
           </div>
         </div>
         <div class="col-md form-group">
-          <label>externalRefNo*</label>
+          <label>externalRefNo</label>
           <input formControlName="externalRefNo" type="text" class="form-control form-control-sm"
-            placeholder="externalRefNo" />
+            placeholder="external RefNo" />
         </div>
 
       </div>
@@ -185,29 +172,36 @@
     <div class="container">
       <div class="row">
        
-        <!-- <div class="col-md form-group">
-          <label>Date Open</label>
-          <input formControlName="dateOpend" id="date" type="date" class="form-control form-control-sm"
-          placeholder="dd-mm-yyyy" />
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>Start Date</mat-label>
+            <input matInput formControlName="dateOpend" readonly [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </div>
 
-        <div class="col-md form-group">
-          <label>Date Due</label>
-          <input formControlName="dateDue" type="date" class="form-control form-control-sm"
-            placeholder="dd-mm-yyyy" />
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>Due Date</mat-label>
+            <input matInput readonly [matDatepicker]="enddatepicker" formControlName="dateDue">
+            <mat-datepicker-toggle matSuffix [for]="enddatepicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #enddatepicker></mat-datepicker>
+          </mat-form-field>
         </div>
 
-        <div class="col-md form-group">
-          <label>Date Closed</label>
-          <input formControlName="dateClosed" type="date" class="form-control form-control-sm"
-            placeholder="dd-mm-yyyy" />
-        </div>   -->
-
-        
-  
-
-
-      </div>
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>Closed Date</mat-label>
+            <input matInput formControlName="dateClosed" readonly [matDatepicker]="dateClosedPicker">
+            <mat-datepicker-toggle matSuffix [for]="dateClosedPicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #dateClosedPicker></mat-datepicker>
+          </mat-form-field>
+        </div>    
+        </div>
     </div> 
 
   </form>

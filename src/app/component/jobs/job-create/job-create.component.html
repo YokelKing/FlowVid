@@ -53,33 +53,6 @@
             <div *ngIf="f.resourceId.errors.required">Resource Name is required.</div>
           </div>
         </div>
-        <!-- <div class="col-md form-group">
-          <label>Team Name*</label>
-          <select formControlName="teamId" class="form-control form-control-sm" (change)="changeTeam($event)">
-            <option value="" disabled selected>Select Team</option>
-            <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
-              {{ team.name }}
-            </option>
-          </select>
-          <div *ngIf="f.teamId.touched && f.teamId.invalid" class="alert alert-danger">
-            <div *ngIf="f.teamId.errors.required">Team Name is required.</div>
-          </div>
-        </div>
-
-        <div class="col-md form-group">
-          <label>Resource Name*</label>
-          <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
-            <option value="" disabled selected>Select Resource</option>
-            <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
-              {{ data.name }}
-            </option>
-          </select>
-          <div *ngIf="f.resourceId.touched && f.resourceId.invalid" class="alert alert-danger">
-            <div *ngIf="f.resourceId.errors.required">
-              Resource Name is required.
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
     <div class="container">
@@ -187,12 +160,7 @@
         <div class="col-md form-group">
           <label>External RefNo</label>
           <input formControlName="externalRefNo" type="text" class="form-control form-control-sm"
-            placeholder="externalRefNo" />
-            <!-- <div *ngIf="f.externalRefNo.touched && f.externalRefNo.invalid" class="alert alert-danger">
-              <div *ngIf="f.externalRefNo.errors.required">
-                External RefNo is required.
-              </div>
-            </div> -->
+            placeholder="external RefNo" />
         </div>       
       </div>
     </div> 
@@ -207,15 +175,7 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
-        <!-- <div class="col-md-3">
-          <mat-form-field class="wid-100">
-            <mat-label>Start Time</mat-label>
-            <input matInput readonly [ngxTimepicker]="timepicker" formControlName="StartTime" 
-              (ngModelChange)="onStartTimeChange($event)" [min]="minStartTime" 
-              (focus)="SetStartTimeOnFocus()">
-            <ngx-material-timepicker #timepicker></ngx-material-timepicker>
-          </mat-form-field>
-        </div> -->
+
         <div class="col-md-3">
           <mat-form-field class="wid-100">
             <mat-label>Due Date</mat-label>
@@ -225,16 +185,7 @@
             <mat-datepicker #enddatepicker></mat-datepicker>
           </mat-form-field>
         </div>
-        <!-- <div class="col-md-3">
-          <mat-form-field class="wid-100">
-            <mat-label>End Time</mat-label>
-            <input matInput readonly  [ngxTimepicker]="endtimepicker" formControlName="EndTime" 
-              (ngModelChange)="onEndTimeChange($event)" [min]="minEndTime" 
-              (focus)="SetEndTimeOnFocus()">
-            <ngx-material-timepicker #endtimepicker></ngx-material-timepicker>
-          </mat-form-field>
-        </div> -->
-
+  
         <div class="col-md-3">
           <mat-form-field class="wid-100">
             <mat-label>Closed Date</mat-label>
