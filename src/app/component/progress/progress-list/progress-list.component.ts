@@ -71,7 +71,7 @@ export class ProgressListComponent implements OnInit {
   loadProgress() {
     this.progressService.getAllProgresss().subscribe(
       (result) => {
-        console.log(result);
+        
         this.progress = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set

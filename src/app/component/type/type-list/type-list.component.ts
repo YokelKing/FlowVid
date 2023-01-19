@@ -71,7 +71,7 @@ export class TypeListComponent implements OnInit {
   loadType() {
     this.typeService.getAllTypes().subscribe(
       (result) => {
-        console.log(result);
+        
         this.type = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set

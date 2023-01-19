@@ -3,6 +3,7 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
+  FormControl,
   Validators,
 } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -14,7 +15,7 @@ import {
 import { IJob } from "src/app/shared/models/jobs";
 import { JobsService } from "../jobs.service"
 import Swal from "sweetalert2/dist/sweetalert2.js";
-
+import { first } from 'rxjs/operators';
 
 import { CustomersService } from '../../customers/customers.service';
 import { ICustomer } from "src/app/shared/models/customers";
@@ -34,9 +35,11 @@ import { JobtypesService } from "../../jobtypes/jobtypes.service";
   styleUrls: ["./job-edit.component.scss"],
 })
 export class JobEditComponent implements OnInit {
+
+  id!: number;
   [x: string]: any;
   title: string;
-  job: IJob;
+  job!: IJob;
   closeResult: string;
   editForm: FormGroup;
   JobID?: number;
@@ -75,14 +78,96 @@ export class JobEditComponent implements OnInit {
 
 
     this.id = this.route.snapshot.params['id'];
+        
+
+
+
+ this.editForm = new FormGroup({
+    description: new FormControl('', [Validators.required]),
+    customerId: new FormControl('', [Validators.required]),
+    teamId: new FormControl('', [Validators.required]),
+    resourceId: new FormControl('', [Validators.required]),
+    divisionID: new FormControl('', [Validators.required]),
+    jobAssetID: new FormControl('', [Validators.required]),
+    jobIssueTypeID: new FormControl('', [Validators.required]),
+    jobPriorityID: new FormControl('', [Validators.required]),
+    jobSourceID: new FormControl('', [Validators.required]),
+    jobProgressStatusID: new FormControl('', [Validators.required]),
+    externalRefNo: new FormControl('', [Validators.required]),
+    jobTypeID: new FormControl('', [Validators.required]),
+    dateClosed: new FormControl('', [Validators.required]),
+    dateDue: new FormControl('', [Validators.required]),
+    dateOpend: new FormControl('', [Validators.required]),
+
+        
+
+    });
+
+    if (this.id) {
+        this.JobsService.getJobById(this.id)
+            .pipe(first())
+            .subscribe(x => {
+                this.form.patchValue(x);
+            });
+    }
+
+
+
+
+    // this.id = this.route.snapshot.params['id'];
+    // this.JobsService.getJobById(this.id).pipe(first()).subscribe(x => {
+    //   this.editForm.patchValue(x);
+      
+    // }); 
+      
+    // this.userService.getById(this.id)
+    // .pipe(first())
+    // .subscribe(x => {
+    //     this.form.patchValue(x);
+    //     this.loading = false;
+    // });
+
+
+    // this.editForm = new FormGroup({
+    // description: new FormControl('', [Validators.required]),
+    // customerId: new FormControl('', [Validators.required]),
+    // teamId: new FormControl('', [Validators.required]),
+    // resourceId: new FormControl('', [Validators.required]),
+    // divisionID: new FormControl('', [Validators.required]),
+    // jobAssetID: new FormControl('', [Validators.required]),
+    // jobIssueTypeID: new FormControl('', [Validators.required]),
+    // jobPriorityID: new FormControl('', [Validators.required]),
+    // jobSourceID: new FormControl('', [Validators.required]),
+    // jobProgressStatusID: new FormControl('', [Validators.required]),
+    // externalRefNo: new FormControl('', [Validators.required]),
+    // jobTypeID: new FormControl('', [Validators.required]),
+    // dateClosed: new FormControl('', [Validators.required]),
+    // dateDue: new FormControl('', [Validators.required]),
+    // dateOpend: new FormControl('', [Validators.required]),
+
+
+
+          // description: [this.job.description, ""],
+      // customerId: [this.job.customerId,Validators.required],
+      // teamId: [this.job.teamId,Validators.required],
+      // resourceId: [this.job.resourceId,Validators.required],
+      // divisionID: [this.job.divisionID,Validators.required],
+      // jobAssetID: [this.job.jobAssetID,Validators.required],
+      // jobIssueTypeID: [this.job.jobIssueTypeID,Validators.required],
+      // jobPriorityID: [this.job.jobPriorityID, Validators.required],
+      // jobSourceID: [this.job.jobSourceID, Validators.required],
+      // jobProgressStatusID: [this.job.jobProgressStatusID, Validators.required],
+      // externalRefNo: [this.job.externalRefNo, ""],
+      // jobTypeID: [this.job.jobTypeID, Validators.required],
+    //});
+
+
+
+
   
 
-    this.JobsService.getJobById(this.id).subscribe(data => {
-      this.job = data;
-      //console.log("asdf2222",this.job.id);
-    }, error => console.log(error));
 
-    this.setForm();
+    //this.setForm();
     this.loadCustomers();
     this.loadTeams();
     this.loadResources();
@@ -248,47 +333,6 @@ export class JobEditComponent implements OnInit {
 
 
 
-  // get description() {
-  //   return this.editForm.get('description')!;
-  // }
-  get customerId() {
-    return this.editForm.get('customerId')!;
-  }
-  get teamId() {
-    return this.editForm.get('teamId')!;
-  }
-  get resourceId() {
-    return this.editForm.get('resourceId')!;
-  }
-
-  get divisionID() {
-    return this.editForm.get('divisionID')!;
-  }
-
-  get jobAssetID() {
-    return this.editForm.get('jobAssetID')!;
-  }
-
-  get jobIssueTypeID() {
-    return this.editForm.get('jobIssueTypeID')!;
-  }
-
-  get jobPriorityID() {
-    return this.editForm.get('jobPriorityID')!;
-  }
-
-  get jobSourceID() {
-    return this.editForm.get('jobSourceID')!;
-  }
-
-  get jobProgressStatusID() {
-    return this.editForm.get('jobProgressStatusID')!;
-  }
-
-  get jobTypeID() {
-    return this.editForm.get('jobTypeID')!;
-  }
-
   // Choose customer using select dropdown
   changeCustomer(e) {
 
@@ -371,25 +415,68 @@ export class JobEditComponent implements OnInit {
   }
 
 
+  
+
+  // get description() {
+  //   return this.editForm.get('description')!;
+  // }
+  get customerId() {
+    return this.editForm.get('customerId')!;
+  }
+  get teamId() {
+    return this.editForm.get('teamId')!;
+  }
+  get resourceId() {
+    return this.editForm.get('resourceId')!;
+  }
+
+  get divisionID() {
+    return this.editForm.get('divisionID')!;
+  }
+
+  get jobAssetID() {
+    return this.editForm.get('jobAssetID')!;
+  }
+
+  get jobIssueTypeID() {
+    return this.editForm.get('jobIssueTypeID')!;
+  }
+
+  get jobPriorityID() {
+    return this.editForm.get('jobPriorityID')!;
+  }
+
+  get jobSourceID() {
+    return this.editForm.get('jobSourceID')!;
+  }
+
+  get jobProgressStatusID() {
+    return this.editForm.get('jobProgressStatusID')!;
+  }
+
+  get jobTypeID() {
+    return this.editForm.get('jobTypeID')!;
+  }
+
   public setForm() {
     this.editForm = this.fb.group({
       //id: this.route.snapshot.params['id'],
 
-      description: ["",Validators.required],
-      customerId: ["",Validators.required],
-      teamId: ["",Validators.required],
-      resourceId: ["",Validators.required],
-      divisionID: ["",Validators.required],
-      jobAssetID: ["",Validators.required],
-      jobIssueTypeID: ["",Validators.required],
-      jobPriorityID: ["",Validators.required],
-      jobSourceID: ["",Validators.required],
-      jobProgressStatusID: ["",Validators.required],
-      externalRefNo: ["",Validators.required],
-      jobTypeID: ["",Validators.required],
-      dateClosed: ["",Validators.required],
-      dateDue: ["",Validators.required],
-      dateOpend: ["",Validators.required],
+      // description: ["",Validators.required],
+      // customerId: ["",Validators.required],
+      // teamId: ["",Validators.required],
+      // resourceId: ["",Validators.required],
+      // divisionID: ["",Validators.required],
+      // jobAssetID: ["",Validators.required],
+      // jobIssueTypeID: ["",Validators.required],
+      // jobPriorityID: ["",Validators.required],
+      // jobSourceID: ["",Validators.required],
+      // jobProgressStatusID: ["",Validators.required],
+      // externalRefNo: ["",Validators.required],
+      // jobTypeID: ["",Validators.required],
+      // dateClosed: ["",Validators.required],
+      // dateDue: ["",Validators.required],
+      // dateOpend: ["",Validators.required],
       
 
       // description: [this.job.description, ""],

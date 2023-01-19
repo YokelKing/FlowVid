@@ -21,12 +21,6 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
     </ng-container>
-
-     <!-- <ng-container matColumnDef="customerId">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Customer ID </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{ row.customerId }} </mat-cell>
-        </ng-container> -->
-
     <ng-container matColumnDef="customername">
       <mat-header-cell *matHeaderCellDef mat-sort-header
         >Customer Name
@@ -71,31 +65,31 @@
 
     <ng-container matColumnDef="postCode">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        postCode
+        Post Code
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.postCode }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="lon">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> lon </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Longitude </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.lon }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="lat">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> lat </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Latitude </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.lat }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="comment">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        comment
+        Comment
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.comment }} </mat-cell>
     </ng-container>
 
   <ng-container matColumnDef="type">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        type
+        Type
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.type }} </mat-cell>
     </ng-container> 
