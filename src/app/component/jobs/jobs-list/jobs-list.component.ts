@@ -85,7 +85,7 @@ export class JobsListComponent implements OnInit {
   loadJobs() {
     this.jobService.getAllJobs().subscribe(
       (result) => {
-        console.log(result);
+        
         this.jobs = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set

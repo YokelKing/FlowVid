@@ -42,7 +42,7 @@
           <div class="col-md form-group">
             <label>Street Number*</label>
             <input formControlName="streetNumber" type="text" class="form-control form-control-lg"
-              placeholder="streetNumber*">
+              placeholder="Street Number*">
             <div *ngIf="f.streetNumber.touched && f.streetNumber.invalid" class="alert alert-danger">
               <div *ngIf="f.streetNumber.errors.required">Street Number is required.</div>
             </div>
@@ -50,16 +50,16 @@
         </div>
         <div class="row">
           <div class="col-md form-group">
-            <label>streetName*</label>
+            <label>Street Name*</label>
             <input formControlName="streetName" type="text" class="form-control form-control-lg"
-              placeholder="streetName*">
+              placeholder="Street Name*">
             <div *ngIf="f.streetName.touched && f.streetName.invalid" class="alert alert-danger">
               <div *ngIf="f.streetName.errors.required">Street Name is required.</div>
             </div>
           </div>
           <div class="col-md form-group">
             <label>suburb*</label>
-            <input formControlName="suburb" type="text" class="form-control form-control-lg" placeholder="suburb*">
+            <input formControlName="suburb" type="text" class="form-control form-control-lg" placeholder="Suburb*">
             <div *ngIf="f.suburb.touched && f.suburb.invalid" class="alert alert-danger">
               <div *ngIf="f.suburb.errors.required">Suburb is required.</div>
             </div>
@@ -76,26 +76,26 @@
 
         <div class="row">
           <div class="col-md form-group">
-            <label>postCode*</label>
-            <input formControlName="postCode" type="text" class="form-control form-control-lg" placeholder="postCode*">
+            <label>Post Code*</label>
+            <input formControlName="postCode" type="text" class="form-control form-control-lg" placeholder="Post Code*">
             <div *ngIf="f.postCode.touched && f.postCode.invalid" class="alert alert-danger">
-              <div *ngIf="f.postCode.errors.required">Postcode is required.</div>
+              <div *ngIf="f.postCode.errors.required">Post Code is required.</div>
             </div>
           </div>
           <div class="col-md form-group">
-            <label>lon</label>
-            <input formControlName="lon" type="text" class="form-control form-control-lg" placeholder="lon">
+            <label>Longitude</label>
+            <input formControlName="lon" type="text" class="form-control form-control-lg" placeholder="Longitude">
           </div>
           <div class="col-md form-group">
-            <label>lat</label>
-            <input formControlName="lat" type="text" class="form-control form-control-lg" placeholder="lat">
+            <label>Latitude</label>
+            <input formControlName="lat" type="text" class="form-control form-control-lg" placeholder="Latitude">
           </div>
         </div>
 
         <div class="row">
           <div class="col-md form-group">
             <label>Comment</label>
-            <input formControlName="comment" type="text" class="form-control form-control-lg" placeholder="comment">
+            <input formControlName="comment" type="text" class="form-control form-control-lg" placeholder="Comment">
           </div>
 
           <div class="col-md form-group">
@@ -105,10 +105,6 @@
               <div *ngIf="f.type.errors.required">Type is required.</div>
             </div>
           </div>
-          <!-- <div class="col-md form-group">
-                <label>status*</label>
-                <input formControlName="status" type="text" class="form-control form-control-lg" placeholder="status*">       
-              </div> -->
         </div>
       </div>
     </form>
@@ -117,7 +113,6 @@
     <button type="submit" class="btn btn-primary mr-2" (click)="addNewLocation()" [disabled]="f.invalid">
       Create
     </button>
-
     <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">
       Cancel
     </button>

@@ -15,7 +15,6 @@
     </div>
     <div class="modal-body">
       <form [formGroup]="teamresourceForm" *ngIf="teamresourceForm" class="pt-3">
-
         <div class="col-md form-group">
           <label>Team Name*</label>
           <select formControlName="teamId" class="form-control form-control-lg" (change)="changeTeam($event)">
@@ -28,8 +27,6 @@
             <div *ngIf="f.teamId.errors.required">Team Name is required.</div>
           </div>
         </div>
-
-
         <div class="col-md form-group">
           <label>Resource Name*</label>
           <select formControlName="resourceId" class="form-control form-control-lg" (change)="changeResource($event)">
@@ -42,46 +39,13 @@
             <div *ngIf="f.resourceId.errors.required">Resource Name is required.</div>
           </div>
         </div>
-<!-- 
-        <div class="form-group">
-          <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" required minlength="3" maxlength="25" class="form-control form-control-lg"  [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
-          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
-            <div *ngIf="name.errors?.['required']">
-              This field is required.
-            </div>
-            <div *ngIf="name.errors?.['minlength']">
-              This field must have at least 3 character.
-            </div>
-            <div *ngIf="name.errors?.['maxlength']">
-              This field must have at most 25 characters.
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code" [class.is-invalid]="code.invalid && (code.dirty || code.touched)" />
-          <div *ngIf="code.invalid && (code.dirty || code.touched)" class="invalid-feedback">
-            <div *ngIf="code.errors?.['maxlength']">
-              This field must have at most 10 characters.
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <input formControlName="type" type="text" class="form-control form-control-lg" placeholder="Type" [class.is-invalid]="type.invalid && (type.dirty || type.touched)" />
-          <div *ngIf="type.invalid && (type.dirty || type.touched)" class="invalid-feedback">
-            <div *ngIf="type.errors?.['maxlength']">
-              This field must have at most 10 characters.
-            </div>
-          </div>
-        </div> -->
       </form>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-primary mr-2" (click)="addNewTeamresource()" [disabled]="teamresourceForm.invalid">
+      <button type="submit" class="btn btn-primary mr-2" (click)="addNewTeamresource()">
         Create
       </button>
-  
-  
+   
       <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">
         Cancel
       </button>

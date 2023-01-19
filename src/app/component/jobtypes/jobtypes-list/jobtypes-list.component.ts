@@ -71,7 +71,7 @@ export class JobtypesListComponent implements OnInit {
   loadJobtypes() {
     this.jobtypeService.getAllJobtypes().subscribe(
       (result) => {
-        console.log(result);
+        
         this.jobtypes = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set

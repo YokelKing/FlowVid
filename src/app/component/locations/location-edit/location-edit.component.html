@@ -32,7 +32,7 @@
       
         <div class="col-md form-group">
           <label>Street Number*</label>
-          <input formControlName="streetNumber" type="text" class="form-control form-control-lg" placeholder="streetNumber*">
+          <input formControlName="streetNumber" type="text" class="form-control form-control-lg" placeholder="Street Number*">
           <div *ngIf="editFormData.streetNumber.touched && editFormData.streetNumber.invalid" class="alert alert-danger">
             <div *ngIf="editFormData.streetNumber.errors.required">Street Number is required.</div>
           </div>
@@ -40,15 +40,15 @@
       </div>
       <div class="row">
         <div class="col-md form-group">
-          <label>streetName*</label>
-          <input formControlName="streetName" type="text" class="form-control form-control-lg" placeholder="streetName*">
+          <label>Street Name*</label>
+          <input formControlName="streetName" type="text" class="form-control form-control-lg" placeholder="Street Name*">
           <div *ngIf="editFormData.streetName.touched && editFormData.streetName.invalid" class="alert alert-danger">
             <div *ngIf="editFormData.streetName.errors.required">Street Name is required.</div>
           </div>
         </div>
         <div class="col-md form-group">
           <label>suburb*</label>
-          <input formControlName="suburb" type="text" class="form-control form-control-lg" placeholder="suburb*">
+          <input formControlName="suburb" type="text" class="form-control form-control-lg" placeholder="Suburb*">
           <div *ngIf="editFormData.suburb.touched && editFormData.suburb.invalid" class="alert alert-danger">
             <div *ngIf="editFormData.suburb.errors.required">Suburb is required.</div>
           </div>
@@ -56,42 +56,42 @@
         
         <div class="col-md form-group">
           <label>City*</label>
-          <input formControlName="city" type="text" class="form-control form-control-lg" placeholder="city*">
+          <input formControlName="city" type="text" class="form-control form-control-lg" placeholder="City*">
           <div *ngIf="editFormData.city.touched && editFormData.city.invalid" class="alert alert-danger">
-            <div *ngIf="editFormData.city.errors.required">city is required.</div>
+            <div *ngIf="editFormData.city.errors.required">City is required.</div>
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md form-group">
-          <label>postCode*</label>
-          <input formControlName="postCode" type="text" class="form-control form-control-lg" placeholder="postCode*">
+          <label>Post Code*</label>
+          <input formControlName="postCode" type="text" class="form-control form-control-lg" placeholder="Post Code*">
           <div *ngIf="editFormData.postCode.touched && editFormData.postCode.invalid" class="alert alert-danger">
-            <div *ngIf="editFormData.postCode.errors.required">postCode is required.</div>
+            <div *ngIf="editFormData.postCode.errors.required">Post Code is required.</div>
           </div>
         </div>
         <div class="col-md form-group">
-          <label>lon</label>
-          <input formControlName="lon" type="text" class="form-control form-control-lg" placeholder="lon">       
+          <label>Longitude</label>
+          <input formControlName="lon" type="text" class="form-control form-control-lg" placeholder="Longitude">       
         </div>
         <div class="col-md form-group">
           <label>lat</label>
-          <input formControlName="lat" type="text" class="form-control form-control-lg" placeholder="lat">       
+          <input formControlName="lat" type="text" class="form-control form-control-lg" placeholder="Latitude">       
         </div>
         </div>
 
         <div class="row">      
           <div class="col-md form-group">
             <label>Comment</label>
-            <input formControlName="comment" type="text" class="form-control form-control-lg" placeholder="comment*">       
+            <input formControlName="comment" type="text" class="form-control form-control-lg" placeholder="Comment">       
           </div>
 
           <div class="col-md form-group">
             <label>Type*</label>
             <input formControlName="type" type="text" class="form-control form-control-lg" placeholder="Type*">
             <div *ngIf="editFormData.type.touched && editFormData.type.invalid" class="alert alert-danger">
-              <div *ngIf="editFormData.type.errors.required">type is required.</div>
+              <div *ngIf="editFormData.type.errors.required">Type is required.</div>
             </div>
           </div>
        
@@ -100,7 +100,7 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button type="submit" [disabled]="editForm.invalid" class="btn btn-primary mr-2"
+  <button type="submit"  class="btn btn-primary mr-2"
     (click)="editLocation()">Update</button>
 
   <button [disabled]="isSubmitted" class="btn btn btn-danger" (click)="modal.close('Cancel')">Cancel</button>

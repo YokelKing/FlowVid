@@ -42,7 +42,7 @@ export class TeamresourcesListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   teamresource: ITeamresource;
-
+  MstempDetails: any = {};
   teams:any;
   closeResult: string;
   teamresourceForm: FormGroup;
@@ -60,8 +60,7 @@ export class TeamresourcesListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadTeamresources();
-    
+    this.loadTeamresources();    
     this.loadTeams();
   }
 
@@ -79,7 +78,6 @@ export class TeamresourcesListComponent implements OnInit {
     this.TeamsService.getAllTeams().subscribe(
       (result) => {
         this.teams = result;
-        console.log("myteam12",result);
       },
       (error) => {
         console.log(error);
@@ -90,7 +88,7 @@ export class TeamresourcesListComponent implements OnInit {
   loadTeamresources() {
     this.teamresourceService.getAllTeamresources().subscribe(
       (result) => {
-        console.log(result);
+        
         this.teamresources = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set
@@ -103,16 +101,19 @@ export class TeamresourcesListComponent implements OnInit {
     );
   }
 
-  editTeamresource(data: ITeamresource): void {
+  editTeamresource(data): void {
+    this.MstempDetails.teamId = data.team.id;
+    this.MstempDetails.resourceId = data.resource.id;
+    this.MstempDetails.id = data.id;
     const ref = this.modalService.open(TeamresourceEditComponent, {
       centered: true,
     });
-    ref.componentInstance.teamresource = data;
+    ref.componentInstance.teamresource = this.MstempDetails;
 
     ref.result.then(
       (yes) => {
         console.log("Yes Click");
-
+        this.loadTeams()
         this.loadTeamresources();
       },
       (cancel) => {

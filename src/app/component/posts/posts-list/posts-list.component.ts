@@ -72,7 +72,7 @@ export class PostsListComponent implements OnInit {
   loadPosts() {
     this.postService.getAllPosts().subscribe(
       (result) => {
-        console.log(result);
+        
         this.posts = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set

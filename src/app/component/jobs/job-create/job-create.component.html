@@ -1,414 +1,431 @@
 <div class="row">
-    <mat-tab-group animationDuration="0ms" style="width: 100%;" [(selectedIndex)]="tabIndex" >
-    <mat-tab label="Job">
-     <div class="modal-body">
-    <form [formGroup]="jobForm" *ngIf="jobForm" class="pt-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md form-group">
-            <label>Description Name*</label>
-            <input formControlName="description" type="text" class="form-control form-control-sm"
-              placeholder="Description" />
-          </div>
-          <div class="col-md form-group">
-            <label>Customer Name*</label>
-            <select formControlName="customerId" class="form-control form-control-sm" (change)="changeCustomer($event)">
-              <option value="" disabled selected>Select Customer</option>
-              <option *ngFor="let cust of customers" [value]="cust.id" class="form-control form-control-sm">
-                {{ cust.name }}
-              </option>
-            </select>
-            <div *ngIf="f.customerId.touched && f.customerId.invalid" class="alert alert-danger">
-              <div *ngIf="f.customerId.errors.required">
-                Customer Name is required.
-              </div>
+  <mat-tab-group animationDuration="0ms" style="width: 100%;" [(selectedIndex)]="tabIndex" >
+  <mat-tab label="Job">
+   <div class="modal-body">
+  <form [formGroup]="jobForm" *ngIf="jobForm" class="pt-3"
+  #frmjob="ngForm">
+    <div class="container">
+      <div class="row">
+        <div class="col-md form-group">
+          <label>Description Name*</label>
+          <input formControlName="description" type="text" class="form-control form-control-sm"
+            placeholder="Description" />
+        </div>
+        <div class="col-md form-group">
+          <label>Customer Name*</label>
+          <select formControlName="customerId" class="form-control form-control-sm" (change)="changeCustomer($event)">
+            <option value="" disabled selected>Select Customer</option>
+            <option *ngFor="let cust of customers" [value]="cust.id" class="form-control form-control-sm">
+              {{ cust.name }}
+            </option>
+          </select>
+          <div *ngIf="f.customerId.touched && f.customerId.invalid" class="alert alert-danger">
+            <div *ngIf="f.customerId.errors.required">
+              Customer Name is required.
             </div>
           </div>
+        </div>
 
 
-          <div class="col-md form-group">
-            <label>Team Name*</label>
-            <select formControlName="teamId" class="form-control form-control-sm" (change)="changeTeam($event)">
-              <option value="" disabled selected>Select Team</option>
-              <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
-                {{team.name}}
-              </option>
-            </select>
-            <div *ngIf="f.teamId.touched && f.teamId.invalid" class="alert alert-danger">
-              <div *ngIf="f.teamId.errors.required">Team Name is required.</div>
-            </div>
+        <div class="col-md form-group">
+          <label>Team Name*</label>
+          <select formControlName="teamId" class="form-control form-control-sm" (change)="changeTeam($event)">
+            <option value="" disabled selected>Select Team</option>
+            <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
+              {{team.name}}
+            </option>
+          </select>
+          <div *ngIf="f.teamId.touched && f.teamId.invalid" class="alert alert-danger">
+            <div *ngIf="f.teamId.errors.required">Team Name is required.</div>
           </div>
-  
-  
-          <div class="col-md form-group">
-            <label>Resource Name*</label>
-            <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
-              <option value="" disabled selected>Select Resource</option>
-              <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
-                {{data.name}}
-              </option>
-            </select>
-            <div *ngIf="f.resourceId.touched && f.resourceId.invalid" class="alert alert-danger">
-              <div *ngIf="f.resourceId.errors.required">Resource Name is required.</div>
-            </div>
-          </div>
-          <!-- <div class="col-md form-group">
-            <label>Team Name*</label>
-            <select formControlName="teamId" class="form-control form-control-sm" (change)="changeTeam($event)">
-              <option value="" disabled selected>Select Team</option>
-              <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
-                {{ team.name }}
-              </option>
-            </select>
-            <div *ngIf="f.teamId.touched && f.teamId.invalid" class="alert alert-danger">
-              <div *ngIf="f.teamId.errors.required">Team Name is required.</div>
-            </div>
-          </div>
+        </div>
 
-          <div class="col-md form-group">
-            <label>Resource Name*</label>
-            <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
-              <option value="" disabled selected>Select Resource</option>
-              <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
-                {{ data.name }}
-              </option>
-            </select>
-            <div *ngIf="f.resourceId.touched && f.resourceId.invalid" class="alert alert-danger">
-              <div *ngIf="f.resourceId.errors.required">
-                Resource Name is required.
-              </div>
+
+        <div class="col-md form-group">
+          <label>Resource Name*</label>
+          <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
+            <option value="" disabled selected>Select Resource</option>
+            <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
+              {{data.name}}
+            </option>
+          </select>
+          <div *ngIf="f.resourceId.touched && f.resourceId.invalid" class="alert alert-danger">
+            <div *ngIf="f.resourceId.errors.required">Resource Name is required.</div>
+          </div>
+        </div>
+        <!-- <div class="col-md form-group">
+          <label>Team Name*</label>
+          <select formControlName="teamId" class="form-control form-control-sm" (change)="changeTeam($event)">
+            <option value="" disabled selected>Select Team</option>
+            <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
+              {{ team.name }}
+            </option>
+          </select>
+          <div *ngIf="f.teamId.touched && f.teamId.invalid" class="alert alert-danger">
+            <div *ngIf="f.teamId.errors.required">Team Name is required.</div>
+          </div>
+        </div>
+
+        <div class="col-md form-group">
+          <label>Resource Name*</label>
+          <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
+            <option value="" disabled selected>Select Resource</option>
+            <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="f.resourceId.touched && f.resourceId.invalid" class="alert alert-danger">
+            <div *ngIf="f.resourceId.errors.required">
+              Resource Name is required.
             </div>
-          </div> -->
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md form-group">
+          <label>Division Name*</label>
+          <select formControlName="divisionID" class="form-control form-control-sm" (change)="changeDivision($event)">
+            <option value="" disabled selected>Select Division</option>
+            <option *ngFor="let data of divisions" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="f.divisionID.touched && f.divisionID.invalid" class="alert alert-danger">
+            <div *ngIf="f.divisionID.errors.required">
+              Division Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>Job Asset Name*</label>
+          <select formControlName="jobAssetID" class="form-control form-control-sm" (change)="changeJobAsset($event)">
+            <option value="" disabled selected>Select Job Asset</option>
+            <option *ngFor="let data of assets" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="f.jobAssetID.touched && f.jobAssetID.invalid" class="alert alert-danger">
+            <div *ngIf="f.jobAssetID.errors.required">Job Asset Name is required.</div>
+          </div>
+        </div>
+
+        <div class="col-md form-group">
+          <label>Job IssueType Name*</label>
+          <select formControlName="jobIssueTypeID" class="form-control form-control-sm" (change)="changeJobIssueType($event)">
+            <option value="" disabled selected>Select Job IssueType</option>
+            <option *ngFor="let data of types" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="f.jobIssueTypeID.touched && f.jobIssueTypeID.invalid" class="alert alert-danger">
+            <div *ngIf="f.jobIssueTypeID.errors.required">
+              Job IssueType Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>Job Priority Name*</label>
+          <select formControlName="jobPriorityID" class="form-control form-control-sm" (change)="changeJobPriority($event)">
+            <option value="" disabled selected>Select Job Priority</option>
+            <option *ngFor="let data of priority" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="f.jobPriorityID.touched && f.jobPriorityID.invalid" class="alert alert-danger">
+            <div *ngIf="f.jobPriorityID.errors.required">
+              Job Priority Name is required.
+            </div>
+          </div>
         </div>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md form-group">
-            <label>Division Name*</label>
-            <select formControlName="divisionID" class="form-control form-control-sm" (change)="changeDivision($event)">
-              <option value="" disabled selected>Select Division</option>
-              <option *ngFor="let data of divisions" [value]="data.id" class="form-control form-control-sm">
-                {{ data.name }}
-              </option>
-            </select>
-            <div *ngIf="f.divisionID.touched && f.divisionID.invalid" class="alert alert-danger">
-              <div *ngIf="f.divisionID.errors.required">
-                Division Name is required.
-              </div>
-            </div>
-          </div>
-          <div class="col-md form-group">
-            <label>Job Asset Name*</label>
-            <select formControlName="jobAssetID" class="form-control form-control-sm" (change)="changeJobAsset($event)">
-              <option value="" disabled selected>Select Job Asset</option>
-              <option *ngFor="let data of assets" [value]="data.id" class="form-control form-control-sm">
-                {{ data.name }}
-              </option>
-            </select>
-            <div *ngIf="f.jobAssetID.touched && f.jobAssetID.invalid" class="alert alert-danger">
-              <div *ngIf="f.jobAssetID.errors.required">Job Asset Name is required.</div>
-            </div>
-          </div>
-
-          <div class="col-md form-group">
-            <label>Job IssueType Name*</label>
-            <select formControlName="jobIssueTypeID" class="form-control form-control-sm" (change)="changeJobIssueType($event)">
-              <option value="" disabled selected>Select Job IssueType</option>
-              <option *ngFor="let data of types" [value]="data.id" class="form-control form-control-sm">
-                {{ data.name }}
-              </option>
-            </select>
-            <div *ngIf="f.jobIssueTypeID.touched && f.jobIssueTypeID.invalid" class="alert alert-danger">
-              <div *ngIf="f.jobIssueTypeID.errors.required">
-                Job IssueType Name is required.
-              </div>
-            </div>
-          </div>
-          <div class="col-md form-group">
-            <label>Job Priority Name*</label>
-            <select formControlName="jobPriorityID" class="form-control form-control-sm" (change)="changeJobPriority($event)">
-              <option value="" disabled selected>Select Job Priority</option>
-              <option *ngFor="let data of priority" [value]="data.id" class="form-control form-control-sm">
-                {{ data.name }}
-              </option>
-            </select>
-            <div *ngIf="f.jobPriorityID.touched && f.jobPriorityID.invalid" class="alert alert-danger">
-              <div *ngIf="f.jobPriorityID.errors.required">
-                Job Priority Name is required.
-              </div>
+    </div>
+    <div class="container">
+      <div class="row">
+      
+        <div class="col-md form-group">
+          <label>Job Source Name*</label>
+          <select formControlName="jobSourceID" class="form-control form-control-sm" (change)="changeJobSource($event)">
+            <option value="" disabled selected>Select Job Source</option>
+            <option *ngFor="let data of sources" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="f.jobSourceID.touched && f.jobSourceID.invalid" class="alert alert-danger">
+            <div *ngIf="f.jobSourceID.errors.required">
+              Job Source Name is required.
             </div>
           </div>
         </div>
+        <div class="col-md form-group">
+          <label>Job Progress Status Name*</label>
+          <select formControlName="jobProgressStatusID" class="form-control form-control-sm" (change)="changeJobProgressStatus($event)">
+            <option value="" disabled selected>Select Job Progress Status</option>
+            <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="f.jobProgressStatusID.touched && f.jobProgressStatusID.invalid" class="alert alert-danger">
+            <div *ngIf="f.jobProgressStatusID.errors.required">Job Progress Status Name is required.</div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>Job Type Name*</label>
+          <select formControlName="jobTypeID" class="form-control form-control-sm" (change)="changeJobType($event)">
+            <option value="" disabled selected>Select Job Type</option>
+            <option *ngFor="let data of jobtypes" [value]="data.id" class="form-control form-control-sm">
+              {{ data.name }}
+            </option>
+          </select>
+          <div *ngIf="f.jobTypeID.touched && f.jobTypeID.invalid" class="alert alert-danger">
+            <div *ngIf="f.jobTypeID.errors.required">
+              Job Type Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-md form-group">
+          <label>External RefNo*</label>
+          <input formControlName="externalRefNo" type="text" class="form-control form-control-sm"
+            placeholder="externalRefNo" />
+            <div *ngIf="f.externalRefNo.touched && f.externalRefNo.invalid" class="alert alert-danger">
+              <div *ngIf="f.externalRefNo.errors.required">
+                External RefNo is required.
+              </div>
+            </div>
+        </div>       
       </div>
-      <div class="container">
-        <div class="row">
-        
-          <div class="col-md form-group">
-            <label>Job Source Name*</label>
-            <select formControlName="jobSourceID" class="form-control form-control-sm" (change)="changeJobSource($event)">
-              <option value="" disabled selected>Select Job Source</option>
-              <option *ngFor="let data of sources" [value]="data.id" class="form-control form-control-sm">
-                {{ data.name }}
-              </option>
-            </select>
-            <div *ngIf="f.jobSourceID.touched && f.jobSourceID.invalid" class="alert alert-danger">
-              <div *ngIf="f.jobSourceID.errors.required">
-                Job Source Name is required.
-              </div>
-            </div>
-          </div>
-          <div class="col-md form-group">
-            <label>Job Progress Status Name*</label>
-            <select formControlName="jobProgressStatusID" class="form-control form-control-sm" (change)="changeJobProgressStatus($event)">
-              <option value="" disabled selected>Select Job Progress Status</option>
-              <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
-                {{ data.name }}
-              </option>
-            </select>
-            <div *ngIf="f.jobProgressStatusID.touched && f.jobProgressStatusID.invalid" class="alert alert-danger">
-              <div *ngIf="f.jobProgressStatusID.errors.required">Job Progress Status Name is required.</div>
-            </div>
-          </div>
-<div class="col-md form-group">
-            <label>Job Type Name*</label>
-            <select formControlName="jobTypeID" class="form-control form-control-sm" (change)="changeJobType($event)">
-              <option value="" disabled selected>Select Job Type</option>
-              <option *ngFor="let data of jobtypes" [value]="data.id" class="form-control form-control-sm">
-                {{ data.name }}
-              </option>
-            </select>
-            <div *ngIf="f.jobTypeID.touched && f.jobTypeID.invalid" class="alert alert-danger">
-              <div *ngIf="f.jobTypeID.errors.required">
-                Job Type Name is required.
-              </div>
-            </div>
-          </div>
-          <div class="col-md form-group">
-            <label>External RefNo*</label>
-            <input formControlName="externalRefNo" type="text" class="form-control form-control-sm"
-              placeholder="externalRefNo" />
-              <div *ngIf="f.externalRefNo.touched && f.externalRefNo.invalid" class="alert alert-danger">
-                <div *ngIf="f.externalRefNo.errors.required">
-                  External RefNo is required.
-                </div>
-              </div>
-          </div>
-        
+    </div> 
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>Start Date</mat-label>
+            <input matInput formControlName="StartDate" readonly [matDatepicker]="picker" 
+              (dateChange)="onStartDateChange($event)" [min]="minStartDate" [max]="maxStartDate">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </div>
-      </div> 
-  
-
-      <div class="container">
-        <div class="row">
-         
-          <div class="col-md form-group">
-            <label>Date Open</label>
-            <input formControlName="dateOpend" id="date" type="date" class="form-control form-control-sm"
-            placeholder="dd-mm-yyyy" />
-          </div>
-
-          <div class="col-md form-group">
-            <label>Date Due</label>
-            <input formControlName="dateDue" type="date" class="form-control form-control-sm"
-              placeholder="dd-mm-yyyy" />
-          </div>
-
-          <div class="col-md form-group">
-            <label>Date Closed</label>
-            <input formControlName="dateClosed" type="date" class="form-control form-control-sm"
-              placeholder="dd-mm-yyyy" />
-          </div>  
-
-          
-    
-
-
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>Start Time</mat-label>
+            <input matInput readonly [ngxTimepicker]="timepicker" formControlName="StartTime" 
+              (ngModelChange)="onStartTimeChange($event)" [min]="minStartTime" 
+              (focus)="SetStartTimeOnFocus()">
+            <ngx-material-timepicker #timepicker></ngx-material-timepicker>
+          </mat-form-field>
         </div>
-      </div> 
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>End Date</mat-label>
+            <input matInput readonly [matDatepicker]="enddatepicker" formControlName="EndDate" 
+              (dateChange)="onEndDateChange($event)" [min]="minEndDate" [max]="maxEndDate">
+            <mat-datepicker-toggle matSuffix [for]="enddatepicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #enddatepicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>End Time</mat-label>
+            <input matInput readonly  [ngxTimepicker]="endtimepicker" formControlName="EndTime" 
+              (ngModelChange)="onEndTimeChange($event)" [min]="minEndTime" 
+              (focus)="SetEndTimeOnFocus()">
+            <ngx-material-timepicker #endtimepicker></ngx-material-timepicker>
+          </mat-form-field>
+        </div>
+       
   
-    </form>
   </div>
+      </div>
+<div>
+  
+</div>   
+  </form>
+</div>
 </mat-tab>
 <mat-tab label="Task">
-  <div>
-    Add Job Task here 
-  </div>
+<div>
+  Add Job Task here 
+</div>
 </mat-tab>
 </mat-tab-group>
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary mr-2" (click)="addNewJob()" [disabled]="jobForm.invalid">
-      Create
-    </button>
-    <!-- <button class="btn btn-info " type="button" [disabled]="jobForm.invalid" 
-    (click)="Task('next');">Save Next</button> -->
-    <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">
-      Cancel
-    </button>
-  </div>
-    
+<div class="modal-footer">
+  <button type="submit" class="btn btn-primary mr-2" (click)="addNewJob()" [disabled]="jobForm.invalid">
+    Create
+  </button>
+  <!-- <button class="btn btn-info " type="button" [disabled]="jobForm.invalid" 
+  (click)="Task('next');">Save Next</button> -->
+  <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">
+    Cancel
+  </button>
+</div>
+  
 </div>
 
 <div class="page-title">
-  <h2>Jobs List</h2>
+<h2>Jobs List</h2>
 </div>
 
 <h4 *ngIf="!jobs"><em>Loading ...</em></h4>
 <div class="example-header">
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
-  </mat-form-field>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
+</mat-form-field>
 </div>
 
 <div class="example-container mat-elevation-z8">
-  <mat-table [dataSource]="dataSource" matSort>
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
-    </ng-container>
+<mat-table [dataSource]="dataSource" matSort>
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+  </ng-container>
 
-     
-        <!-- Description Column -->
-        <ng-container matColumnDef="description">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Description </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
-        </ng-container> 
-        
-    <ng-container matColumnDef="customer">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        customer
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.customer.name }} </mat-cell>
-    </ng-container>
+   
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Description </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+      </ng-container> 
+      
+  <ng-container matColumnDef="customer">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      customer
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.customer.name }} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="division">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        division
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.division.name }} </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="jobAsset">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        jobAsset
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.jobAsset.name }} </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="division">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      division
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.division.name }} </mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="jobAsset">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      jobAsset
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.jobAsset.name }} </mat-cell>
+  </ng-container>
 
-    
-    <ng-container matColumnDef="jobIssueType">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        jobIssueType
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.jobIssueType.name }} </mat-cell>
-    </ng-container>
+  
+  <ng-container matColumnDef="jobIssueType">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      jobIssueType
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.jobIssueType.name }} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="jobPriority">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        jobPriority
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.jobPriority.name }} </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="jobSource">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        jobSource
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.jobSource.name }} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="team">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        team
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row" >-- {{ row.team.name }} </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="jobPriority">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      jobPriority
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.jobPriority.name }} </mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="jobSource">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      jobSource
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.jobSource.name }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="team">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      team
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row" >-- {{ row.team.name }} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="jobProgressStatus">
-      <mat-header-cell *matHeaderCellDef mat-sort-header >
-        jobProgressStatus
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.jobProgressStatus.name }} </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="jobType">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        jobType
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.jobType.name }} </mat-cell>
-    </ng-container>
-    
-    <!-- <ng-container matColumnDef="jobTask">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        jobTask
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.jobTask }} </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="jobProgressStatus">
+    <mat-header-cell *matHeaderCellDef mat-sort-header >
+      jobProgressStatus
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.jobProgressStatus.name }} </mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="jobType">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      jobType
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.jobType.name }} </mat-cell>
+  </ng-container>
+  
+  <!-- <ng-container matColumnDef="jobTask">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      jobTask
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.jobTask }} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="jobDocument">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        jobDocument
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.jobDocument }} </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="resourceJobCost">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        resourceJobCost
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.resourceJobCost }} </mat-cell>
-    </ng-container> -->
-    <ng-container matColumnDef="dateOpend">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        dateOpend
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.dateOpend | date }} </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="jobDocument">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      jobDocument
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.jobDocument }} </mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="resourceJobCost">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      resourceJobCost
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.resourceJobCost }} </mat-cell>
+  </ng-container> -->
+  <ng-container matColumnDef="dateOpend">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      dateOpend
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.dateOpend | date }} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="dateDue">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        dateDue
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.dateDue | date }} </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="dateClosed">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        dateClosed
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.dateClosed | date }} </mat-cell>
-    </ng-container>
-    <!-- Status Column -->
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        Status
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.status }} </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="dateDue">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      dateDue
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.dateDue | date }} </mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="dateClosed">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      dateClosed
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.dateClosed | date }} </mat-cell>
+  </ng-container>
+  <!-- Status Column -->
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Status
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.status }} </mat-cell>
+  </ng-container>
 
-    <!-- Created Date Column -->
-    <ng-container matColumnDef="createdDate">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        Created Date
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.createdDate | date }} </mat-cell>
-    </ng-container>
+  <!-- Created Date Column -->
+  <ng-container matColumnDef="createdDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Created Date
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.createdDate | date }} </mat-cell>
+  </ng-container>
 
-    <!-- Action Column -->
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <th mat-cell *matCellDef="let row">
-        <button (click)="editJob(row)" class="btn btn-primary">
-          <i class="mdi mdi-account-plus"></i>
-        </button>
-        <button (click)="deleteJob(row)" class="btn btn-danger text-white">
-          <i class="mdi mdi-delete me-2"></i>
-        </button>
-      </th>
-    </ng-container>
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <th mat-cell *matCellDef="let row">
+      <button (click)="editJob(row)" class="btn btn-primary">
+        <i class="mdi mdi-account-plus"></i>
+      </button>
+      <button (click)="deleteJob(row)" class="btn btn-danger text-white">
+        <i class="mdi mdi-delete me-2"></i>
+      </button>
+    </th>
+  </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
-  </mat-table>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+</mat-table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>

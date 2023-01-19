@@ -16,16 +16,6 @@
   <div class="modal-body">
     <form [formGroup]="customerForm" *ngIf="customerForm" class="pt-3">
       <div class="form-group">
-        <!-- <input formControlName="name" type="text" class="form-control form-control-lg" placeholder="Name*" />
-       
-        <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert btn-danger">
-          <span>Name is required!</span>
-        </div> -->
-
-
-
-
-
         <input type="text" id="name" name="name" formControlName="name" placeholder="Name" required minlength="3" maxlength="25" class="form-control form-control-lg"  [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
         <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
           <div *ngIf="name.errors?.['required']">
@@ -37,9 +27,7 @@
           <div *ngIf="name.errors?.['maxlength']">
             This field must have at most 25 characters.
           </div>
-        </div>
-     
-
+        </div>  
       </div>
       <div class="form-group">
         <input formControlName="code" type="text" class="form-control form-control-lg" placeholder="Code" [class.is-invalid]="code.invalid && (code.dirty || code.touched)" />
@@ -52,11 +40,9 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary mr-2" [disabled]="customerForm.invalid" (click)="addNewCustomer()">
+    <button type="submit" class="btn btn-primary mr-2" (click)="addNewCustomer()">
       Create
     </button>
-
-
     <button (click)="modal.close('Save click')" type="reset" data-dismiss="modal" class="btn btn-danger">
       Cancel
     </button>

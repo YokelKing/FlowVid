@@ -147,7 +147,7 @@ export class JobassetCreateComponent implements OnInit {
 
   // Choose city using select dropdown
   changeCustomer(e) {
-    console.log(e.value)
+    
     this.customerId.setValue(e.target.value, {
       onlySelf: true
     })

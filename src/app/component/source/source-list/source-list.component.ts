@@ -71,7 +71,7 @@ export class SourceListComponent implements OnInit {
   loadSource() {
     this.sourceService.getAllSource().subscribe(
       (result) => {
-        console.log(result);
+        
         this.source = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set
