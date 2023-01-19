@@ -1,4 +1,5 @@
 export interface IJob {
+        [x: string]: any;
         id: number;
         customerId:number,
         teamId:number,
@@ -12,7 +13,7 @@ export interface IJob {
         jobProgressStatusID:number,
         jobTypeID:number,
         externalRefNo:number,
-        StartDate:any,
+        dateOpend:any,
         dateDue:any,
         dateClosed:any,
         jobTask:any,

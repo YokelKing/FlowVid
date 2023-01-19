@@ -1,7 +1,7 @@
-<app-job-create></app-job-create>
+<!-- <app-job-create></app-job-create> -->
 
 
-<!-- <button class="btn btn-primary" [routerLink]="['/jobs/job-create']">Add Job</button> -->
+<button class="btn btn-primary" [routerLink]="['/jobs/job-create']">Add Job</button>
 <div class="page-title">
   <h2>Jobs List</h2>
 </div>
@@ -15,14 +15,12 @@
 
 <div class="example-container mat-elevation-z8">
   <mat-table [dataSource]="dataSource" matSort>
-    <!-- ID Column -->
+
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
     </ng-container>
-
-     
-        <!-- Description Column -->
+    
         <ng-container matColumnDef="description">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Description </mat-header-cell>
           <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
@@ -90,27 +88,6 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.jobType.name }} </mat-cell>
     </ng-container>
-    
-    <!-- <ng-container matColumnDef="jobTask">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        jobTask
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.jobTask }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="jobDocument">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        jobDocument
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.jobDocument }} </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="resourceJobCost">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        resourceJobCost
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.resourceJobCost }} </mat-cell>
-    </ng-container> -->
     <ng-container matColumnDef="dateOpend">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         dateOpend
@@ -131,7 +108,7 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.dateClosed | date }} </mat-cell>
     </ng-container>
-    <!-- Status Column -->
+
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Status
@@ -139,7 +116,6 @@
       <mat-cell *matCellDef="let row"> {{ row.status }} </mat-cell>
     </ng-container>
 
-    <!-- Created Date Column -->
     <ng-container matColumnDef="createdDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Created Date
@@ -147,11 +123,10 @@
       <mat-cell *matCellDef="let row"> {{ row.createdDate | date }} </mat-cell>
     </ng-container>
 
-    <!-- Action Column -->
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <th mat-cell *matCellDef="let row">
-        <button (click)="editJob(row)" class="btn btn-primary">
+        <button [routerLink]="['/jobs/job-edit', row.id]" class="btn btn-primary">
           <i class="mdi mdi-account-plus"></i>
         </button>
         <button (click)="deleteJob(row)" class="btn btn-danger text-white">
