@@ -13,7 +13,7 @@ export interface IJob {
         jobProgressStatusID:number,
         jobTypeID:number,
         externalRefNo:number,
-        StartDate:any,
+        dateOpend:any,
         dateDue:any,
         dateClosed:any,
         jobTask:any,

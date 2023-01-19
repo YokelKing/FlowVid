@@ -185,14 +185,14 @@
           </div>
         </div>
         <div class="col-md form-group">
-          <label>External RefNo*</label>
+          <label>External RefNo</label>
           <input formControlName="externalRefNo" type="text" class="form-control form-control-sm"
             placeholder="externalRefNo" />
-            <div *ngIf="f.externalRefNo.touched && f.externalRefNo.invalid" class="alert alert-danger">
+            <!-- <div *ngIf="f.externalRefNo.touched && f.externalRefNo.invalid" class="alert alert-danger">
               <div *ngIf="f.externalRefNo.errors.required">
                 External RefNo is required.
               </div>
-            </div>
+            </div> -->
         </div>       
       </div>
     </div> 
@@ -201,8 +201,7 @@
         <div class="col-md-3">
           <mat-form-field class="wid-100">
             <mat-label>Start Date</mat-label>
-            <input matInput formControlName="StartDate" readonly [matDatepicker]="picker" 
-              (dateChange)="onStartDateChange($event)" [min]="minStartDate" [max]="maxStartDate">
+            <input matInput formControlName="dateOpend" readonly [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker">
             </mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
@@ -219,9 +218,8 @@
         </div> -->
         <div class="col-md-3">
           <mat-form-field class="wid-100">
-            <mat-label>End Date</mat-label>
-            <input matInput readonly [matDatepicker]="enddatepicker" formControlName="EndDate" 
-              (dateChange)="onEndDateChange($event)" [min]="minEndDate" [max]="maxEndDate">
+            <mat-label>Due Date</mat-label>
+            <input matInput readonly [matDatepicker]="enddatepicker" formControlName="dateDue">
             <mat-datepicker-toggle matSuffix [for]="enddatepicker">
             </mat-datepicker-toggle>
             <mat-datepicker #enddatepicker></mat-datepicker>
@@ -236,6 +234,16 @@
             <ngx-material-timepicker #endtimepicker></ngx-material-timepicker>
           </mat-form-field>
         </div> -->
+
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>Closed Date</mat-label>
+            <input matInput formControlName="dateClosed" readonly [matDatepicker]="dateClosedPicker">
+            <mat-datepicker-toggle matSuffix [for]="dateClosedPicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #dateClosedPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
        
   
   </div>
@@ -253,7 +261,7 @@
 </mat-tab>
 </mat-tab-group>
 <div class="modal-footer">
-  <button type="submit" class="btn btn-primary mr-2" (click)="addNewJob()">
+  <button type="submit" [disabled]="jobForm.invalid" class="btn btn-primary mr-2" (click)="addNewJob()">
     Create
   </button>
   <!-- <button class="btn btn-info " type="button" [disabled]="jobForm.invalid" 
