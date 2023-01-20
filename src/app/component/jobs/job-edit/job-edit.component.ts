@@ -77,15 +77,34 @@ export class JobEditComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.id = this.route.snapshot.params['id'];
+//     this.id = this.route.snapshot.params['id'];
 
   
 
-    this.JobsService.getJobById(this.id).subscribe(data => {
-      this.job = data;
+//     this.JobsService.getJobById(this.id).subscribe(data => {
 
-      console.log("JObs",this.job);
-    });
+      
+// //this.job.id = data.id;
+// this.job.customerId = data.customer.id;
+// this.job.divisionID = data.division.id;
+// this.job.teamId = data.team.id;
+// //this.jobDetails.resourceId = data.resource.id;
+// this.job.jobAssetID = data.jobAsset.id;
+// this.job.jobIssueTypeID = data.jobIssueType.id;
+// this.job.jobPriorityID = data.jobPriority.id;
+// this.job.jobSourceID = data.jobSource.id;    
+// this.job.jobProgressStatusID = data.jobProgressStatus.id;
+// this.job.jobTypeID = data.jobType.id;
+// this.job.externalRefNo = data.externalRefNo;  
+// this.job.dateOpend = data.dateOpend;
+// this.job.dateDue = data.dateDue;
+// this.job.dateClosed = data.dateClosed;
+// this.job.description = data.description;
+
+//      // this.job = data;
+
+//       //console.log("JObs",this.job);
+//     });
         
     this.setForm();
     this.loadCustomers();
@@ -380,37 +399,44 @@ export class JobEditComponent implements OnInit {
 
   public setForm() {
     this.editForm = this.fb.group({
-      id: this.route.snapshot.params['id'],
+      // id: this.route.snapshot.params['id'],
 
-      description: ["",Validators.required],
-      customerId: ["",Validators.required],
-      teamId: ["",Validators.required],
-      resourceId: ["",Validators.required],
-      divisionID: ["",Validators.required],
-      jobAssetID: ["",Validators.required],
-      jobIssueTypeID: ["",Validators.required],
-      jobPriorityID: ["",Validators.required],
-      jobSourceID: ["",Validators.required],
-      jobProgressStatusID: ["",Validators.required],
-      externalRefNo: ["",Validators.required],
-      jobTypeID: ["",Validators.required],
-      dateClosed: ["",Validators.required],
-      dateDue: ["",Validators.required],
-      dateOpend: ["",Validators.required],
-      
+      // description: ["",Validators.required],
+      // customerId: ["",Validators.required],
+      // teamId: ["",Validators.required],
+      // resourceId: ["",Validators.required],
+      // divisionID: ["",Validators.required],
+      // jobAssetID: ["",Validators.required],
+      // jobIssueTypeID: ["",Validators.required],
+      // jobPriorityID: ["",Validators.required],
+      // jobSourceID: ["",Validators.required],
+      // jobProgressStatusID: ["",Validators.required],
+      // externalRefNo: ["",Validators.required],
+      // jobTypeID: ["",Validators.required],
+      // dateClosed: ["",Validators.required],
+      // dateDue: ["",Validators.required],
+      // dateOpend: ["",Validators.required],
 
-    //   description: [this.job.description ,Validators.required],
-    //   customerId: [this.job.customer.id,Validators.required],
-    //   teamId: [this.job.team.id,Validators.required],
-    //  // resourceId: [this.job.resource.id,Validators.required],
-    //   divisionID: [this.job.division.id,Validators.required],
-    //   jobAssetID: [this.job.jobAsset.id,Validators.required],
-    //   jobIssueTypeID: [this.job.jobIssueType.id,Validators.required],
-    //   jobPriorityID: [this.job.jobPriority.id, Validators.required],
-    //   jobSourceID: [this.job.jobSource.id, Validators.required],
-    //   jobProgressStatusID: [this.job.jobProgressStatus.id, Validators.required],
-    //   externalRefNo: [this.job.externalRefNo],
-    //   jobTypeID: [this.job.jobType.id, Validators.required],
+      // id: [this.teamresource.id],
+      // teamId: [this.teamresource.teamId, Validators.required],
+      // resourceId: [this.teamresource.resourceId, Validators.required],
+
+      id: [this.job.id],
+      description: [this.job.description ,Validators.required],
+      customerId: [this.job.customerId,Validators.required],
+      teamId: [this.job.teamId,Validators.required],
+     // resourceId: [this.job.resource.id,Validators.required],
+      divisionID: [this.job.divisionID,Validators.required],
+      jobAssetID: [this.job.jobAssetID,Validators.required],
+      jobIssueTypeID: [this.job.jobIssueTypeID,Validators.required],
+      jobPriorityID: [this.job.jobPriorityID, Validators.required],
+      jobSourceID: [this.job.jobSourceID, Validators.required],
+      jobProgressStatusID: [this.job.jobProgressStatusID, Validators.required],
+      externalRefNo: [this.job.externalRefNo],
+      jobTypeID: [this.job.jobTypeID, Validators.required],
+      dateClosed: [this.job.dateClosed],
+      dateDue: [this.job.dateDue],
+      dateOpend: [this.job.dateOpend,Validators.required],
     });
   }
 }
