@@ -13,7 +13,6 @@
         <div class="col-md form-group">
           <label>Customer Name*</label>
           <select formControlName="customerId" class="form-control form-control-sm" (change)="changeCustomer($event)">
-            <option value="" disabled selected>Select Customer</option>
             <option *ngFor="let cust of customers" [value]="cust.id" class="form-control form-control-sm">
               {{ cust.name }}
             </option>
@@ -27,8 +26,7 @@
         <div class="col-md form-group">
           <label>Team Name*</label>
           <select formControlName="teamId" class="form-control form-control-sm" (change)="changeTeam($event)">
-            <option value="" disabled selected>Select Team</option>
-            <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
+                  <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
               {{team.name}}
             </option>
           </select>
@@ -38,18 +36,17 @@
         </div>
 
 
-       <div class="col-md form-group">
+       <!-- <div class="col-md form-group">
           <label>Resource Name*</label>
           <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
-            <option value="" disabled selected>Select Resource</option>
-            <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
+                    <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
               {{data.name}}
             </option>
           </select>
           <div *ngIf="editFormData.resourceId.touched && editFormData.resourceId.invalid" class="alert alert-danger">
             <div *ngIf="editFormData.resourceId.errors.required">Resource Name is required.</div>
           </div>
-        </div> 
+        </div>  -->
 
        </div>
     </div>
@@ -58,8 +55,7 @@
         <div class="col-md form-group">
           <label>Division Name*</label>
           <select formControlName="divisionID" class="form-control form-control-sm" (change)="changeDivision($event)">
-            <option value="" disabled selected>Select Division</option>
-            <option *ngFor="let data of divisions" [value]="data.id" class="form-control form-control-sm">
+                     <option *ngFor="let data of divisions" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
           </select>
@@ -72,8 +68,7 @@
         <div class="col-md form-group">
           <label>jobAsset Name*</label>
           <select formControlName="jobAssetID" class="form-control form-control-sm" (change)="changeJobAsset($event)">
-            <option value="" disabled selected>Select jobAsset</option>
-            <option *ngFor="let data of assets" [value]="data.id" class="form-control form-control-sm">
+                      <option *ngFor="let data of assets" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
           </select>
@@ -86,7 +81,6 @@
           <label>jobIssueType Name*</label>
           <select formControlName="jobIssueTypeID" class="form-control form-control-sm"
             (change)="changeJobIssueType($event)">
-            <option value="" disabled selected>Select jobIssueType</option>
             <option *ngFor="let data of types" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
@@ -102,7 +96,6 @@
           <label>jobPriority Name*</label>
           <select formControlName="jobPriorityID" class="form-control form-control-sm"
             (change)="changeJobPriority($event)">
-            <option value="" disabled selected>Select jobPriority</option>
             <option *ngFor="let data of priority" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
@@ -122,8 +115,7 @@
         <div class="col-md form-group">
           <label>jobSource Name*</label>
           <select formControlName="jobSourceID" class="form-control form-control-sm" (change)="changeJobSource($event)">
-            <option value="" disabled selected>Select jobSource</option>
-            <option *ngFor="let data of sources" [value]="data.id" class="form-control form-control-sm">
+                  <option *ngFor="let data of sources" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
           </select>
@@ -137,8 +129,7 @@
           <label>jobProgressStatus Name*</label>
           <select formControlName="teamId" class="form-control form-control-sm"
             (change)="changeJobProgressStatus($event)">
-            <option value="" disabled selected>Select jobProgressStatus</option>
-            <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
+                   <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
           </select>
@@ -150,8 +141,7 @@
         <div class="col-md form-group">
           <label>jobType Name*</label>
           <select formControlName="jobTypeID" class="form-control form-control-sm" (change)="changeJobType($event)">
-            <option value="" disabled selected>Select jobType</option>
-            <option *ngFor="let data of jobtypes" [value]="data.id" class="form-control form-control-sm">
+                  <option *ngFor="let data of jobtypes" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
           </select>
