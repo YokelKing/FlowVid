@@ -100,45 +100,7 @@ export class JobsListComponent implements OnInit {
   }
 
   editJob(data: IJob): void {
-
-this.jobDetails.id = data.id;
-this.jobDetails.customerId = data.customer.id;
-this.jobDetails.divisionID = data.division.id;
-this.jobDetails.teamId = data.team.id;
-//this.jobDetails.resourceId = data.resource.id;
-this.jobDetails.jobAssetID = data.jobAsset.id;
-this.jobDetails.jobIssueTypeID = data.jobIssueType.id;
-this.jobDetails.jobPriorityID = data.jobPriority.id;
-this.jobDetails.jobSourceID = data.jobSource.id;    
-this.jobDetails.jobProgressStatusID = data.jobProgressStatus.id;
-this.jobDetails.jobTypeID = data.jobType.id;
-this.jobDetails.externalRefNo = data.externalRefNo;  
-this.jobDetails.dateOpend = data.dateOpend;
-this.jobDetails.dateDue = data.dateDue;
-this.jobDetails.dateClosed = data.dateClosed;
-this.jobDetails.description = data.description;
-
-
-
-
- //this.router.navigate(['jobs/job-edit/' + this.jobDetails.id]);
-
-    const ref = this.modalService.open(JobEditComponent, {
-      size: 'xl',
-      centered: true,
-    });
-    ref.componentInstance.job = this.jobDetails;
-
-    ref.result.then(
-      (yes) => {
-        console.log("Yes Click");
-
-        this.loadJobs();
-      },
-      (cancel) => {
-        console.log("Cancel Click");
-      }
-    );
+this.router.navigate(['jobs/job-edit/' + data.id]);
   }
   deleteJob(data: IJob): void {
     Swal.fire({
