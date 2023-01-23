@@ -195,8 +195,14 @@
             <mat-datepicker #dateClosedPicker></mat-datepicker>
           </mat-form-field>
         </div>
-       
-  
+
+        <div class="col-md-2">
+        <button (click)="AddTask(row)" class="btn btn-success">
+          Add Task 
+        </button>
+
+        </div>
+
   </div>
       </div>
 <div>
@@ -205,11 +211,11 @@
   </form>
 </div>
 </mat-tab>
-<mat-tab label="Task">
+<!-- <mat-tab label="Task">
 <div>
   Add Job Task here 
 </div>
-</mat-tab>
+</mat-tab> -->
 </mat-tab-group>
 <div class="modal-footer">
   <button type="submit" [disabled]="jobForm.invalid" class="btn btn-primary mr-2" (click)="addNewJob()">
@@ -223,164 +229,3 @@
 </div>
   
 </div>
-
-<!-- <div class="page-title">
-<h2>Jobs List</h2>
-</div>
-
-<h4 *ngIf="!jobs"><em>Loading ...</em></h4>
-<div class="example-header">
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
-</mat-form-field>
-</div>
-
-<div class="example-container mat-elevation-z8">
-<mat-table [dataSource]="dataSource" matSort>
- 
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
-  </ng-container>
-
-   
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Description </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
-      </ng-container> 
-      
-  <ng-container matColumnDef="customer">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      customer
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.customer.name }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="division">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      division
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.division.name }} </mat-cell>
-  </ng-container>
-  
-  <ng-container matColumnDef="jobAsset">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      jobAsset
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.jobAsset.name }} </mat-cell>
-  </ng-container>
-
-  
-  <ng-container matColumnDef="jobIssueType">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      jobIssueType
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.jobIssueType.name }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="jobPriority">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      jobPriority
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.jobPriority.name }} </mat-cell>
-  </ng-container>
-  
-  <ng-container matColumnDef="jobSource">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      jobSource
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.jobSource.name }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="team">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      team
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row" >-- {{ row.team.name }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="jobProgressStatus">
-    <mat-header-cell *matHeaderCellDef mat-sort-header >
-      jobProgressStatus
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.jobProgressStatus.name }} </mat-cell>
-  </ng-container>
-  
-  <ng-container matColumnDef="jobType">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      jobType
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.jobType.name }} </mat-cell>
-  </ng-container>
-  
- <ng-container matColumnDef="jobTask">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      jobTask
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.jobTask }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="jobDocument">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      jobDocument
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.jobDocument }} </mat-cell>
-  </ng-container>
-  
-  <ng-container matColumnDef="resourceJobCost">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      resourceJobCost
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.resourceJobCost }} </mat-cell>
-  </ng-container> 
-  <ng-container matColumnDef="dateOpend">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      dateOpend
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.dateOpend | date }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="dateDue">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      dateDue
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.dateDue | date }} </mat-cell>
-  </ng-container>
-  
-  <ng-container matColumnDef="dateClosed">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      dateClosed
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.dateClosed | date }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="status">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      Status
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.status }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="createdDate">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      Created Date
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.createdDate | date }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef>Action</th>
-    <th mat-cell *matCellDef="let row">
-      <button (click)="editJob(row)" class="btn btn-primary">
-        <i class="mdi mdi-account-plus"></i>
-      </button>
-      <button (click)="deleteJob(row)" class="btn btn-danger text-white">
-        <i class="mdi mdi-delete me-2"></i>
-      </button>
-    </th>
-  </ng-container>
-
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
-</mat-table>
-
-<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div> -->
