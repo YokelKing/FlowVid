@@ -93,7 +93,7 @@ export class JobassetsListComponent implements OnInit {
   loadJobassets() {
     this.jobassetService.getAllJobassets().subscribe(
       (result) => {
-        console.log(result);
+        
         this.jobassets = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set

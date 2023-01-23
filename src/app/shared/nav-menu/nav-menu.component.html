@@ -1,6 +1,6 @@
 <li *ngIf="item" [ngClass]="{'active': item && item.route ? router.isActive(item.route, true): false}">
   <a (click)="onItemSelected(item)" class="dropdown-list">
-    <!-- <i class="menu-icon fa fa-cogs"></i> -->
+    <i class="{{item.iconName}}"> </i>
     <span class="menu-name">{{item.displayName}}</span>
     <i class="fa fa-chevron-down" [@indicatorRotate]="expanded ? 'expanded': 'collapsed'" *ngIf="item.children && item.children.length">
     </i>

@@ -193,7 +193,7 @@ export class LocationCreateComponent implements OnInit {
 
   // Choose customer using select dropdown
   changeCustomer(e) {
-    console.log(e.value)
+    
     this.customerId.setValue(e.target.value, {
       onlySelf: true
     })

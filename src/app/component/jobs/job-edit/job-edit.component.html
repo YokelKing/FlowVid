@@ -1,19 +1,8 @@
-<!-- <div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">
-    Update Job</h4>
-  <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
-    <span aria-hidden="true">×</span>
-  </button>
-</div> -->
 
 <h4 class="title">
   Update Job</h4>
-  <div class="modal-body">
-    
-
-    
+  <div class="modal-body">    
   <form [formGroup]="editForm" *ngIf="editForm" class="pt-3">
-
     <div class="container">
       <div class="row">
         <div class="col-md form-group">
@@ -24,7 +13,6 @@
         <div class="col-md form-group">
           <label>Customer Name*</label>
           <select formControlName="customerId" class="form-control form-control-sm" (change)="changeCustomer($event)">
-            <option value="" disabled selected>Select Customer</option>
             <option *ngFor="let cust of customers" [value]="cust.id" class="form-control form-control-sm">
               {{ cust.name }}
             </option>
@@ -35,13 +23,10 @@
             </div>
           </div>
         </div>
-
-
         <div class="col-md form-group">
           <label>Team Name*</label>
           <select formControlName="teamId" class="form-control form-control-sm" (change)="changeTeam($event)">
-            <option value="" disabled selected>Select Team</option>
-            <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
+                  <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
               {{team.name}}
             </option>
           </select>
@@ -51,18 +36,17 @@
         </div>
 
 
-        <div class="col-md form-group">
+       <!-- <div class="col-md form-group">
           <label>Resource Name*</label>
           <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
-            <option value="" disabled selected>Select Resource</option>
-            <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
+                    <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
               {{data.name}}
             </option>
           </select>
           <div *ngIf="editFormData.resourceId.touched && editFormData.resourceId.invalid" class="alert alert-danger">
             <div *ngIf="editFormData.resourceId.errors.required">Resource Name is required.</div>
           </div>
-        </div>
+        </div>  -->
 
        </div>
     </div>
@@ -71,8 +55,7 @@
         <div class="col-md form-group">
           <label>Division Name*</label>
           <select formControlName="divisionID" class="form-control form-control-sm" (change)="changeDivision($event)">
-            <option value="" disabled selected>Select Division</option>
-            <option *ngFor="let data of divisions" [value]="data.id" class="form-control form-control-sm">
+                     <option *ngFor="let data of divisions" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
           </select>
@@ -85,8 +68,7 @@
         <div class="col-md form-group">
           <label>jobAsset Name*</label>
           <select formControlName="jobAssetID" class="form-control form-control-sm" (change)="changeJobAsset($event)">
-            <option value="" disabled selected>Select jobAsset</option>
-            <option *ngFor="let data of assets" [value]="data.id" class="form-control form-control-sm">
+                      <option *ngFor="let data of assets" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
           </select>
@@ -99,7 +81,6 @@
           <label>jobIssueType Name*</label>
           <select formControlName="jobIssueTypeID" class="form-control form-control-sm"
             (change)="changeJobIssueType($event)">
-            <option value="" disabled selected>Select jobIssueType</option>
             <option *ngFor="let data of types" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
@@ -115,7 +96,6 @@
           <label>jobPriority Name*</label>
           <select formControlName="jobPriorityID" class="form-control form-control-sm"
             (change)="changeJobPriority($event)">
-            <option value="" disabled selected>Select jobPriority</option>
             <option *ngFor="let data of priority" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
@@ -135,8 +115,7 @@
         <div class="col-md form-group">
           <label>jobSource Name*</label>
           <select formControlName="jobSourceID" class="form-control form-control-sm" (change)="changeJobSource($event)">
-            <option value="" disabled selected>Select jobSource</option>
-            <option *ngFor="let data of sources" [value]="data.id" class="form-control form-control-sm">
+                  <option *ngFor="let data of sources" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
           </select>
@@ -150,8 +129,7 @@
           <label>jobProgressStatus Name*</label>
           <select formControlName="teamId" class="form-control form-control-sm"
             (change)="changeJobProgressStatus($event)">
-            <option value="" disabled selected>Select jobProgressStatus</option>
-            <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
+                   <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
           </select>
@@ -163,8 +141,7 @@
         <div class="col-md form-group">
           <label>jobType Name*</label>
           <select formControlName="jobTypeID" class="form-control form-control-sm" (change)="changeJobType($event)">
-            <option value="" disabled selected>Select jobType</option>
-            <option *ngFor="let data of jobtypes" [value]="data.id" class="form-control form-control-sm">
+                  <option *ngFor="let data of jobtypes" [value]="data.id" class="form-control form-control-sm">
               {{ data.name }}
             </option>
           </select>
@@ -175,9 +152,9 @@
           </div>
         </div>
         <div class="col-md form-group">
-          <label>externalRefNo*</label>
+          <label>externalRefNo</label>
           <input formControlName="externalRefNo" type="text" class="form-control form-control-sm"
-            placeholder="externalRefNo" />
+            placeholder="external RefNo" />
         </div>
 
       </div>
@@ -185,29 +162,36 @@
     <div class="container">
       <div class="row">
        
-        <div class="col-md form-group">
-          <label>Date Open</label>
-          <input formControlName="dateOpend" id="date" type="date" class="form-control form-control-sm"
-          placeholder="dd-mm-yyyy" />
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>Start Date</mat-label>
+            <input matInput formControlName="dateOpend" readonly [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </div>
 
-        <div class="col-md form-group">
-          <label>Date Due</label>
-          <input formControlName="dateDue" type="date" class="form-control form-control-sm"
-            placeholder="dd-mm-yyyy" />
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>Due Date</mat-label>
+            <input matInput readonly [matDatepicker]="enddatepicker" formControlName="dateDue">
+            <mat-datepicker-toggle matSuffix [for]="enddatepicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #enddatepicker></mat-datepicker>
+          </mat-form-field>
         </div>
 
-        <div class="col-md form-group">
-          <label>Date Closed</label>
-          <input formControlName="dateClosed" type="date" class="form-control form-control-sm"
-            placeholder="dd-mm-yyyy" />
-        </div>  
-
-        
-  
-
-
-      </div>
+        <div class="col-md-3">
+          <mat-form-field class="wid-100">
+            <mat-label>Closed Date</mat-label>
+            <input matInput formControlName="dateClosed" readonly [matDatepicker]="dateClosedPicker">
+            <mat-datepicker-toggle matSuffix [for]="dateClosedPicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #dateClosedPicker></mat-datepicker>
+          </mat-form-field>
+        </div>    
+        </div>
     </div> 
 
   </form>

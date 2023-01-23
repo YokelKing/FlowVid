@@ -71,7 +71,6 @@ export class CustomersListComponent implements OnInit {
   loadCustomers() {
     this.customerService.getAllCustomers().subscribe(
       (result) => {
-        console.log(result);
         this.customers = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set

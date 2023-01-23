@@ -71,7 +71,7 @@ export class PriorityListComponent implements OnInit {
   loadPriority() {
     this.priorityService.getAllPriority().subscribe(
       (result) => {
-        console.log(result);
+        
         this.priority = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set

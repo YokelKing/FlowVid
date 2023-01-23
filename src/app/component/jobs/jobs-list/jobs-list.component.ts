@@ -25,6 +25,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
   styleUrls: ["./jobs-list.component.scss"],
 })
 export class JobsListComponent implements OnInit {
+ jobDetails: any = {};
   jobs: IJob[];
   public displayedColumns: string[] = [
     "id",
@@ -85,7 +86,7 @@ export class JobsListComponent implements OnInit {
   loadJobs() {
     this.jobService.getAllJobs().subscribe(
       (result) => {
-        console.log(result);
+        
         this.jobs = result;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set
@@ -99,22 +100,7 @@ export class JobsListComponent implements OnInit {
   }
 
   editJob(data: IJob): void {
-    const ref = this.modalService.open(JobEditComponent, {
-      size: 'xl',
-      centered: true,
-    });
-    ref.componentInstance.job = data;
-
-    ref.result.then(
-      (yes) => {
-        console.log("Yes Click");
-
-        this.loadJobs();
-      },
-      (cancel) => {
-        console.log("Cancel Click");
-      }
-    );
+this.router.navigate(['jobs/job-edit/' + data.id]);
   }
   deleteJob(data: IJob): void {
     Swal.fire({
