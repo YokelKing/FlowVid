@@ -22,16 +22,15 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { TaskCreateComponent } from '../task-create/task-create.component';
 
 
 @Component({
-  selector: 'app-job-create',
-  templateUrl: './job-create.component.html',
-  styleUrls: ['./job-create.component.scss'],
+  selector: 'app-task-create',
+  templateUrl: './task-create.component.html',
+  styleUrls: ['./task-create.component.scss'],
   providers: [DatePipe]
 })
-export class JobCreateComponent implements OnInit {
+export class TaskCreateComponent implements OnInit {
 
   [x: string]: any;
   title: string;
@@ -97,6 +96,23 @@ export class JobCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.jobForm = new FormGroup({
+
+      name: new FormControl(this.job.name, [
+        Validators.required
+      ]),
+
+
+      code: new FormControl(this.job.code, [
+        Validators.required
+      ]),
+
+
+      type: new FormControl(this.job.type, [
+        Validators.required
+      ]),
+      comment: new FormControl(this.job.comment, [
+        Validators.required
+      ]),
     
       description: new FormControl(this.job.description, [
         Validators.required
@@ -239,7 +255,8 @@ export class JobCreateComponent implements OnInit {
    
 
     const ref = this.modalService.open(TaskCreateComponent, {
-   
+      size: 'xl',
+      centered: true,
     });
     ref.componentInstance.job = data;
 
@@ -428,7 +445,17 @@ loadJobTypes() {
 
 
 
+get name() {
+  return this.jobForm.get('code')!;
+}
 
+get code() {
+  return this.jobForm.get('code')!;
+}
+
+get type() {
+  return this.jobForm.get('type')!;
+}
 
   get description() {
     return this.jobForm.get('description')!;
@@ -589,157 +616,5 @@ loadJobTypes() {
       })
     }
   
-    // public onStartDateChange(event: MatDatepickerInputEvent<Date>): void {
-    //   //debugger;
-    //   this.minEndDate = new Date(event.value);
-    //   let selectedEndDate = this.jobForm.controls["EndDate"].value;
-    //   if (selectedEndDate != "") {
-    //     this.jobForm.patchValue({
-    //       EndDate: ""
-    //     });
-    //   }
-    // }
-  
-    // public onEndDateChange(event: MatDatepickerInputEvent<Date>): void {
-    //   if (this.datePipe.transform(new Date(event.value), 'dd/MM/yyyy') == "") return;
-    //   if (this.IsDateSame()) {
-    //     let startTime = this.jobForm.controls["StartTime"].value;;
-    //     let endTime = this.jobForm.controls["EndTime"].value;
-    //     if (!(startTime == "" || endTime == "") && startTime >= endTime) {
-    //       this.jobForm.patchValue({
-    //         EndTime: ""
-    //       });
-    //     }
-    //   }
-    // }
-  
-    /*
-    fxn to check start and end time are valid 
-    start time depends on end date  and end date
-    */
-    // onStartTimeChange(startTime) {
-    //   if (this.isUpdating || startTime == "") return;
-    //   let endTime = this.jobForm.controls["EndTime"].value;
-  
-    //   if (endTime != "") {
-    //     this.jobForm.patchValue({
-    //       EndTime: ""
-    //     });
-    //   }
-  
-    // }
-  
-    /**
-     *  if end time value blank returns
-     * checks if start & end date are not blank
-     * and same and start time is not blank
-     */
-    // onEndTimeChange(endTime) {
-    //   if (this.isUpdating || endTime == "") return;
-    //   let startTime = this.jobForm.controls["StartTime"].value;
-  
-    //   if (startTime != "" && this.IsDateSame()) {
-    //     this.ValidateAndUpdateEndTime(startTime, endTime);
-    //   }
-    // }
-  
-    // ValidateAndUpdateEndTime(startTime, endTime) {
-    //   let selectedStartDate = this.getFormattedDate(this.jobForm.controls["StartDate"].value);
-    //   let selectedEndDate = this.getFormattedDate(this.jobForm.controls["EndDate"].value);
-    //   let startDTime; let endDTime;
-    //   startDTime = this.formatDateAndTime(selectedStartDate, startTime);
-    //   endDTime = this.formatDateAndTime(selectedEndDate, endTime);
-    //   if (startDTime != "" && endDTime != "" &&
-    //     startDTime.getTime() >= endDTime.getTime()) {
-    //     this.jobForm.patchValue({
-    //       EndTime: ""
-    //     });
-    //   }
-    // }
-  
-    // formatDateAndTime(date, time): any {
-    //   if (date != "" && time != "") {
-    //     return (new Date(date.toString().concat(" ", time)));
-    //   }
-    //   return ""
-    // }
-  
-    // IsDateSame(): Boolean {
-    //   let selectedStartDate = this.getFormattedDate(this.jobForm.controls["StartDate"].value);
-    //   let selectedEndDate = this.getFormattedDate(this.jobForm.controls["EndDate"].value);
-  
-    //   if (selectedStartDate != "" && selectedEndDate != "" && selectedStartDate == selectedEndDate) {
-    //     { return true; }
-    //   }
-    //   return false;
-    // }
-  
-    /*
-    formats & returns form control date value into dd/MM/yyyy format
-    */
-    // getFormattedDate(fcDate): any {
-    //   if (fcDate != undefined && fcDate != "" && fcDate != null)
-    //     return (this.datePipe.transform(new Date(fcDate), 'dd/MM/yyyy'));
-    //   return "";
-    // }
-  
-    
- /*
-  render time picker UI as per the updated time value
-  */
-  // SetStartTimeOnFocus() {
-  //   if (!this.isUpdating) {
-  //     let selectedStartDate = this.datePipe.transform(this.jobForm.controls["StartDate"].value,
-  //       'yyyy-MM-dd');
-  //     var currentTime = this.ConvertTimeStringIntoNumber(this.datePipe.transform(new Date().getTime(),
-  //       'hh:mm a'));
-  //     var startDateObj = new Date(selectedStartDate + ' ' + currentTime);
-  //     var currentDateObj = new Date(this.datePipe.transform(new Date(), 'yyyy-MM-dd') + ' ' + currentTime);
-
-  //     if (startDateObj > currentDateObj) {
-  //       this.minStartTime = null;
-  //     }
-  //     else {
-  //       this.minStartTime = (new Date()).toLocaleString('en-US',
-  //         { hour: 'numeric', minute: 'numeric', hour12: true });
-  //     }
-  //   }
-  // }
-
-  // SetEndTimeOnFocus() {
-  //   if (!this.isUpdating) {
-  //     let selectedEndDate = this.datePipe.transform(this.jobForm.controls["EndDate"].value,
-  //       'yyyy-MM-dd');
-  //     var currentTime = this.ConvertTimeStringIntoNumber(this.datePipe.transform(new Date().getTime(),
-  //       'hh:mm a'));
-  //     var endDateObj = new Date(selectedEndDate + ' ' + currentTime);
-  //     var currentDateObj = new Date(this.datePipe.transform(new Date(), 'yyyy-MM-dd') + ' ' + currentTime);
-
-  //     if (endDateObj > currentDateObj) {
-  //       if (this.IsDateSame()) {
-  //         this.minEndTime = this.GetEndTime(endDateObj).toLocaleString('en-US',
-  //           { hour: 'numeric', minute: 'numeric', hour12: true });
-  //       }
-  //       else {
-  //         this.minEndTime = null;
-  //       }
-  //     }
-  //     else {
-  //       this.minEndTime = this.GetEndTime(new Date()).toLocaleString('en-US',
-  //         { hour: 'numeric', minute: 'numeric', hour12: true });
-  //     }
-  //   }
-  // }
-
-  // ConvertTimeStringIntoNumber(time) {
-  //   var matches = time.toLowerCase().match(/(\d{1,2}):(\d{2}) ([ap]m)/);
-  //   var output = (parseInt(matches[1]) + (matches[3] == 'pm' ? 12 : 0)) + ':' + matches[2] + ':00';
-  //   return output;
-  // }
-
-  // GetEndTime(date) {
-  //   date.setMinutes(date.getMinutes() + 5);
-  //   return date;
-  // }
 
 }
