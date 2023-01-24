@@ -17,6 +17,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { TaskCreateComponent } from './task-create/task-create.component';
 const routes: Routes = [
   { path: 'jobs-list', component: JobsListComponent },
   { path: 'job-create', component: JobCreateComponent },
@@ -33,7 +34,8 @@ const materialModules = [
   declarations: [
     JobEditComponent,
     JobsListComponent,
-    JobCreateComponent
+    JobCreateComponent,
+    TaskCreateComponent
   ],
   imports: [
     CommonModule,
