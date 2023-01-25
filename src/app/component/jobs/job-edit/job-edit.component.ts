@@ -134,12 +134,15 @@ export class JobEditComponent implements OnInit {
 
 
           this.modal.close("Yes");
+          
+    this.router.navigate([`jobs/jobs-list`]);
         },
         (error) => {
           this.isSubmitted = false;
         }
       );
-    this.editForm.reset();
+    this.editForm.reset();   
+
   }
 
 
