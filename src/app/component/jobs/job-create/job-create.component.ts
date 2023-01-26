@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IJob } from 'src/app/shared/models/jobs';
@@ -160,6 +160,9 @@ export class JobCreateComponent implements OnInit {
       dateClosed: new FormControl(this.job.dateClosed, [
        
       ]),
+
+      jobTask: this.fb.array([])
+
  
       
 
@@ -187,6 +190,40 @@ export class JobCreateComponent implements OnInit {
   get f(): { [key: string]: AbstractControl } {
     return this.jobForm.controls;
   }
+
+
+
+
+
+
+
+
+  jobTasks(): FormArray {
+
+    return this.jobForm.get('jobTask') as FormArray;
+  }
+
+  newTask(): FormGroup {
+    return this.fb.group({
+      dateDue:'',
+      description: '',
+      jobProgressStatusID:'',
+      status: ''
+    });
+  }
+
+  addJobTask() {
+    this.jobTasks().push(this.newTask());
+  }
+
+  removeJobTask(taskIndex: number) {
+    this.jobTasks().removeAt(taskIndex);
+  }
+
+
+
+
+
   Task(type: string)
   {
       if (type.toLowerCase() == "next") {

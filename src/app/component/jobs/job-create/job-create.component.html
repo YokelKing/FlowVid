@@ -197,10 +197,37 @@
         </div>
 
         <div class="col-md-2">
-        <button (click)="AddTask(row)" class="btn btn-success">
+        <!-- <button (click)="AddTask(row)" class="btn btn-success">
           Add Task 
+        </button> -->
+
+        <button type="button" (click)="addJobTask()">
+          Add Task
         </button>
 
+        </div>
+
+
+
+        <div formArrayName="jobTask">
+          <div
+            *ngFor="let task of jobTasks().controls; let taskIndex=index"
+          >
+            <div [formGroupName]="taskIndex">
+             
+              <input type="date" formControlName="dateDue" placeholder="Due Date" /> &nbsp;&nbsp;
+            
+              <input type="text" formControlName="jobProgressStatusID" placeholder="ProgressStatusID" /> &nbsp;&nbsp;
+              <input type="text" formControlName="description" placeholder="Description" /> &nbsp;&nbsp;
+            
+              <input type="text" formControlName="status" placeholder="Status" /> &nbsp;&nbsp;
+              &nbsp;&nbsp; &nbsp;&nbsp;
+              <button (click)="removeJobTask(taskIndex)">
+                Remove
+              </button>
+            </div>
+            <br><br>
+          </div>
         </div>
 
   </div>
