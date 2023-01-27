@@ -42,7 +42,7 @@
     .fa-chevron-down{
       position: absolute;
       right: 10px;
-      top: 6px;
+      top: 9px;
       &::after{
         border-top: 0;
         border-right: 0;
@@ -58,8 +58,24 @@
         font-size: 1rem;
       }
     }
+    i.mdi {
+      width: 30px;
+      height: 30px;
+      background: #133a7220;
+      color: #133a7290;
+      display: inline-block;
+      text-align: center;
+      line-height: 30px;
+      font-size: 20px;
+      border-radius: 100%;
+      margin-right: 10px;
+      vertical-align: middle;
+  }
+
   }
   .sub-menu {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     list-style: none;
     padding:0 10px 0 15px !important;
     .dropdown-list {
@@ -75,8 +91,3 @@
     background: none !important;
   }
 
-  .menu-name {
-text-transform: capitalize;
-width: 120px;
-
-  }

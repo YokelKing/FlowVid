@@ -1,47 +1,110 @@
-
-   <!-- <body > -->
-       <div class="card" style="width: 50rem; margin-left: 300px;margin-top: 150px;">
-        <img class="card-img-top" 
-        src="assets/images/logo.svg"
-         alt="Card image cap" >
-      
-   
-      <div class="card-body" >
-        <button  [routerLink]="['/user-pages/login']" 
-        class="btn btn-facebook " style="margin-right: 7px;margin-left:300px;">Sign In</button>
-        <button   [routerLink]="['/user-pages/register']" 
-        class="btn btn-default" style=" color: white;background-color: black;">Sign Up</button>
-     </div> 
-    </div>
-    
-   
-     <!-- <nav class="navbar navbar-expand-lg  navbar-light bg-light " >
-    
-        <a class="navbar-brand brand-logo-mini" routerLink="/"><img src="assets/images/Logo-mini.svg" alt="" /></a>
-       <button  [routerLink]="['/user-pages/login']" 
-       class="btn btn-facebook " style="margin-right: 3px;">Sign In</button>
-       <button   [routerLink]="['/user-pages/register']" 
-       class="btn btn-facebook ">Sign Up</button>
-  
-      </nav
-      <!-- Header -->
-<!-- <header class="w3-display-container w3-content w3-wide" style="max-width:50px;" id="home">
-    <img class="w3-image" src="assets/images/logo.svg" alt="Hamburger Catering" width="800" height="800">
-    <div class="w3-display-bottomleft w3-padding-large w3-opacity">
-      <h1 class="w3-xxlarge">Le Catering</h1>
-    </div>
-  </header> -->
-  <!-- Page content -->
-
-  <!-- Footer -->
-  
-  <!-- <footer style="margin-top: 100px;" class="w3-center w3-light-grey w3-padding-32">
-    <nav class="navbar fixed-bottom navbar-light bg-light">
-        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">FlowVid</a></p>
+<div class="mainHome">
+<div class="mainBanner">
+  <header>
+    <div class="container">
+<a href="#" class="brandLogo">
+  <img src="assets/images/logo.svg"   alt="FlowVid" >
+</a>
+<ul>
+  <li><a href="#">Service</a></li> 
+  <li><a href="#">Features</a></li>
+</ul>
+<div class="navRight">
+  <button   [routerLink]="['/user-pages/register']" 
+  class="btn btn-default">Sign Up</button>
+  <button  [routerLink]="['/user-pages/login']" 
+  class="btn btn-primary" >Sign In</button>
+</div>
+</div>
+  </header>
  
-    </nav>
-     </footer>   -->
+  <div class="bannerCaption">
+    <div class="container">
+      <div class="bannerDesc">
+    <h2>Best way to manage your <span>Customers</span>.</h2>
+    <p>Lorem Ipsum is simply dummy text of the printing and setting indus orem Ipsum has been the industrys.</p>
+  <p>
+    <span><i class="mdi mdi-check-circle"></i> Free trial 14 days</span>
+    <span><i class="mdi mdi-check-circle"></i> Free trial 14 days</span>
+  </p>
+  <a href="#" class="btn btn-primary">Get Started</a>
+  </div>
+</div>
+  <div class="bannerImage">
+    <img src="assets/images/homeBanner.png" />
+  </div>
+</div>
+
+</div>
+<div class="midSection">
+  <div class="serviceCot">
+<h2 class="headTitle center">Features that makes app different!</h2>
+<p class="subText center">Lorem Ipsum is simply dummy text of the printing and setting indus orem Ipsum has been the industrys.</p>
+<div class="serviceList">
+  <div class="serviceTab">
+    <img src="assets/images/support.png" />
+    <h4>Secure data</h4>
+    <p>Lorem Ipsum is simply dummy text of the printing and setting indus orem Ipsum has been the industrys.</p>
+  </div>
+  <div class="serviceTab">
+    <img src="assets/images/secure_data.png" />
+    <h4>Automated</h4>
+    <p>Lorem Ipsum is simply dummy text of the printing and setting indus orem Ipsum has been the industrys.</p>
+  </div>
+  <div class="serviceTab">
+    <img src="assets/images/live-chat.png" />
+    <h4>Encrypted</h4>
+    <p>Lorem Ipsum is simply dummy text of the printing and setting indus orem Ipsum has been the industrys.</p>
+  </div>
+  <div class="serviceTab">
+    <img src="assets/images/functional.png" />
+    <h4>Secure data</h4>
+    <p>Lorem Ipsum is simply dummy text of the printing and setting indus orem Ipsum has been the industrys.</p>
+  </div>
+</div>  
+</div>
+<div class="contentSection">
+  <div class="container">
+  <div class="leftImage">
+    <img src="assets/images/appImage.png" />
+  </div>
+  <div class="rightContent">
+    <h2 class="headTitle">Mobile Application Services</h2>
+<p class="subText">
+  Lorem Ipsum is simply dummy text of the printing and setting indus orem Ipsum has been the industrys.Lorem Ipsum is simply dummy text of the printing and setting indus orem Ipsum has been the industrys.Lorem 
+  Ipsum is simply dummy text of the printing and setting indus orem Ipsum has been the industrys.</p>
+<ul class="featureList">
+<li>
+  <i class="mdi mdi-download"></i>
+  <h4>17M+ <span>Download</span></h4>
+</li>
+<li>
+  <i class="mdi mdi-message"></i>
+  <h4>2300+ <span>Reviews</span></h4>
+</li>
+</ul>
+  </div>
+</div>
+</div>
+</div>
+
+  <div class="subscribeCot">   <div class="container">
+    <div class="subBlock">
+      <h3>
+        Subscribe newsletter
+        <span>Be the first to recieve all latest post in your inbox</span>
+      </h3>
+      <div class="subForm">
+        <input type="text" placeholder="Enter your Email" />
+        <button type="submit" class="btn btn-white">Submit</button>
+      </div>
+    </div>
+  </div></div>
 
 
+<footer class="mainFooter">
+  <p>copyright Copyright FlowVid. All right reserved</p>
+</footer>
   
   
+    </div>

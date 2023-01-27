@@ -1,0 +1,242 @@
+
+.mainHome {
+    margin: -2.75rem;
+    display: block;
+    width: calc(100% + 5.5rem);
+    background-color: #FBFDFF;
+
+.mainBanner {
+    width: 100%;
+    background-image: url('../../../assets/images/hero-bg.png');
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-position: 150% bottom;
+  
+  
+  header {
+      width: 100%;
+      padding: 20px 0;
+      .brandLogo {
+        display: inline-block;
+        width: auto; img {
+          width: 150px;
+      }
+    }
+    ul {
+      list-style: none;
+      display: inline-block;
+      margin-left: 30px; 
+      li {
+        display: inline-block;
+        margin-right: 20px;
+        a {
+          text-decoration: none !important;
+      color:#333;
+        }
+    }
+  }
+  .navRight {
+    float: right;
+    .btn{
+        padding: 10px 25px;
+        border-radius: 30px;
+    }
+  }
+  }
+  }
+  
+  
+  .bannerCaption {
+    float: left;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 0;
+    
+  .bannerDesc {
+    float: left;
+    max-width: 450px;
+    h2 {
+      font-weight: bold;
+      font-size: 40px;
+      span {
+        color: green;
+      }
+    }
+    p{
+      color:#8A8A8A;
+      span {
+        margin-right: 20px;
+    }
+    .btn{
+        padding: 10px 25px;
+        border-radius: 30px;
+    }
+    }
+  }
+    .bannerImage {
+      position: relative;
+      float: right;
+      max-width: 50%;
+      top: -60px;
+    }
+    
+  }
+  .midSection{
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 60px;
+    &::before{
+        content: "";
+        height: 100%;
+        width: 70%;
+        top: -5%;
+        left: -20%;
+        position: absolute;
+        background: url('../../../assets/images/hero-bg.png') no-repeat;
+        background-position: top center;
+        background-size: contain;
+}
+    .serviceCot {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 30px;
+        border-radius: 10px;
+        position: relative;
+        background: rgba(255,255,255,0.5);
+        box-shadow: 0 0 20px 0 #00000010;
+        margin-bottom: 60px;
+        .serviceList {
+            display: flex;
+            margin:20px -15px 0;
+                .serviceTab {
+                padding: 15px;
+                img {
+                    height: 60px;
+                    margin-bottom: 20px;
+                }
+                h4 {
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    
+  }
+  .headTitle {
+    font-size: 30px;
+    font-weight: bold;
+    color:#515151;
+    &.center{
+        text-align: center;
+    }
+    
+}
+.subText{
+    font-size: 16px;
+    color: #888;
+    &.center{
+        text-align: center;
+    }
+}
+
+.contentSection {
+    position: relative;
+    .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    .leftImage {
+        width: 40%;
+    }
+    
+    .rightContent {flex: 1;padding-left: 60px;}
+
+
+.featureList {
+    display: flex;
+    padding: 0;
+    margin-top: 20px;
+    li {
+        list-style: none;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 0 #00000010;
+        padding: 15px 30px;
+        display: flex;
+        margin-right: 30px;
+        h4 {
+            font-size: 30px;
+            font-weight: bold;
+            span {
+                display: block;
+                font-size: 16px;
+                color: #888;
+                font-weight: normal;
+            }
+        }
+        i {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 2rem;
+            line-height: 60px;
+            background: #143a6f20;
+            color: #143a6f;
+            border-radius: 100%;
+            margin-right: 20px;
+        }
+    }
+}
+
+}
+}
+.subBlock {
+    background: #143a6f;
+    padding: 30px;
+    border-radius: 20px;
+    margin: 20px 0;
+    color: #fff;
+    box-shadow: 0 0 10px 0 #00000010;
+    display: flex;
+    width: 100%;
+    h3 {
+        font-size: 2rem;
+        font-weight: bold;
+        span {
+            font-size: 1.2rem;
+            display: block;
+        }
+    }
+    .subForm {
+        flex: 1;
+        display: flex;
+        padding:10px 0 10px 40px;
+        input {
+            padding: 10px;
+            border-radius: 6px;
+            background: #ffffff60;
+            border: none;
+            color: #fff;
+            flex: 1;
+            &::placeholder{
+                color: #fff;
+            }
+        }
+        
+        .btn{
+            background: #fff;
+            color: #143a6f;
+            margin-left: 10px;
+        }
+    }
+}
+
+.mainFooter {
+    text-align: center;
+    margin-top: 20px;
+    display: inline-block;
+    width: 100%;
+}
+}
