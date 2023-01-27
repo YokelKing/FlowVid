@@ -205,7 +205,7 @@ export class JobCreateComponent implements OnInit {
 
   newTask(): FormGroup {
     return this.fb.group({
-      dateDue:'',
+      dateOpend:'',
       description: '',
       jobProgressStatusID:'',
       status: ''
