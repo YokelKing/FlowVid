@@ -210,21 +210,43 @@
 
 
         <div formArrayName="jobTask">
-          <div
-            *ngFor="let task of jobTasks().controls; let taskIndex=index"
-          >
+          <div *ngFor="let task of jobTasks().controls; let taskIndex=index">
             <div [formGroupName]="taskIndex">
-             
-              <input type="date" formControlName="dateDue" placeholder="Due Date" /> &nbsp;&nbsp;
-            
-              <input type="text" formControlName="jobProgressStatusID" placeholder="ProgressStatusID" /> &nbsp;&nbsp;
-              <input type="text" formControlName="description" placeholder="Description" /> &nbsp;&nbsp;
-            
-              <input type="text" formControlName="status" placeholder="Status" /> &nbsp;&nbsp;
-              &nbsp;&nbsp; &nbsp;&nbsp;
-              <button (click)="removeJobTask(taskIndex)">
+              <div class="container">
+                <div class="row">
+
+              <div class="col-md-3">
+                <mat-form-field class="wid-100">
+                  <mat-label>Start Date</mat-label>
+                  <input matInput formControlName="dateOpend" readonly [matDatepicker]="taskPicker">
+                  <mat-datepicker-toggle matSuffix [for]="taskPicker">
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #taskPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">          
+              <select formControlName="jobProgressStatusID" class="form-control form-control-sm" (change)="changeJobProgressStatus($event)">
+                <option value="" disabled selected>Select Job Progress Status</option>
+                <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
+                  {{ data.name }}
+                </option>
+              </select>
+              </div>
+              <div class="col-md-2">
+              <input type="text" formControlName="description" placeholder="Description" class="form-control form-control-sm" /> 
+            </div>
+
+            <div class="col-md-3">
+              <input type="text" formControlName="status" placeholder="Status i.e true or false" class="form-control form-control-sm" /> 
+</div>
+              <div class="col-md-2">
+                <button (click)="removeJobTask(taskIndex)">
                 Remove
               </button>
+           
+              </div>
+              </div>
+              </div>
             </div>
             <br><br>
           </div>
