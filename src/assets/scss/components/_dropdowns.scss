@@ -39,3 +39,18 @@
     }
   }
 }
+
+.sidebar-icon-only {.dropdown-list{
+  .menu-name{
+    display: none;
+  }
+  i.fa{
+    right: 5px;
+  }
+}
+.dropdown {
+  .sub-menu{
+  padding: 0 !important;
+   background: #99999910;
+}
+}}
