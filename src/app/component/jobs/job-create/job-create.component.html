@@ -137,9 +137,9 @@
       </div>
     </div> 
     <div class="container">
-      <div class="row">
+      <div class="row align-items-center">
         <div class="col-md-3">
-          <mat-form-field class="wid-100">
+          <mat-form-field class="w-100">
             <mat-label>Start Date</mat-label>
             <input matInput formControlName="dateOpend" readonly required [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker">
@@ -149,7 +149,7 @@
         </div>
 
         <div class="col-md-3">
-          <mat-form-field class="wid-100">
+          <mat-form-field class="w-100">
             <mat-label>Due Date</mat-label>
             <input matInput readonly [matDatepicker]="enddatepicker" required formControlName="dateDue">
             <mat-datepicker-toggle matSuffix [for]="enddatepicker">
@@ -159,7 +159,7 @@
         </div>
   
         <div class="col-md-3">
-          <mat-form-field class="wid-100">
+          <mat-form-field class="w-100">
             <mat-label>Closed Date</mat-label>
             <input matInput formControlName="dateClosed" readonly required [matDatepicker]="dateClosedPicker">
             <mat-datepicker-toggle matSuffix [for]="dateClosedPicker">
@@ -173,7 +173,7 @@
           Add Task 
         </button> -->
 
-        <button type="button" class="btn btn-primary mr-2" (click)="addJobTask()">
+        <button type="button" class="btn btn-primary btn-sm mr-2" (click)="AddTask()">
           Add Task
         </button>
        
@@ -234,12 +234,79 @@
 </div>   
   </form>
 </div>
+<div class="p-3 mt-4" [hidden]="taskDataSource.data.length < 1">
+  <div class="container">
+    <h3>Tasks</h3>
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-table [dataSource]="taskDataSource" matSort>
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> S.No </mat-header-cell>
+          <mat-cell *matCellDef="let row; let i = index"> {{ i}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+           Description
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.description }} </mat-cell>
+        </ng-container>
+       
+        <ng-container matColumnDef="dateOpened">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Open Date
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.dateOpened | date }} </mat-cell>
+        </ng-container>
+    
+        
+        <ng-container matColumnDef="dateDue">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Due Date
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.dateDue | date }} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="dateClosed">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Close Date
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.dateClosed | date }} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <th mat-cell *matCellDef="let row; let i=index">
+            <button (click)="editTask(row,i)" class="btn btn-primary">
+              <i class="mdi mdi-account-plus"></i>
+            </button>
+            <button (click)="deleteTask(row,i)" class="btn btn-danger text-white">
+              <i class="mdi mdi-delete me-2"></i>
+            </button>
+          </th>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="taskDisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: taskDisplayedColumns"> </mat-row>
+      </mat-table>
+    
+      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </div>
+</div>
 </mat-tab>
 <!-- <mat-tab label="Task">
 <div>
   Add Job Task here 
 </div>
 </mat-tab> -->
+
+
+
 </mat-tab-group>
 <div class="modal-footer">
   <button type="submit" [disabled]="jobForm.invalid" class="btn btn-primary mr-2" (click)="addNewJob()">

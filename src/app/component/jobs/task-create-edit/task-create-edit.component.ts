@@ -23,12 +23,12 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 
 @Component({
-  selector: "app-task-create",
-  templateUrl: "./task-create.component.html",
-  styleUrls: ["./task-create.component.scss"],
+  selector: "app-task-create-edit",
+  templateUrl: "./task-create-edit.component.html",
+  styleUrls: ["./task-create-edit.component.scss"],
   providers: [DatePipe],
 })
-export class TaskCreateComponent implements OnInit {
+export class TaskCreateEditComponent implements OnInit {
   [x: string]: any;
   title: string;
   job: IJob;
@@ -67,7 +67,7 @@ export class TaskCreateComponent implements OnInit {
     "action",
   ];
   dataSource: MatTableDataSource<IJob>;
-
+  action = "Add";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -81,20 +81,16 @@ export class TaskCreateComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.job = {} as IJob;
+    this.task = {} as IJob;
   }
 
   ngOnInit(): void {
+    this.action = this.task.id ? "Update" : "Add";
     this.taskForm = new FormGroup({
-      status: new FormControl(this.job.status, [Validators.required]),
-
-      description: new FormControl(this.job.description, [Validators.required]),
-
-      jobProgressStatusID: new FormControl(this.job.jobProgressStatusID, [
-        Validators.required,
-      ]),
-
-      dateOpend: new FormControl(this.job.dateOpend, [Validators.required]),
+      description: new FormControl(this.task.description, [Validators.required]),
+      dateOpened: new FormControl(this.task.dateOpened, [Validators.required]),
+      dateDue: new FormControl(this.task.dateDue, [Validators.required]),
+      dateClosed: new FormControl(this.task.dateClosed, [Validators.required]),
     });
 
     this.loadData();
@@ -113,7 +109,9 @@ export class TaskCreateComponent implements OnInit {
   loadData() {
     this.title = "Add new ";
   }
-
+  createNewTask(){
+    this.modal.close(this.taskForm.value);
+  }
   addNewJob() {
     if (this.taskForm.invalid || this.isSubmitted) {
       return;
@@ -157,7 +155,7 @@ export class TaskCreateComponent implements OnInit {
   }
 
   AddTask(data: IJob): void {
-    const ref = this.modalService.open(TaskCreateComponent, {
+    const ref = this.modalService.open(TaskCreateEditComponent, {
       size: "xl",
       centered: true,
     });

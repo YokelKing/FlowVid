@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import {
   AbstractControl,
   FormBuilder,
@@ -32,8 +32,9 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
-import { TaskCreateComponent } from "../task-create/task-create.component";
+import { TaskCreateEditComponent } from "../task-create-edit/task-create-edit.component";
 import { MatDialog } from "@angular/material/dialog";
+import { ITask } from "src/app/shared/models/task";
 
 @Component({
   selector: "app-job-create",
@@ -41,7 +42,7 @@ import { MatDialog } from "@angular/material/dialog";
   styleUrls: ["./job-create.component.scss"],
   providers: [DatePipe],
 })
-export class JobCreateComponent implements OnInit {
+export class JobCreateComponent implements OnInit, AfterViewInit {
   [x: string]: any;
   title: string;
   job: IJob;
@@ -79,8 +80,16 @@ export class JobCreateComponent implements OnInit {
     "createdDate",
     "action",
   ];
-  dataSource: MatTableDataSource<IJob>;
 
+  public taskDisplayedColumns: string[] = [
+    "id",
+    "description",
+    "dateOpened",
+    "dateDue",
+    "dateClosed",
+    "action",
+  ];
+  taskDataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -180,7 +189,7 @@ export class JobCreateComponent implements OnInit {
 
   addJobTask() {
 
-    this._dialog.open(TaskCreateComponent, {
+    const dialogRef = this._dialog.open(TaskCreateEditComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       width: '400px',
@@ -194,6 +203,11 @@ export class JobCreateComponent implements OnInit {
   //   this.jobTasks().removeAt(taskIndex);
   // }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.taskDataSource.filter = filterValue;
+  }
   Task(type: string) {
     if (type.toLowerCase() == "next") {
       this.tabIndex = (this.tabIndex + 1) % this.tabCount;
@@ -238,17 +252,38 @@ export class JobCreateComponent implements OnInit {
   Cancel() {
     this.router.navigate(["jobs/jobs-list"]);
   }
-
-  AddTask(data: IJob): void {
-    const ref = this.modalService.open(TaskCreateComponent, {});
-    ref.componentInstance.job = data;
-
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+  AddTask(data?: IJob): void {
+    const ref = this.modalService.open(TaskCreateEditComponent, {});
+    if(data){
+      ref.componentInstance.job = data;
+    }
     ref.result.then(
-      (yes) => {
-        console.log("Yes Click");
-      },
-      (cancel) => {
-        console.log("Cancel Click");
+      (task: ITask) => {
+        if(task){
+          const newTask = {
+            ...task,
+          }
+          this.taskDataSource.data = [
+            ...this.taskDataSource.data,
+            newTask
+          ]
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'New Task created',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.taskDataSource.paginator = this.paginator;
+          this.taskDataSource.sort = this.sort;
+
+        }
+        else{
+          console.log("Cancel Click");
+        }
       }
     );
   }
@@ -705,4 +740,47 @@ export class JobCreateComponent implements OnInit {
   //   date.setMinutes(date.getMinutes() + 5);
   //   return date;
   // }
+  editTask(task: ITask, taskIndex: number): void {
+    const ref = this.modalService.open(TaskCreateEditComponent, {
+      centered: true,
+    });
+    ref.componentInstance.task = task;
+
+    ref.result.then(
+      (data) => {
+        if(data){
+          this.taskDataSource.data = this.taskDataSource.data.map((item:ITask, index: number) => taskIndex === index ? data : item);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Task has been updated",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        }
+      }
+    );
+  }
+  deleteTask(task: ITask, taskIndex: number): void{
+    Swal.fire({
+      title: "Are you sure want to delete?",
+      text: "You will not be able to recover this task!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, keep it",
+    }).then((result) => {
+      if (result.value) {
+        this.taskDataSource.data = this.taskDataSource.data.filter((item: ITask, index: number) => taskIndex !== index);
+        Swal.fire(
+          "Deleted!",
+          "Your imaginary file has been deleted.",
+          "success"
+        );
+
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+      }
+    });
+  }
 }

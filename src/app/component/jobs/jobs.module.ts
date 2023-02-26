@@ -17,7 +17,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { TaskCreateComponent } from './task-create/task-create.component';
+import { TaskCreateEditComponent } from './task-create-edit/task-create-edit.component';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -40,7 +40,7 @@ const materialModules = [
     JobEditComponent,
     JobsListComponent,
     JobCreateComponent,
-    TaskCreateComponent
+    TaskCreateEditComponent
   ],
   imports: [
     CommonModule,

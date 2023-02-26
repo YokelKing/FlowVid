@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">
+    {{action}} Task
+  </h4>
+  <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+  <div class="modal-body">
+    <form [formGroup]="taskForm">
+        <mat-form-field class="w-100">
+          <input required matInput formControlName="description" type="text" class="form-control" placeholder="Description" required>
+        </mat-form-field>
+       
+        <mat-form-field class="w-100">
+          <mat-label>Date Opened</mat-label>
+            <input required matInput formControlName="dateOpened" readonly required [matDatepicker]="taskDateOpenedpicker">
+            <mat-datepicker-toggle matSuffix [for]="taskDateOpenedpicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #taskDateOpenedpicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+          <mat-label>Date Due</mat-label>
+            <input required matInput formControlName="dateDue" readonly required [matDatepicker]="taskDateDuepicker">
+            <mat-datepicker-toggle matSuffix [for]="taskDateDuepicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #taskDateDuepicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+          <mat-label>Date Closed</mat-label>
+            <input required matInput formControlName="dateClosed" readonly required [matDatepicker]="taskDateClosedPicker">
+            <mat-datepicker-toggle matSuffix [for]="taskDateClosedPicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #taskDateClosedPicker></mat-datepicker>
+        </mat-form-field>
+        
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary mr-2" [disabled]="taskForm.invalid" (click)="createNewTask()">
+      {{action}} Task
+    </button>
+    <button class="btn btn-danger mr-2" (click)="modal.close()">
+      Cancel
+    </button>
+
+  </div>
