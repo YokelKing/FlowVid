@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { baseUrl, HTTP_OPTIONS } from 'src/app/apps/guards/api.url';
 import { IJob } from 'src/app/shared/models/Jobs';
 
@@ -16,7 +17,7 @@ export class JobsService {
     private router: Router) {     
     }
 
-    getAllJobs(){
+    getAllJobs():Observable<any>{
       return this.http.get<IJob[]>(jobUrl);
     }
 

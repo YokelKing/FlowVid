@@ -1,18 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import '~bootstrap/dist/css/bootstrap.min.css';    
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~ag-grid-community/styles//ag-grid.css";
+@import "~ag-grid-community/styles//ag-theme-alpine.css";
 
 @function theme-color($key: "primary") {
   @return map-get($theme-colors, $key);
 }
-
 
 @function mix($j, $k, $l) {
   @return $j;
 }
 
 /* === Added Deprecated Hover Mixin ===*/
-
 
 @mixin hover() {
   &:hover {
@@ -21,7 +21,6 @@
 }
 
 @mixin hover-focus() {
-
   &:hover,
   &:focus {
     @content;
@@ -29,7 +28,6 @@
 }
 
 @mixin plain-hover-focus() {
-
   &,
   &:hover,
   &:focus {
@@ -38,7 +36,6 @@
 }
 
 @mixin hover-focus-active() {
-
   &:hover,
   &:focus,
   &:active {
@@ -59,7 +56,6 @@
   width: 200px;
 }
 
-
 .text-primary {
   color: rgb(0, 70, 128) !important;
 }
@@ -73,7 +69,7 @@
 }
 
 .text-danger {
-  color: #ED2939 !important;
+  color: #ed2939 !important;
 }
 
 // .btn-danger{
@@ -92,35 +88,36 @@
 }
 
 $utilities-text-colors: (
-  "primary": "red"
+  "primary": "red",
 );
 $utilities-border-colors: "primary";
 $negative-spacers: 1;
-
 
 .mat-table {
   display: table;
   width: 100%;
 
-  > .mat-header-row, > .mat-row {
-      display: table-row;
-      padding: 0;
-      border: none;
-      margin: 10px;
+  > .mat-header-row,
+  > .mat-row {
+    display: table-row;
+    padding: 0;
+    border: none;
+    margin: 10px;
 
-      > .mat-header-cell, > .mat-cell {
-          display: table-cell;
-          height: 48px;
-          vertical-align: middle;
-          padding: 15px 30px;
+    > .mat-header-cell,
+    > .mat-cell {
+      display: table-cell;
+      height: 48px;
+      vertical-align: middle;
+      padding: 15px 30px;
 
-          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-      }
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
   }
 }
 
 @import "~bootstrap/scss/functions";
-@import './assets/scss/variables';
+@import "./assets/scss/variables";
 @import "~bootstrap/scss/variables";
 @import "~compass-mixins/lib/compass";
 @import "~compass-mixins/lib/animate";
@@ -133,10 +130,6 @@ $negative-spacers: 1;
 
 /* === Icon fonts === */
 @import "~@mdi/font/scss/materialdesignicons";
-
-
-
-
 
 /* === Template mixins === */
 @import "./assets/scss/mixins/animation";

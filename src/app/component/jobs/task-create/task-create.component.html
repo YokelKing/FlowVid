@@ -1,78 +1,65 @@
+<form class="pt-3">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      Add Task
+    </h4>
+    <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')"
+      [mat-dialog-close]="true">
+      <span aria-hidden="true" [mat-dialog-close]="true">×</span>
+    </button>
+  </div>
 
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">
-        Add Task
-      </h4>
-      <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">×</span>
-      </button>
-    </div>
-<div class="row">
+  <div class="row">
 
-   <div class="modal-body">
-  <form  class="pt-3">
-    <div class="container">
-      <div class="row">
-        <div class="col-md form-group">
-          <label>Open Date</label>
-          <input formControlName="dateOpend" type="date" class="form-control form-control-sm"
-            placeholder="dateOpend" />
-            
-        </div>
-           <!-- <div class="col-md-3">
-          <mat-form-field class="wid-100">
-            <mat-label>Start Date</mat-label>
-            <input matInput formControlName="dateOpend" readonly [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker">
-            </mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div> -->
+    <mat-form-field>
+      <mat-label>Start Date</mat-label>
+      <input matInput formControlName="dateOpend" readonly required [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
 
-        <div class="col-md form-group">
-          <label>Job Progress Status Name*</label>
-          <select formControlName="jobProgressStatusID" class="form-control form-control-sm" (change)="changeJobProgressStatus($event)">
-            <option value="" disabled selected>Select Job Progress </option>
-            <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
-              {{ data.name }}
-            </option>
-          </select>
-         <div *ngIf="f.jobProgressStatusID.touched && f.jobProgressStatusID.invalid" class="alert alert-danger">
-            <div *ngIf="f.jobProgressStatusID.errors.required">Job Progress Status Name is required.</div>
-          </div> 
-        </div>
+  <div class="row">
 
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md form-group">
-          <label>Description</label>
-          <input formControlName="description" type="text" class="form-control form-control-sm"
-            placeholder="Description" />
-        </div>
-        <div class="col-md form-group">
-          <label>Status</label>
-          <input formControlName="status" type="text" class="form-control form-control-sm"
-            placeholder="Status" />
-        </div>
-      
-      </div>
-    </div>
+    <mat-form-field>
+      <mat-label>Job Progress Status</mat-label>
+      <mat-select required formControlName="jobProgressStatusID" (change)="changeJobProgressStatus($event)">
+        <mat-option *ngFor="let data of progress" [value]="data.id">
+          {{data.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+
+    <mat-form-field>
+      <mat-label>Job Description</mat-label>
+      <input matInput type="text" placeholder="Description" required formControlName="description">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field class="example-full-width">
+      <mat-label>Status</mat-label>
+      <input matInput type="text" placeholder="status" required formControlName="status">
+    </mat-form-field>
+  </div>
+
+  <div>
+
+  </div>
 
 
-  
-<div>
-  
-</div>   
-  </form>
-</div>
-<div class="modal-footer">
-  <button type="submit" [disabled]="taskForm.invalid" class="btn btn-primary mr-2" (click)="addNewJob()">
-    Create
-  </button>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary mr-2" (click)="addTaskJob()">
+      Add Task
+    </button>
+    <button class="btn btn-danger mr-2" [mat-dialog-close]="true">
+      Cancel
+    </button>
 
+  </div>
 
-</div>
-  
-</div>
+</form>

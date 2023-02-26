@@ -1,1 +1,8 @@
-.example-container{ overflow-x: auto;}
+.example-container{ overflow-x: auto;
+height: auto;
+}
+
+mat-paginator-range-actions{
+    margin-left: 2px;
+
+}

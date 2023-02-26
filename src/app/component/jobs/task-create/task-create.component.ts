@@ -143,6 +143,14 @@ export class TaskCreateComponent implements OnInit {
       }
     );
   }
+  addJobTask(){
+    debugger;
+    this.jobTasks().push(this.newTask());
+  }
+
+  removeJobTask(taskIndex: number) {
+    this.jobTasks().removeAt(taskIndex);
+     }
 
   Cancel() {
     this.router.navigate(["jobs/jobs-list"]);

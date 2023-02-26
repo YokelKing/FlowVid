@@ -18,6 +18,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { TaskCreateComponent } from './task-create/task-create.component';
+import { MatSelectModule } from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { AgGridModule } from 'ag-grid-angular';
+
 const routes: Routes = [
   { path: 'jobs-list', component: JobsListComponent },
   { path: 'job-create', component: JobCreateComponent },
@@ -42,7 +47,12 @@ const materialModules = [
     ReactiveFormsModule,
     MatTabsModule,
     MatDatepickerModule,
+    MatSelectModule,
     NgxMaterialTimepickerModule,
+    MatDialogModule,
+    MatIconModule,
+    AgGridModule,
+
     RouterModule.forChild(routes),
     ...materialModules
 

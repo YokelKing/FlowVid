@@ -25,6 +25,13 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MaterialModule } from './material.module';
 import { LoginGuard } from 'src/app/apps/_helpers/login.guard';
 import { AuthGuard } from 'src/app/apps/_helpers/auth.guard';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { AgGridModule } from 'ag-grid-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +61,13 @@ import { AuthGuard } from 'src/app/apps/_helpers/auth.guard';
     MatTabsModule,
     MaterialModule,
     SharedModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    MatToolbarModule,
+    AgGridModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger',
     })
