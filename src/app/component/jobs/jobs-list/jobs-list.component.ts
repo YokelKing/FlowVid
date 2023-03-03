@@ -25,71 +25,8 @@ import { IDateFilterParams } from "ag-grid-community";
 export class JobsListComponent implements OnInit {
  jobDetails: any = {};
   jobs: IJob[];
-  rowData = [
-    
-    { 
-      id: '1', 
-      description: 'Job 1', 
-      customer: 'John', 
-      team: 'bsbs' ,
-      resource: 'ngnddn',
-      division: 'ndffdn',
-      jobAsset: 'ndfndf',
-      jobIssueType: 'ndndf',
-      jobPriority: 'dndgn',
-      jobSource: 'dnfnd',
-      jobProgressStatus: 'ndnfd',
-      jobType: 'dnfdnd',
-      externalRefNo: 'ndfndf',
-      dateOpend: '01-02-2023',
-      dateDue:'01/02/2023',
-      dateClosed:'01/02/2023',
-      },
-
-    { 
-    id: '2', 
-    description: 'Job 1', 
-    customer: 'bfnm', 
-    team: 'nfnfn' ,
-    resource: 'nfndn',
-    division: 'ndnd',
-    jobAsset: 'ndnd',
-    jobIssueType: 'ngmdrgs',
-    jobPriority: 'fwafwa',
-    jobSource: 'mhhgjm',
-    jobProgressStatus: 'myjr',
-    jobType: 'hddj',
-    externalRefNo: 'jdrjkdk',
-    dateOpend: '02/02/2023',
-    dateDue:'02/02/2023',
-    dateClosed:'02/02/2023',
-    }
-   ];
-  public displayedColumns: string[] = [
-    'id',
-    'description',
-    'customer',
-    'team',
-    'resource',
-    'division',
-    'jobAsset',
-    'jobIssueType',
-    'jobPriority',
-    'jobSource',
-    
-    'jobProgressStatus',
-    'jobType',
-    'externalRefNo',
-    // "jobTask",
-    // "jobDocument",
-    // "resourceJobCost",
-    'dateOpend',
-    'dateDue',
-    'dateClosed',
-    // 'status',
-    // 'createdDate',
-    'action',
-  ];
+  rowData: any = [];
+  
   dataSource: MatTableDataSource<IJob>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -129,10 +66,7 @@ export class JobsListComponent implements OnInit {
     this.jobService.getAllJobs().subscribe(
       (result) => {
         this.jobs = result;
-        this.dataSource = new MatTableDataSource(result);
-        // Assign the paginator *after* dataSource is set
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.rowData = result;
       },
       (error) => {
         console.log(error);
@@ -141,7 +75,7 @@ export class JobsListComponent implements OnInit {
   }
 
   editJob(data: IJob): void {
-this.router.navigate(['jobs/job-edit/' + data.id]);
+this.router.navigate(['jobs/job-create/' + data.id]);
   }
   deleteJob(data: IJob): void {
     Swal.fire({
@@ -213,16 +147,16 @@ this.router.navigate(['jobs/job-edit/' + data.id]);
     return eGui;
   }
   createdDateFormatter(params) {
-    // const date = new Date(params.data.createdDate);
-    const date = new Date();
+    const date = new Date(params.data.dateOpend);
+    //const date = new Date();
     return date.getDate() + '/' +  (date.getMonth()+1) + '/' + date.getFullYear();
   }
   dueDateFormatter(params) {
-    const date = new Date();
+    const date = new Date(params.data.dateDue);
     return date.getDate() + '/' +  (date.getMonth()+1) + '/' + date.getFullYear();
   }
   closedDateFormatter(params) {
-    const date = new Date();
+    const date = new Date(params.data.dateClosed);
     return date.getDate() + '/' +  (date.getMonth()+1) + '/' + date.getFullYear();
   }
 
@@ -253,7 +187,7 @@ this.router.navigate(['jobs/job-edit/' + data.id]);
   };
   gridOptions = {
     pagination: true,
-    suppressClickEdit: true,
+    suppressClickEdit: false,
     onCellClicked(params) {
       // Handle click event for action cells
       if (params.column.colId === "action" && params.event.target.dataset.action) {
@@ -301,36 +235,35 @@ this.router.navigate(['jobs/job-edit/' + data.id]);
     columnDefs: [
       {headerName: 'Id', field: 'id' },
       {headerName: 'Description', field: 'description' },
-      {headerName: 'Customer', field: 'customer'},
-      {headerName: 'Team', field: 'team'},
-      {headerName: 'Resource', field: 'resource' },
-      {headerName: 'Division', field: 'division' },
-      {headerName: 'Job Asset', field: 'jobAsset'},
-      {headerName: 'Job Issue Type', field: 'jobIssueType'},
-      {headerName: 'Job Priority', field: 'jobPriority' },
-      {headerName: 'Job Source', field: 'jobSource' },
-      {headerName: 'Job Progress Status', field: 'jobProgressStatus'},
-      {headerName: 'Job Type', field: 'jobType'},
+      {headerName: 'Customer', field: 'customer.name'},
+      {headerName: 'Team', field: 'team.name'},
+      {headerName: 'Resource', field: 'resource.name' },
+      {headerName: 'Division', field: 'division.name' },
+      {headerName: 'Job Asset', field: 'jobAsset.name'},
+      {headerName: 'Job Issue Type', field: 'jobIssueType.name'},
+      {headerName: 'Job Priority', field: 'jobPriority.name' },
+      {headerName: 'Job Source', field: 'jobSource.name' },
+      {headerName: 'Job Progress Status', field: 'jobProgressStatus.name'},
+      {headerName: 'Job Type', field: 'jobType.name'},
       {headerName: 'External Ref No', field: 'externalRefNo' },
-      // {headerName: 'DateOpened', field: 'DateOpened' },
-      // {headerName: 'DateDue', field: 'DateDue'},
-      // {headerName: 'DateClosed', field: 'DateClosed'},
+      // {headerName: 'Job Task', field: 'jobTask' },
+
       {
-        headerName: 'Created Date', field: 'createdDate',
+        headerName: 'Created Date', field: 'dateOpend',
         filter: 'agDateColumnFilter',
         filterParams: this.filterParams,
         valueFormatter: this.createdDateFormatter,
         editable: false
       },
       {
-        headerName: 'Due Date', field: 'dueDate',
+        headerName: 'Due Date', field: 'dateDue',
         filter: 'agDateColumnFilter',
         filterParams: this.filterParams,
         valueFormatter: this.dueDateFormatter,
         editable: false
       },
       {
-        headerName: 'Closed Date', field: 'closedDate',
+        headerName: 'Closed Date', field: 'dateClosed',
         filter: 'agDateColumnFilter',
         filterParams: this.filterParams,
         valueFormatter: this.closedDateFormatter,

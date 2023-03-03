@@ -271,7 +271,7 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
             newTask
           ]
           Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'success',
             title: 'New Task created',
             showConfirmButton: false,
@@ -751,7 +751,7 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
         if(data){
           this.taskDataSource.data = this.taskDataSource.data.map((item:ITask, index: number) => taskIndex === index ? data : item);
           Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
             title: "Task has been updated",
             showConfirmButton: false,

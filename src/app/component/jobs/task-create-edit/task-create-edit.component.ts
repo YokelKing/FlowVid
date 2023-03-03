@@ -120,7 +120,7 @@ export class TaskCreateEditComponent implements OnInit {
     this.jobService.createJob(this.taskForm.value).subscribe(
       (data) => {
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "Job has been created",
           showConfirmButton: false,
@@ -186,7 +186,7 @@ export class TaskCreateEditComponent implements OnInit {
         this.jobs = this.jobs.filter((r) => r.id !== data.id);
         Swal.fire(
           "Deleted!",
-          "Your imaginary file has been deleted.",
+          "Job has been deleted.",
           "success"
         );
 
@@ -194,7 +194,7 @@ export class TaskCreateEditComponent implements OnInit {
           window.location.reload();
         }, 2000);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+        Swal.fire("Cancelled", "Job is safe :)", "error");
       }
     });
   }
