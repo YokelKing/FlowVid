@@ -187,17 +187,17 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
     });
   }
 
-  addJobTask() {
+  // addJobTask() {
 
-    const dialogRef = this._dialog.open(TaskCreateEditComponent, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      width: '400px',
-      panelClass: 'full-screen-modal'
-    });
+  //   const dialogRef = this._dialog.open(TaskCreateEditComponent, {
+  //     maxWidth: '100vw',
+  //     maxHeight: '100vh',
+  //     width: '400px',
+  //     panelClass: 'full-screen-modal'
+  //   });
 
     // this.jobTasks().push(this.newTask());
-  }
+ // }
 
   // removeJobTask(taskIndex: number) {
   //   this.jobTasks().removeAt(taskIndex);
@@ -219,10 +219,12 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
   }
 
   addNewJob() {
+    debugger;
     if (this.jobForm.invalid || this.isSubmitted) {
       return;
     }
     this.isSubmitted = true;
+    this.jobForm.value.jobTask =  this.taskDataSource.data;
     debugger;
     this.jobService.createJob(this.jobForm.value).subscribe(
       (data) => {
@@ -256,6 +258,7 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
   AddTask(data?: IJob): void {
+    debugger;
     const ref = this.modalService.open(TaskCreateEditComponent, {});
     if(data){
       ref.componentInstance.job = data;

@@ -115,30 +115,33 @@ export class JobEditComponent implements OnInit {
   }
 
   editJob() {
+    debugger;
     if (this.editForm.invalid || this.isSubmitted) {
       return;
     }
+    this.job = this.editForm.value
     this.isSubmitted = true;
     this.JobsService
       .updateJob(this.job.id, this.editForm.value)
       .subscribe(
         (x) => {
-          this.isSubmitted = false;
+          
           Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'success',
             title: 'Job has been updated',
             showConfirmButton: false,
             timer: 1500
           })
 
+          this.isSubmitted = false;
+          this.modalService.dismissAll();
+         this.router.navigate(['/jobs/job-edit/']);
 
-          this.modal.close("Yes");
-          
-    this.router.navigate([`jobs/jobs-list`]);
         },
         (error) => {
           this.isSubmitted = false;
+          this.loadJobs();
         }
       );
     this.editForm.reset();   

@@ -94,7 +94,7 @@ this.router.navigate(['jobs/job-create/' + data.id]);
         this.jobs = this.jobs.filter((r) => r.id !== data.id);
         Swal.fire(
           "Deleted!",
-          "Your imaginary file has been deleted.",
+          "Job has been deleted.",
           "success"
         );
 
@@ -102,7 +102,7 @@ this.router.navigate(['jobs/job-create/' + data.id]);
           window.location.reload();
         }, 2000);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+        Swal.fire("Cancelled", "Job is safe :)", "error");
       }
     });
   }
@@ -188,34 +188,7 @@ this.router.navigate(['jobs/job-create/' + data.id]);
   gridOptions = {
     pagination: true,
     suppressClickEdit: false,
-    onCellClicked(params) {
-      // Handle click event for action cells
-      if (params.column.colId === "action" && params.event.target.dataset.action) {
-        let action = params.event.target.dataset.action;
-  
-        if (action === "edit") {
-          params.api.startEditingCell({
-            rowIndex: params.node.rowIndex,
-            // gets the first columnKey
-            colKey: params.columnApi.getDisplayedCenterColumns()[0].colId
-          });
-        }
-  
-        if (action === "delete") {
-          params.api.applyTransaction({
-            remove: [params.node.data]
-          });
-        }
-  
-        if (action === "update") {
-          params.api.stopEditing(false);
-        }
-  
-        if (action === "cancel") {
-          params.api.stopEditing(true);
-        }
-      }
-    },
+    
   
     onRowEditingStarted: (params) => {
       params.api.refreshCells({
@@ -287,7 +260,24 @@ this.router.navigate(['jobs/job-create/' + data.id]);
     resizable: true,
     }
   };
+  onCellClicked=params=>{
+    if (params.column.colId === "action" && params.event.target.dataset.action) {
+      let action = params.event.target.dataset.action;
+
+      if (action === "edit") {
+        debugger;
+        this.router.navigate(['/jobs/job-edit/' + params.node.data.id]);
+        }
+
+      if (action === "delete") {
+        params.api.applyTransaction({
+          remove: [params.node.data]
+        });
+      }
+
+  }
 
 
 }
 
+}

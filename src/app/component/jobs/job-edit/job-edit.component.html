@@ -6,166 +6,141 @@
     <div class="container">
       <div class="row">
         <div class="col-md form-group">
-          <label>Description Name*</label>
-          <input formControlName="description" type="text" class="form-control form-control-sm" 
-            placeholder="Description" />
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Job Description</mat-label>
+            <input matInput #Description maxlength="256" type="text" placeholder="Description" required formControlName="description">
+            <mat-hint align="start"><strong>Enter Job Description</strong> </mat-hint>
+            <mat-hint align="end">{{Description.value.length}}/256</mat-hint>
+          </mat-form-field>
         </div>
         <div class="col-md form-group">
-          <label>Customer Name*</label>
-          <select formControlName="customerId" class="form-control form-control-sm" (change)="changeCustomer($event)">
-            <option *ngFor="let cust of customers" [value]="cust.id" class="form-control form-control-sm">
-              {{ cust.name }}
-            </option>
-          </select>
-          <div *ngIf="editFormData.customerId.touched && editFormData.customerId.invalid" class="alert alert-danger">
-            <div *ngIf="editFormData.customerId.errors.required">
-              Customer Name is required.
-            </div>
-          </div>
-        </div>
-        <div class="col-md form-group">
-          <label>Team Name*</label>
-          <select formControlName="teamId" class="form-control form-control-sm" (change)="changeTeam($event)">
-                  <option *ngFor="let team of teams" [value]="team.id" class="form-control form-control-sm">
-              {{team.name}}
-            </option>
-          </select>
-          <div *ngIf="editFormData.teamId.touched && editFormData.teamId.invalid" class="alert alert-danger">
-            <div *ngIf="editFormData.teamId.errors.required">Team Name is required.</div>
-          </div>
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Customer</mat-label>
+                <mat-select matInput  name="customer" required formControlName="customerId" (change)="changeCustomer($event)">
+                    <mat-option *ngFor = "let cust of customers" [value]="cust.id">
+                        {{cust.name}}
+                    </mat-option>
+                </mat-select>    
+        </mat-form-field>
         </div>
 
 
-       <!-- <div class="col-md form-group">
-          <label>Resource Name*</label>
-          <select formControlName="resourceId" class="form-control form-control-sm" (change)="changeResource($event)">
-                    <option *ngFor="let data of resources" [value]="data.id" class="form-control form-control-sm">
-              {{data.name}}
-            </option>
-          </select>
-          <div *ngIf="editFormData.resourceId.touched && editFormData.resourceId.invalid" class="alert alert-danger">
-            <div *ngIf="editFormData.resourceId.errors.required">Resource Name is required.</div>
-          </div>
-        </div>  -->
-
-       </div>
-    </div>
-    <div class="container">
-      <div class="row">
         <div class="col-md form-group">
-          <label>Division Name*</label>
-          <select formControlName="divisionID" class="form-control form-control-sm" (change)="changeDivision($event)">
-                     <option *ngFor="let data of divisions" [value]="data.id" class="form-control form-control-sm">
-              {{ data.name }}
-            </option>
-          </select>
-          <div *ngIf="editFormData.divisionID.touched && editFormData.divisionID.invalid" class="alert alert-danger">
-            <div *ngIf="editFormData.divisionID.errors.required">
-              Division Name is required.
-            </div>
-          </div>
-        </div>
-        <div class="col-md form-group">
-          <label>jobAsset Name*</label>
-          <select formControlName="jobAssetID" class="form-control form-control-sm" (change)="changeJobAsset($event)">
-                      <option *ngFor="let data of assets" [value]="data.id" class="form-control form-control-sm">
-              {{ data.name }}
-            </option>
-          </select>
-          <div *ngIf="editFormData.jobAssetID.touched && editFormData.jobAssetID.invalid" class="alert alert-danger">
-            <div *ngIf="editFormData.jobAssetID.errors.required">jobAsset Name is required.</div>
-          </div>
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Team</mat-label>
+                <mat-select required formControlName="teamId" (change)="changeTeam($event)">
+                    <mat-option *ngFor="let team of teams" [value]="team.id" >
+                        {{team.name}}
+                    </mat-option>
+                </mat-select>    
+        </mat-form-field>
         </div>
 
+
         <div class="col-md form-group">
-          <label>jobIssueType Name*</label>
-          <select formControlName="jobIssueTypeID" class="form-control form-control-sm"
-            (change)="changeJobIssueType($event)">
-            <option *ngFor="let data of types" [value]="data.id" class="form-control form-control-sm">
-              {{ data.name }}
-            </option>
-          </select>
-          <div *ngIf="editFormData.jobIssueTypeID.touched && editFormData.jobIssueTypeID.invalid"
-            class="alert alert-danger">
-            <div *ngIf="editFormData.jobIssueTypeID.errors.required">
-              jobIssueType Name is required.
-            </div>
-          </div>
-        </div>
-        <div class="col-md form-group">
-          <label>jobPriority Name*</label>
-          <select formControlName="jobPriorityID" class="form-control form-control-sm"
-            (change)="changeJobPriority($event)">
-            <option *ngFor="let data of priority" [value]="data.id" class="form-control form-control-sm">
-              {{ data.name }}
-            </option>
-          </select>
-          <div *ngIf="editFormData.jobPriorityID.touched && editFormData.jobPriorityID.invalid"
-            class="alert alert-danger">
-            <div *ngIf="editFormData.jobPriorityID.errors.required">
-              jobPriority Name is required.
-            </div>
-          </div>
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Resource</mat-label>
+                <mat-select required formControlName="resourceId" (change)="changeResource($event)">
+                    <mat-option *ngFor="let data of resources" [value]="data.id">
+                        {{data.name}}
+                    </mat-option>
+                </mat-select>    
+        </mat-form-field>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
-
         <div class="col-md form-group">
-          <label>jobSource Name*</label>
-          <select formControlName="jobSourceID" class="form-control form-control-sm" (change)="changeJobSource($event)">
-                  <option *ngFor="let data of sources" [value]="data.id" class="form-control form-control-sm">
-              {{ data.name }}
-            </option>
-          </select>
-          <div *ngIf="editFormData.jobSourceID.touched && editFormData.jobSourceID.invalid" class="alert alert-danger">
-            <div *ngIf="editFormData.jobSourceID.errors.required">
-              jobSource Name is required.
-            </div>
-          </div>
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Division</mat-label>
+                <mat-select required formControlName="divisionID" (change)="changeDivision($event)">
+                    <mat-option *ngFor="let data of divisions" [value]="data.id">
+                        {{data.name}}
+                    </mat-option>
+                </mat-select>    
+        </mat-form-field>
         </div>
         <div class="col-md form-group">
-          <label>jobProgressStatus Name*</label>
-          <select formControlName="teamId" class="form-control form-control-sm"
-            (change)="changeJobProgressStatus($event)">
-                   <option *ngFor="let data of progress" [value]="data.id" class="form-control form-control-sm">
-              {{ data.name }}
-            </option>
-          </select>
-          <div *ngIf="editFormData.jobProgressStatusID.touched && editFormData.jobProgressStatusID.invalid"
-            class="alert alert-danger">
-            <div *ngIf="editFormData.jobProgressStatusID.errors.required">jobProgressStatus Name is required.</div>
-          </div>
-        </div>
-        <div class="col-md form-group">
-          <label>jobType Name*</label>
-          <select formControlName="jobTypeID" class="form-control form-control-sm" (change)="changeJobType($event)">
-                  <option *ngFor="let data of jobtypes" [value]="data.id" class="form-control form-control-sm">
-              {{ data.name }}
-            </option>
-          </select>
-          <div *ngIf="editFormData.jobTypeID.touched && editFormData.jobTypeID.invalid" class="alert alert-danger">
-            <div *ngIf="editFormData.jobTypeID.errors.required">
-              jobType Name is required.
-            </div>
-          </div>
-        </div>
-        <div class="col-md form-group">
-          <label>externalRefNo</label>
-          <input formControlName="externalRefNo" type="text" class="form-control form-control-sm"
-            placeholder="external RefNo" />
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Job Asset</mat-label>
+                <mat-select required formControlName="jobAssetID" (change)="changeJobAsset($event)">
+                    <mat-option *ngFor="let data of assets" [value]="data.id">
+                        {{data.name}}
+                    </mat-option>
+                </mat-select>    
+        </mat-form-field>
         </div>
 
+        <div class="col-md form-group">
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Job Issue Type</mat-label>
+                <mat-select required formControlName="jobIssueTypeID" (change)="changeJobIssueType($event)">
+                    <mat-option *ngFor="let data of types" [value]="data.id">
+                        {{data.name}}
+                    </mat-option>
+                </mat-select>    
+        </mat-form-field>
+        </div>
+        <div class="col-md form-group">
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Job Priority</mat-label>
+                <mat-select required formControlName="jobPriorityID" (change)="changeJobPriority($event)">
+                    <mat-option *ngFor="let data of priority" [value]="data.id">
+                        {{data.name}}
+                    </mat-option>
+                </mat-select>    
+        </mat-form-field>
+        </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
-       
+      
+        <div class="col-md form-group">
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Job Source</mat-label>
+                <mat-select required formControlName="jobSourceID" (change)="changeJobSource($event)">
+                    <mat-option *ngFor="let data of sources" [value]="data.id">
+                        {{data.name}}
+                    </mat-option>
+                </mat-select>    
+        </mat-form-field>
+        </div>
+        <div class="col-md form-group">
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Job Progress Status</mat-label>
+                <mat-select required formControlName="jobProgressStatusID" (change)="changeJobProgressStatus($event)">
+                    <mat-option *ngFor="let data of progress" [value]="data.id">
+                        {{data.name}}
+                    </mat-option>
+                </mat-select>    
+        </mat-form-field>
+        </div>
+        <div class="col-md form-group">
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Job Type</mat-label>
+                <mat-select required formControlName="jobTypeID" (change)="changeJobType($event)">
+                    <mat-option *ngFor="let data of jobtypes" [value]="data.id">
+                        {{data.name}}
+                    </mat-option>
+                </mat-select>    
+        </mat-form-field>
+        </div>
+        <div class="col-md form-group">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>External RefNo</mat-label>
+            <input matInput placeholder="External RefNo" required formControlName="externalRefNo">
+          </mat-form-field>
+        </div>       
+      </div>
+    </div> 
+    <div class="container">
+      <div class="row align-items-center">
         <div class="col-md-3">
-          <mat-form-field class="wid-100">
+          <mat-form-field class="w-100" appearance="fill">
             <mat-label>Start Date</mat-label>
-            <input matInput formControlName="dateOpend" readonly [matDatepicker]="picker">
+            <input matInput formControlName="dateOpend" readonly required [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker">
             </mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
@@ -173,29 +148,29 @@
         </div>
 
         <div class="col-md-3">
-          <mat-form-field class="wid-100">
+          <mat-form-field class="w-100" appearance="fill">
             <mat-label>Due Date</mat-label>
-            <input matInput readonly [matDatepicker]="enddatepicker" formControlName="dateDue">
+            <input matInput readonly [matDatepicker]="enddatepicker" required formControlName="dateDue">
             <mat-datepicker-toggle matSuffix [for]="enddatepicker">
             </mat-datepicker-toggle>
             <mat-datepicker #enddatepicker></mat-datepicker>
           </mat-form-field>
         </div>
-
+  
         <div class="col-md-3">
-          <mat-form-field class="wid-100">
+          <mat-form-field class="w-100" appearance="fill">
             <mat-label>Closed Date</mat-label>
-            <input matInput formControlName="dateClosed" readonly [matDatepicker]="dateClosedPicker">
+            <input matInput formControlName="dateClosed" readonly required [matDatepicker]="dateClosedPicker">
             <mat-datepicker-toggle matSuffix [for]="dateClosedPicker">
             </mat-datepicker-toggle>
             <mat-datepicker #dateClosedPicker></mat-datepicker>
           </mat-form-field>
-        </div>    
         </div>
-    </div> 
 
-  </form>
+  
 </div>
+
+
 <div class="modal-footer">
   <button type="submit"  class="btn btn-primary mr-2" (click)="editJob()">Update</button>
 
