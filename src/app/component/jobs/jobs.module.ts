@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NgbModule, NgbActiveModal  } from '@ng-bootstrap/ng-bootstrap';
 
-import { JobCreateComponent } from './job-create/job-create.component';
+import { JobCreateEditComponent } from './job-create-edit/job-create-edit.component';
 import { JobEditComponent } from './job-edit/job-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
@@ -25,8 +25,8 @@ import { AgGridModule } from 'ag-grid-angular';
 
 const routes: Routes = [
   { path: 'jobs-list', component: JobsListComponent },
-  { path: 'job-create', component: JobCreateComponent },
-  { path: 'job-edit/:id', component: JobEditComponent }
+  { path: 'job-create', component: JobCreateEditComponent },
+  { path: 'job-edit/:id', component: JobCreateEditComponent }
 ]
 const materialModules = [
   MatTableModule,
@@ -39,7 +39,7 @@ const materialModules = [
   declarations: [
     JobEditComponent,
     JobsListComponent,
-    JobCreateComponent,
+    JobCreateEditComponent,
     TaskCreateEditComponent
   ],
   imports: [

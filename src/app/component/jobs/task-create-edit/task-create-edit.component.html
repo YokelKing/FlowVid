@@ -14,7 +14,7 @@
        
         <mat-form-field class="w-100">
           <mat-label>Date Opened</mat-label>
-            <input required matInput formControlName="dateOpend" readonly required [matDatepicker]="taskDateOpenedpicker">
+            <input [max]="smallerDate(dateClosed.value, dateDue.value)" required matInput formControlName="dateOpend" readonly required [matDatepicker]="taskDateOpenedpicker">
             <mat-datepicker-toggle matSuffix [for]="taskDateOpenedpicker">
             </mat-datepicker-toggle>
             <mat-datepicker #taskDateOpenedpicker></mat-datepicker>
@@ -22,7 +22,7 @@
 
         <mat-form-field class="w-100">
           <mat-label>Date Due</mat-label>
-            <input required matInput formControlName="dateDue" readonly required [matDatepicker]="taskDateDuepicker">
+            <input [min]="dateOpend.value" [max]="dateClosed.value" required matInput formControlName="dateDue" readonly required [matDatepicker]="taskDateDuepicker">
             <mat-datepicker-toggle matSuffix [for]="taskDateDuepicker">
             </mat-datepicker-toggle>
             <mat-datepicker #taskDateDuepicker></mat-datepicker>
@@ -30,7 +30,7 @@
 
         <mat-form-field class="w-100">
           <mat-label>Date Closed</mat-label>
-            <input required matInput formControlName="dateClosed" readonly required [matDatepicker]="taskDateClosedPicker">
+            <input [min]="dateOpend.value"  required matInput formControlName="dateClosed" readonly required [matDatepicker]="taskDateClosedPicker">
             <mat-datepicker-toggle matSuffix [for]="taskDateClosedPicker">
             </mat-datepicker-toggle>
             <mat-datepicker #taskDateClosedPicker></mat-datepicker>

@@ -38,13 +38,14 @@ import { ITask } from "src/app/shared/models/task";
 
 @Component({
   selector: "app-job-create",
-  templateUrl: "./job-create.component.html",
-  styleUrls: ["./job-create.component.scss"],
+  templateUrl: "./job-create-edit.component.html",
+  styleUrls: ["./job-create-edit.component.scss"],
   providers: [DatePipe],
 })
-export class JobCreateComponent implements OnInit, AfterViewInit {
+export class JobCreateEditComponent implements OnInit, AfterViewInit {
   [x: string]: any;
   title: string;
+  action: string;
   job: IJob;
   closeResult: string;
   jobForm: FormGroup;
@@ -84,7 +85,7 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
   public taskDisplayedColumns: string[] = [
     "id",
     "description",
-    "dateOpened",
+    "dateOpend",
     "dateDue",
     "dateClosed",
     "action",
@@ -115,45 +116,59 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
   ) {
     this.job = {} as IJob;
   }
+  getJobDetails() {
+    this.jobService.getJobById(this.JobID).subscribe(
+      (res) => {
+        if (res) {
+          this.job = res;  
+          this.setJobForm(); 
+          this.jobForm.controls["dateClosed"].setValidators([Validators.required]);
+          console.log(this.job.jobTask);
+          this.taskDataSource.data = [
+            ...this.jobTasks().value
+          ] 
+          console.log(this.taskDataSource);
+        }
+      },
+      error => console.log(error)
+    );
+  }
 
-  ngOnInit(): void {
+  setJobForm(): void{
     this.jobForm = new FormGroup({
       description: new FormControl(this.job.description, [Validators.required]),
-      customerId: new FormControl(this.job.customerId, [Validators.required]),
-      teamId: new FormControl(this.job.teamId, [Validators.required]),
-      resourceId: new FormControl(this.job.resourceId, [Validators.required]),
-
-      divisionID: new FormControl(this.job.divisionID, [Validators.required]),
-
-      jobAssetID: new FormControl(this.job.jobAssetID, [Validators.required]),
-
-      jobIssueTypeID: new FormControl(this.job.jobIssueTypeID, [
-        Validators.required,
-      ]),
-
-      jobPriorityID: new FormControl(this.job.jobPriorityID, [
-        Validators.required,
-      ]),
-
-      jobSourceID: new FormControl(this.job.jobSourceID, [Validators.required]),
-      jobProgressStatusID: new FormControl(this.job.jobProgressStatusID, [
-        Validators.required,
-      ]),
-
-      jobTypeID: new FormControl(this.job.jobTypeID, [Validators.required]),
-
+      customerId: new FormControl(this.job.customer?.id, [Validators.required]),
+      teamId: new FormControl(this.job.team?.id, [Validators.required]),
+      resourceId: new FormControl(this.job.resource?.id, [Validators.required]),
+      divisionID: new FormControl(this.job.division?.id, [Validators.required]),
+      jobAssetID: new FormControl(this.job.jobAsset?.id, [Validators.required]),
+      jobIssueTypeID: new FormControl(this.job.jobIssueType?.id, [Validators.required]),
+      jobPriorityID: new FormControl(this.job.jobPriority?.id, [Validators.required]),
+      jobSourceID: new FormControl(this.job.jobSource?.id, [Validators.required]),
+      jobProgressStatusID: new FormControl(this.job.jobProgressStatus?.id, [Validators.required]),
+      jobTypeID: new FormControl(this.job.jobType?.id, [Validators.required]),
       externalRefNo: new FormControl(this.job.externalRefNo, []),
-
-      dateOpend: new FormControl(this.job.dateOpend, [
-        //Validators.required
-      ]),
-
-      dateDue: new FormControl(this.job.dateDue, []),
-
+      dateOpend: new FormControl(this.job.dateOpend, [Validators.required]),
+      dateDue: new FormControl(this.job.dateDue, [Validators.required]),
       dateClosed: new FormControl(this.job.dateClosed, []),
-
-      jobTask: this.fb.array([]),
+      jobTask: this.fb.array(this.job.jobTask ? this.job.jobTask?.map(task => this.addTaskInList(task)) : []),
     });
+    console.log(this.job.jobTask);
+    console.log(this.jobTasks());
+  }
+  addTaskInList(task){
+    return this.fb.group(task);
+  }
+  ngOnInit(): void {
+    this.setJobForm();
+    this.JobID = this.route.snapshot.params['id'];
+    this.action = this.JobID ? 'Edit' : 'Create';
+    if(this.JobID){
+      this.getJobDetails();
+    }
+    else{
+      this.setJobForm();
+    }
 
     this.loadData();
 
@@ -218,14 +233,23 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
     this.title = "Add new ";
   }
 
+  saveJob(){
+    this.jobForm.patchValue({
+      jobTask : this.taskDataSource.data
+    })
+    console.log(this.jobForm.value)
+    if(this.JobID){
+      this.editJob();
+    }
+    else{
+      this.addNewJob();
+    }
+  }
   addNewJob() {
-    debugger;
     if (this.jobForm.invalid || this.isSubmitted) {
       return;
     }
     this.isSubmitted = true;
-    this.jobForm.value.jobTask =  this.taskDataSource.data;
-    debugger;
     this.jobService.createJob(this.jobForm.value).subscribe(
       (data) => {
         Swal.fire({
@@ -242,7 +266,7 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
           .then(() => {
             this.router.navigate(["/jobs/jobs-list"]);
           });
-        //this.Task('next');
+        this.Task('next');
       },
       (error) => {
         this.isSubmitted = false;
@@ -250,15 +274,49 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
       }
     );
   }
+  editJob() {
+    if (this.jobForm.invalid || this.isSubmitted) {
+      return;
+    }
+    this.isSubmitted = true;
+    this.jobService
+      .updateJob(this.job.id, this.jobForm.value)
+      .subscribe(
+        (x) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Job has been updated',
+            showConfirmButton: false,
+            timer: 1500
+          })
+
+          this.isSubmitted = false;
+          this.modalService.dismissAll();
+          this.router
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() => {
+            this.router.navigate(["/jobs/jobs-list"]);
+          });
+        },
+        (error) => {
+          this.isSubmitted = false;
+          this.loadJobs();
+        }
+      );
+    this.jobForm.reset();   
+
+  }
+
 
   Cancel() {
     this.router.navigate(["jobs/jobs-list"]);
   }
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
   }
   AddTask(data?: IJob): void {
-    debugger;
+    ;
     const ref = this.modalService.open(TaskCreateEditComponent, {});
     if(data){
       ref.componentInstance.job = data;
@@ -429,7 +487,7 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
     this.jobService.getAllJobs().subscribe(
       (result) => {
         this.jobs = result;
-        //debugger;
+        //;
         this.dataSource = new MatTableDataSource(result);
         // Assign the paginator *after* dataSource is set
         this.dataSource.paginator = this.paginator;
@@ -593,7 +651,7 @@ export class JobCreateComponent implements OnInit, AfterViewInit {
   }
 
   // public onStartDateChange(event: MatDatepickerInputEvent<Date>): void {
-  //   //debugger;
+  //   //;
   //   this.minEndDate = new Date(event.value);
   //   let selectedEndDate = this.jobForm.controls["EndDate"].value;
   //   if (selectedEndDate != "") {

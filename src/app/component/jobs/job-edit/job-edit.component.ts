@@ -115,7 +115,6 @@ export class JobEditComponent implements OnInit {
   }
 
   editJob() {
-    debugger;
     if (this.editForm.invalid || this.isSubmitted) {
       return;
     }

@@ -47,7 +47,6 @@ export class SidebarComponent implements OnInit {
   ObjMenus: Array<Menu> = new Array<Menu>();
   ObjMenu: Menu = new Menu();
   ngOnInit() {
-    //debugger;
     this.currentUser$ = this.accountService.getCurrentUser();
     this.getAllMenus();
     const body = document.querySelector('body');
@@ -83,7 +82,6 @@ export class SidebarComponent implements OnInit {
 
   }
   getAllMenus() {
-    // debugger;
     this.sharedServiceService.getMenus().subscribe(
       result => {
        this.navItems = result;       

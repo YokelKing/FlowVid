@@ -85,10 +85,10 @@ export class TaskCreateEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.action = this.task.id ? "Update" : "Add";
+    this.action = Object.keys(this.task).length > 0 ? "Update" : "Add";
     this.taskForm = new FormGroup({
       description: new FormControl(this.task.description, [Validators.required]),
-      dateOpened: new FormControl(this.task.dateOpened, [Validators.required]),
+      dateOpend: new FormControl(this.task.dateOpend, [Validators.required]),
       dateDue: new FormControl(this.task.dateDue, [Validators.required]),
       dateClosed: new FormControl(this.task.dateClosed, [Validators.required]),
     });
@@ -142,7 +142,6 @@ export class TaskCreateEditComponent implements OnInit {
     );
   }
   addJobTask(){
-    debugger;
     this.jobTasks().push(this.newTask());
   }
 
@@ -263,6 +262,21 @@ export class TaskCreateEditComponent implements OnInit {
 
   get dateOpend() {
     return this.taskForm.get("dateOpend")!;
+  }
+
+  get dateClosed() {
+    return this.taskForm.get("dateClosed")!;
+  }
+
+  get dateDue() {
+    return this.taskForm.get("dateDue")!;
+  }
+
+  smallerDate(d1, d2){
+    if(d1 && d2){
+      return new Date(d1) < new Date(d2) ? d1 : d2;
+    }
+    return d1 ? d1 : d2;
   }
 
   changeJobProgressStatus(e) {

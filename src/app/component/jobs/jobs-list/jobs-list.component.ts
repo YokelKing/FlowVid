@@ -62,7 +62,6 @@ export class JobsListComponent implements OnInit {
   }
 
   loadJobs() {
-    debugger;
     this.jobService.getAllJobs().subscribe(
       (result) => {
         this.jobs = result;
@@ -77,7 +76,7 @@ export class JobsListComponent implements OnInit {
   editJob(data: IJob): void {
 this.router.navigate(['jobs/job-create/' + data.id]);
   }
-  deleteJob(data: IJob): void {
+  deleteJob(params: any): void {
     Swal.fire({
       title: "Are you sure want to remove?",
       text: "You will not be able to recover this file!",
@@ -89,9 +88,11 @@ this.router.navigate(['jobs/job-create/' + data.id]);
       if (result.value) {
         //this.jobService.deleteJob(data);
 
-        this.jobService.deleteJob(data).subscribe((data) => data);
+        this.jobService.deleteJob(params.data).subscribe((data) => data);
 
-        this.jobs = this.jobs.filter((r) => r.id !== data.id);
+        params.api.applyTransaction({
+          remove: [params.node.data]
+        });
         Swal.fire(
           "Deleted!",
           "Job has been deleted.",
@@ -265,14 +266,11 @@ this.router.navigate(['jobs/job-create/' + data.id]);
       let action = params.event.target.dataset.action;
 
       if (action === "edit") {
-        debugger;
         this.router.navigate(['/jobs/job-edit/' + params.node.data.id]);
         }
 
       if (action === "delete") {
-        params.api.applyTransaction({
-          remove: [params.node.data]
-        });
+        this.deleteJob(params);
       }
 
   }
