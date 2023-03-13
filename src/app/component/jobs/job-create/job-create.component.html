@@ -1,6 +1,6 @@
 <div class="row">
   <mat-tab-group animationDuration="0ms" style="width: 100%;" [(selectedIndex)]="tabIndex" >
-  <mat-tab [label]="action + ' Job'">
+  <mat-tab label="Create New Job">
    <div class="modal-body">
   <form [formGroup]="jobForm" *ngIf="jobForm" class="pt-3"
   #frmjob="ngForm">
@@ -161,7 +161,7 @@
         <div class="col-md-3">
           <mat-form-field class="w-100" appearance="fill">
             <mat-label>Closed Date</mat-label>
-            <input matInput formControlName="dateClosed" readonly [required]="JobID ? true: false" [matDatepicker]="dateClosedPicker">
+            <input matInput formControlName="dateClosed" readonly required [matDatepicker]="dateClosedPicker">
             <mat-datepicker-toggle matSuffix [for]="dateClosedPicker">
             </mat-datepicker-toggle>
             <mat-datepicker #dateClosedPicker></mat-datepicker>
@@ -184,7 +184,7 @@
 
 
 
-        <!-- <div formArrayName="jobTask">
+        <div formArrayName="jobTask">
           <div *ngFor="let task of jobTasks().controls; let taskIndex=index">
             <div [formGroupName]="taskIndex">
               <div class="container">
@@ -225,7 +225,7 @@
             </div>
             <br><br>
           </div>
-        </div> -->
+        </div>
 
   </div>
       </div>
@@ -234,14 +234,14 @@
 </div>   
   </form>
 </div>
-<div class="p-3 mt-4" [hidden]="taskDataSource.data.length < 1">
+<div class="p-3 mt-4" [hidden]="taskDataSource.data.length < 1">>
   <div class="container">
     <h3>Tasks</h3>
-      <div class="example-container">
+    <div class="example-container">
       <mat-table [dataSource]="taskDataSource" matSort>
         <ng-container matColumnDef="id">
           <mat-header-cell *matHeaderCellDef mat-sort-header> S.No </mat-header-cell>
-          <mat-cell *matCellDef="let row; let i = index"> {{row.id ? row.id : i+1}} </mat-cell>
+          <mat-cell *matCellDef="let row; let i = index"> {{ i+1}} </mat-cell>
         </ng-container>
     
         <ng-container matColumnDef="description">
@@ -251,11 +251,11 @@
           <mat-cell *matCellDef="let row"> {{ row.description }} </mat-cell>
         </ng-container>
        
-        <ng-container matColumnDef="dateOpend">
+        <ng-container matColumnDef="dateOpened">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             Open Date
           </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{ row.dateOpend | date }} </mat-cell>
+          <mat-cell *matCellDef="let row"> {{ row.dateOpened | date }} </mat-cell>
         </ng-container>
     
         
@@ -294,18 +294,11 @@
   </div>
 </div>
 </mat-tab>
-<!-- <mat-tab label="Task">
-<div>
-  Add Job Task here 
-</div>
-</mat-tab> -->
-
-
 
 </mat-tab-group>
 <div class="modal-footer">
-  <button type="submit" [disabled]="jobForm?.invalid" class="btn btn-primary mr-2" (click)="saveJob()">
-    {{action}}
+  <button type="submit" [disabled]="jobForm.invalid" class="btn btn-primary mr-2" (click)="addNewJob()">
+    Create
   </button>
   <!-- <button class="btn btn-info " type="button" [disabled]="jobForm.invalid" 
   (click)="Task('next');">Save Next</button> -->

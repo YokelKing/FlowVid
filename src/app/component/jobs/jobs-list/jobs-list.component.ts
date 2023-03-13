@@ -65,6 +65,7 @@ export class JobsListComponent implements OnInit {
     this.jobService.getAllJobs().subscribe(
       (result) => {
         this.jobs = result;
+        debugger;
         this.rowData = result;
       },
       (error) => {
