@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NgbModule, NgbActiveModal  } from '@ng-bootstrap/ng-bootstrap';
 
-import { JobCreateComponent } from './job-create/job-create.component';
+import { JobCreateEditComponent } from './job-create-edit/job-create-edit.component';
 import { JobEditComponent } from './job-edit/job-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
@@ -17,7 +17,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { TaskCreateComponent } from './task-create/task-create.component';
+import { TaskCreateEditComponent } from './task-create-edit/task-create-edit.component';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,8 +25,8 @@ import { AgGridModule } from 'ag-grid-angular';
 
 const routes: Routes = [
   { path: 'jobs-list', component: JobsListComponent },
-  { path: 'job-create', component: JobCreateComponent },
-  { path: 'job-edit/:id', component: JobEditComponent }
+  { path: 'job-create', component: JobCreateEditComponent },
+  { path: 'job-edit/:id', component: JobCreateEditComponent }
 ]
 const materialModules = [
   MatTableModule,
@@ -39,8 +39,8 @@ const materialModules = [
   declarations: [
     JobEditComponent,
     JobsListComponent,
-    JobCreateComponent,
-    TaskCreateComponent
+    JobCreateEditComponent,
+    TaskCreateEditComponent
   ],
   imports: [
     CommonModule,
