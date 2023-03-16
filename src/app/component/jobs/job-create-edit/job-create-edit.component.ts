@@ -133,6 +133,7 @@ export class JobCreateEditComponent implements OnInit, AfterViewInit {
       error => console.log(error)
     );
   }
+  
 
   setJobForm(): void{
     this.jobForm = new FormGroup({
@@ -171,11 +172,9 @@ export class JobCreateEditComponent implements OnInit, AfterViewInit {
     }
 
     this.loadData();
-
     this.loadCustomers();
     this.loadTeams();
     this.loadResources();
-
     this.loadDivisions();
     this.loadJobAssets();
     this.loadJobIssueTypes();
@@ -184,6 +183,7 @@ export class JobCreateEditComponent implements OnInit, AfterViewInit {
     this.loadJobProgressStatus();
     this.loadJobTypes();
     this.loadJobs();
+    
   }
   get f(): { [key: string]: AbstractControl } {
     return this.jobForm.controls;
@@ -281,6 +281,7 @@ export class JobCreateEditComponent implements OnInit, AfterViewInit {
       return;
     }
     this.isSubmitted = true;
+    this.jobForm.value.jobTask =  this.taskDataSource.data;
     this.jobService
       .updateJob(this.job.id, this.jobForm.value)
       .subscribe(
